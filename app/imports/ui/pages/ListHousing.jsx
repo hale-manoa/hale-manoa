@@ -18,7 +18,7 @@ class ListStuff extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">List Stuff</Header>
+          <Header as="h2" textAlign="center">List Housings</Header>
           <Table celled>
             <Table.Header>
               <Table.Row>
@@ -32,6 +32,7 @@ class ListStuff extends React.Component {
               {this.props.stuffs.map((stuff) => <StuffItem key={stuff._id} stuff={stuff} />)}
             </Table.Body>
           </Table>
+          in list housing
         </Container>
     );
   }

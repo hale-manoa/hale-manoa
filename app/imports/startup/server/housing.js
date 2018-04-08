@@ -9,10 +9,10 @@ function addData(data) {
 
 /** Initialize the collection if empty. */
 if (Housings.find().count() === 0) {
-  if (Meteor.settings.defaultData) {
+  if (Meteor.settings.defaultHousing) {
     console.log('Creating default data.');
     console.log('In Housing');
-    Meteor.settings.defaultData.map(data => addData(data));
+    Meteor.settings.defaultHousing.map(data => addData(data));
   }
 }
 
