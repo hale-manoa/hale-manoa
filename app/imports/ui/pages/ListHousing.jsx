@@ -18,7 +18,7 @@ class ListHousing extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">List Housings</Header>
+          <Header as="h2" textAlign="center">Housing</Header>
           <Card.Group centered>
             {this.props.housings.map((house, index) => <HousingItem key={index} house={house}/>)}
           </Card.Group>

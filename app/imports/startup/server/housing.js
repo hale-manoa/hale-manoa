@@ -3,7 +3,7 @@ import { Housings } from '../../api/housing/housing.js';
 
 /** Initialize the database with a default data document. */
 function addData(data) {
-  console.log(`  Adding: ${data.propertyaddress} (${data.unitnumber})`);
+  console.log(`  Adding: ${data.streetaddress} (${data.unitnumber})`);
   Housings.insert(data);
 }
 

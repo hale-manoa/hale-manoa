@@ -7,12 +7,16 @@ const Housings = new Mongo.Collection('Housings');
 
 /** Create a schema to constrain the structure of documents associated with this collection. */
 const HousingsSchema = new SimpleSchema({
-  propertyaddress: String,
+  streetaddress: String,
+  city: String,
+  image: String,
+  state: String,
+  zipcode: Number,
   unitnumber: String,
   propertytype: {
     type: String,
-    allowedValues: ['Condo/Apartment Unit', 'House', 'Townhouse'],
-    defaultValue: 'Condo/Apartment Unit',
+    allowedValues: ['CONDO/APARTMENT UNIT', 'HOUSE', 'TOWNHOUSE'],
+    defaultValue: 'CONDO/APARTMENT UNIT',
   },
   rentprice: Number,
   beds: Number,
