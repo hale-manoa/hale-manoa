@@ -11,6 +11,38 @@
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
   ],
 
+  "defaultHousing": [
+    {
+      "propertyaddress": "2211 Ala Wai Blvd, Honolulu, HI, 96815",
+      "unitnumber": "1407",
+      "propertytype": "Condo/Apartment Unit",
+      "rentprice": 2000,
+      "beds": 2,
+      "baths": 1,
+      "squarefeet": 300,
+      "description": "Blah Blah Blah"
+    },
+    {
+      "propertyaddress": "2211 Ala Wai Blvd, Honolulu, HI, 96815",
+      "unitnumber": "1520",
+      "propertytype": "House",
+      "rentprice": 1500,
+      "beds": 2,
+      "baths": 1,
+      "squarefeet": 300,
+      "description": "Blah Blah Blah"
+    },
+    {
+      "propertyaddress": "2211 Ala Wai Blvd, Honolulu, HI, 96815",
+      "unitnumber": "1407",
+      "propertytype": "Townhouse",
+      "rentprice": 2000,
+      "beds": 2,
+      "baths": 1,
+      "squarefeet": 300,
+      "description": "Blah Blah Blah"
+    }
+  ]
 
 }
 
