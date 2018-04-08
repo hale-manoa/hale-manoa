@@ -14,13 +14,15 @@ class User extends React.Component {
               {this.props.user.firstName} {this.props.user.lastName}
             </Card.Header>
             <Card.Meta>
-              {this.props.user.address}
+              {this.props.user.type}
             </Card.Meta>
             <Card.Description>
-              {this.props.user.description}
+              <p><b>Age:</b> {this.props.user.age}</p>
+              <p><b>Area:</b> {this.props.user.area}</p>
+              <p><b>Preferences:</b> {this.props.user.preferences}</p>
             </Card.Description>
           </Card.Content>
-          <Button>Read More</Button>
+          <Button>See full profile</Button>
         </Card>
     );
   }

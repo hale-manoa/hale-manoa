@@ -8,25 +8,34 @@
     {
       "firstName": "Philip",
       "lastName": "Johnson",
-      "address": "POST 307, University of Hawaii",
+      "type": "Renter",
       "owner": "john@foo.com",
       "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
+      "age": "20",
+      "area": "Manoa",
+      "preferences": "No smoking",
       "description": "I am a Professor of Information and Computer Sciences at the University of Hawaii, Director of the Collaborative Software Development Laboratory, and the CEO of OpenPowerQuality.com."
     },
     {
       "firstName": "Henri",
       "lastName": "Casanova",
-      "address": "POST 307, University of Hawaii",
+      "type": "Tenant",
       "owner": "john@foo.com",
       "image": "https://avatars0.githubusercontent.com/u/7494478?s=460&v=4",
+      "age": "29",
+      "area": "Kaimuki",
+      "preferences": "Parties allowed on the weekends",
       "description": "I am originally from France. I maintain a list of reports from my surf sessions. I have proof that I ran the Hana relay with an actual Team."
     },
     {
       "firstName": "Kim",
       "lastName": "Binsted",
-      "address": "POST 307, University of Hawaii",
+      "type": "Renter",
       "owner": "admin@foo.com",
       "image": "https://pbs.twimg.com/profile_images/798636728852434944/Y2EMD2i5_400x400.jpg",
+      "age": "24",
+      "area": "Makiki",
+      "preferences": "No loud noises after 10 p.m.",
       "description": "Kim Binsted received her BSc in Physics at McGill (1991), and her PhD in Artificial Intelligence from the University of Edinburgh (1996). Her thesis topic was the computational modeling and generation of punning riddles, and her program, JAPE (Joke Analysis and Production Engine), generated puns such as 'What do you call a Martian who drinks beer? An ale-ien!'."
     }
   ]
