@@ -1,5 +1,5 @@
 import React from 'react';
-import { Housings, HousingSchema } from '/imports/api/stuff/stuff';
+import { Housings, HousingsSchema } from '/imports/api/housing/housing';
 import { Grid, Segment, Header } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
@@ -12,7 +12,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
 
 /** Renders the Page for adding a document. */
-class AddStuff extends React.Component {
+class AddHousing extends React.Component {
 
   /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
   constructor(props) {
@@ -34,9 +34,9 @@ class AddStuff extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, quantity, condition } = data;
+    const { streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description } = data;
     const owner = Meteor.user().username;
-    Housings.insert({ name, quantity, condition, owner }, this.insertCallback);
+    Housings.insert({ streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -44,16 +44,21 @@ class AddStuff extends React.Component {
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Add Stuff</Header>
-            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={HousingSchema} onSubmit={this.submit}>
+            <Header as="h2" textAlign="center">Add Housing</Header>
+            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={HousingsSchema} onSubmit={this.submit}>
               <Segment>
-                <TextField name='Street Address'/>
-                <TextField name='Unit'/>
-                <TextField name='City'/>
-                <TextField name='State'/>
+                <TextField name='streetaddress'/>
+                <TextField name='unitnumber'/>
+                <TextField name='city'/>
+                <TextField name='state'/>
                 <TextField name='image'/>
                 <NumField name='zipcode' decimal={false}/>
                 <SelectField name='propertytype'/>
+                <NumField name='rentprice' decimal={false}/>
+                <NumField name='beds' decimal={false}/>
+                <NumField name='baths' decimal={false}/>
+                <NumField name='squarefeet' decimal={false}/>
+                <TextField name='description'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
               </Segment>
@@ -64,4 +69,4 @@ class AddStuff extends React.Component {
   }
 }
 
-export default AddStuff;
+export default AddHousing;

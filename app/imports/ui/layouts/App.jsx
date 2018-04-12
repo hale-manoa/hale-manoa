@@ -9,7 +9,6 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListHousing from '../pages/ListHousing';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
 import AddHousing from '../pages/AddHousing';
 import ViewBios from '../pages/ViewBios';
 import ViewProfile from '../pages/ViewProfile';
