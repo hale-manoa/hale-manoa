@@ -10,6 +10,7 @@ import Landing from '../pages/Landing';
 import ListHousing from '../pages/ListHousing';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddStuff from '../pages/AddStuff';
+import AddHousing from '../pages/AddHousing';
 import ViewBios from '../pages/ViewBios';
 import ViewProfile from '../pages/ViewProfile';
 import EditStuff from '../pages/EditStuff';
@@ -34,7 +35,7 @@ class App extends React.Component {
               <ProtectedRoute path="/list" component={ListHousing}/>
               <ProtectedRoute path="/connect" component={ViewBios}/>
               <ProtectedRoute path="/profile/:_id" component={ViewProfile}/>
-              <ProtectedRoute path="/add" component={AddStuff}/>
+              <ProtectedRoute path="/add" component={AddHousing}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
