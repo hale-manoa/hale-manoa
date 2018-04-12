@@ -10,7 +10,7 @@ import { Roles } from 'meteor/alanning:roles';
 class NavBar extends React.Component {
   render() {
     const menuStyle = { marginBottom: '10px', color: '#00A7E1' };
-    const menuItemColor = { color: '#003459', size: '18px' };
+    const menuItemColor = { color: '#000' };
     return (
         <Menu style={menuStyle} attached="top">
           <Menu.Item as={NavLink} activeClassName="" exact to="/">
