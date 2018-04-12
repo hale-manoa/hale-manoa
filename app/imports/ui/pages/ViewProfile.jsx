@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader } from 'semantic-ui-react';
+import { Container, Header, Image, Grid, Loader } from 'semantic-ui-react';
 import { Users } from '/imports/api/user/user';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -20,6 +20,28 @@ class ViewProfile extends React.Component {
           <Header as="h2" textAlign="center">
             {this.props.users.firstName} {this.props.users.lastName}
           </Header>
+          <Grid columns={2}>
+            <Grid.Column>
+              <Image rounded size="medium" src={this.props.users.image} />
+            </Grid.Column>
+            <Grid.Column>
+              <p><b>Age:</b> {this.props.users.age}</p>
+              <p><b>Area:</b> {this.props.users.area}</p>
+              <p><b>Preferences:</b> {this.props.users.preferences}</p>
+            </Grid.Column>
+          </Grid>
+          <Header as="h2" textAlign="left">
+              About Me
+          </Header>
+          <p> {this.props.users.description} </p>
+          <Header as="h2" textAlign="left">
+            Listings
+          </Header>
+          <p> Listing Placeholder </p>
+          <Header as="h2" textAlign="left">
+            Ratings and Reviews
+          </Header>
+          <p> Feedback Placeholder </p>
         </Container>
     );
   }

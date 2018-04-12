@@ -23,7 +23,7 @@ class User extends React.Component {
             </Card.Description>
           </Card.Content>
           <Link to={`/profile/${this.props.user._id}`}>
-            <Button>See full profile</Button>
+            <Button fluid centered>See full profile</Button>
           </Link>
         </Card>
     );
