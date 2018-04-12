@@ -10,7 +10,7 @@ import { Roles } from 'meteor/alanning:roles';
 class NavBar extends React.Component {
   render() {
     const menuStyle = { marginBottom: '10px', color: '#00A7E1' };
-    const menuItemColor = { color: '#003459' };
+    const menuItemColor = { color: '#003459', size: '18px' };
     return (
         <Menu style={menuStyle} attached="top">
           <Menu.Item as={NavLink} activeClassName="" exact to="/">
@@ -18,9 +18,9 @@ class NavBar extends React.Component {
           </Menu.Item>
           {this.props.currentUser ? (
               [<Menu.Item style={menuItemColor} as={NavLink} activeClassName="active" exact to="/list" key='list'>
-                  List Stuff</Menu.Item>,
-                <Menu.Item style={menuItemColor} as={NavLink} activeClassName="active" exact to="/findroommates"
-                           key='findroommates'>Find Roommates</Menu.Item>,
+                  Housing</Menu.Item>,
+                <Menu.Item style={menuItemColor} as={NavLink} activeClassName="active" exact to="/connect"
+                           key='connect'>Connect</Menu.Item>,
                 <Menu.Item style={menuItemColor} as={NavLink} activeClassName="active" exact to="/rent" key='rent'>
                   Rent</Menu.Item>,]
           ) : ''}
