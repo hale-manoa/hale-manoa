@@ -2,6 +2,8 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Header, Image, Grid, Loader } from 'semantic-ui-react';
 import { Users } from '/imports/api/user/user';
+import AddFeedback from '/imports/ui/components/User/AddFeedback';
+import { Feedback } from '/imports/api/feedback/feedback';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
@@ -41,7 +43,7 @@ class ViewProfile extends React.Component {
           <Header as="h2" textAlign="left">
             Ratings and Reviews
           </Header>
-          <p> Feedback Placeholder </p>
+          <AddFeedback owner={this.props.users.owner} userId={this.props.users._id}/>
         </Container>
     );
   }
@@ -50,6 +52,7 @@ class ViewProfile extends React.Component {
 /** Require an array of Stuff documents in the props. */
 ViewProfile.propTypes = {
   users: PropTypes.object,
+  feedback: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -57,8 +60,10 @@ ViewProfile.propTypes = {
 export default withTracker(({ match }) => {
   const userId = match.params._id;
   const subscription = Meteor.subscribe('Users');
+  const subscription2 = Meteor.subscribe('Feedback');
   return {
     users: Users.findOne(userId),
-    ready: subscription.ready(),
+    feedback: Feedback.find({}).fetch(),
+    ready: subscription.ready() && subscription2.ready(),
   };
 })(ViewProfile);
