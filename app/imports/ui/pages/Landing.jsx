@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header, Grid, Search, Container, Card, Image } from 'semantic-ui-react';
 import Selector from "/imports/ui/components/landing/Selector"
+import { NavLink } from 'react-router-dom';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
@@ -19,30 +20,39 @@ class Landing extends React.Component {
                 verticalAlign="middle"
                 textAlign="center"
             >
-              <Header inverted>
-                {this.state.title}
-              </Header>
+              <Grid.Row
+                  className="title-main"
+              >
+                <Header inverted>
+                  {this.state.title}
+                </Header>
+              </Grid.Row>
               <Grid.Row>
                 <Selector
                     onClickFunction={this.changeTitle}
                 />
               </Grid.Row>
-              <Search
-                  size="mini"
-                  placeholder='Search...'
-              />
+              <Grid.Row>
+                <Search
+                    size="massive"
+                    placeholder='Search...'
+                />
+              </Grid.Row>
+
             </Grid>
         </div>
-        <Container>
+        <Container className="navigation-main">
           <Header>Explore Hale Manoa</Header>
           <hr/>
           <Card.Group>
             <Card
+                as={NavLink} activeClassName="" exact to={`/list`}
                 href='body'
                 image='/images/bedroom.jpg'
                 header='Homes'
             />
             <Card
+                as={NavLink} activeClassName="" exact to={`/connect`}
                 href='body'
                 image='/images/people.jpg'
                 header='People'
