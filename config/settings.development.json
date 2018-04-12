@@ -9,5 +9,55 @@
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  ],
+
+  "defaultHousing": [
+    {
+      "streetaddress": "2211 Ala Wai Blvd",
+      "city": "Honolulu",
+      "state": "HI",
+      "image": "https://43b301fb2f83bd2719f4-7e2c9a1717b3351cc628e38f0a1ac906.ssl.cf5.rackcdn.com/201803681-condo-townhouse-1xhfwr8-m.jpg",
+      "zipcode":96815,
+      "unitnumber": "1407",
+      "propertytype": "CONDO/APARTMENT UNIT",
+      "rentprice": 2000,
+      "beds": 2,
+      "baths": 1,
+      "squarefeet": 300,
+      "description": "Blah Blah Blah"
+    },
+    {
+      "streetaddress": "2211 Ala Wai Blvd",
+      "city": "Honolulu",
+      "state": "HI",
+      "image": "https://ssl.cdn-redfin.com/photo/169/mbpaddedwide/879/genMid.201630879_0.jpg",
+      "zipcode":96815,
+      "unitnumber": "1520",
+      "propertytype": "HOUSE",
+      "rentprice": 1500,
+      "beds": 2,
+      "baths": 1,
+      "squarefeet": 300,
+      "description": "Blah Blah Blah"
+    },
+    {
+      "streetaddress": "2211 Ala Wai Blvd",
+      "city": "Honolulu",
+      "state": "HI",
+      "image": "https://p.rdcpix.com/v01/l75b3b043-m1xd-w640_h480_q80.jpg",
+      "zipcode":96815,
+      "unitnumber": "1407",
+      "propertytype": "TOWNHOUSE",
+      "rentprice": 2000,
+      "beds": 2,
+      "baths": 1,
+      "squarefeet": 300,
+      "description": "Blah Blah Blah"
+    }
   ]
+
 }
+
+
+
+
