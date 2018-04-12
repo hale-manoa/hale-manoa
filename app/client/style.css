@@ -1,3 +1,14 @@
+.footer-background {
+  background-color: #000;
+  color: #999;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.footer-link {
+  color: #999;
+}
+
 .landing-main{
   background: url('/images/placeholder-main.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -6,6 +17,4 @@
   padding-bottom: 60px;
   margin-bottom: 60px;
   font-size: 60px;
-
-
 }
