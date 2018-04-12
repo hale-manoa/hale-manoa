@@ -1,6 +1,10 @@
 .footer-background {
-  background-color: #25A99E;
-  color: white;
+  background-color: #000;
+  color: #999;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.footer-link {
+  color: #999;
 }
