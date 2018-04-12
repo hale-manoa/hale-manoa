@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
+import { NavLink, Link } from 'react-router-dom';
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 class Footer extends React.Component {
@@ -16,7 +17,10 @@ class Footer extends React.Component {
                 Honolulu, HI 96822&nbsp;
                 |&nbsp;
                 <a href="https://hale-manoa.github.io/" color='#999' className="footer-link">
-                  https://hale-manoa.github.io/</a>
+                  https://hale-manoa.github.io/</a>&nbsp;
+                |&nbsp;
+                <Link as={NavLink} activeClassName="active" exact to="/contactus" key='contactus'>
+                  Contact Us</Link>
               </Grid.Row>
             </Grid>
           </div>
