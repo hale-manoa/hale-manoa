@@ -3,14 +3,6 @@
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
     { "email": "john@foo.com", "password": "changeme" }
   ],
-
-  "defaultData": [
-    { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
-    { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
-    { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
-    { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
-  ],
-
   "defaultHousing": [
     {
       "streetaddress": "2211 Ala Wai Blvd",
@@ -45,7 +37,7 @@
       "city": "Honolulu",
       "state": "HI",
       "image": "https://p.rdcpix.com/v01/l75b3b043-m1xd-w640_h480_q80.jpg",
-      "zipcode":96815,
+      "zipcode": 96815,
       "unitnumber": "1407",
       "propertytype": "TOWNHOUSE",
       "rentprice": 2000,
@@ -53,6 +45,30 @@
       "baths": 1,
       "squarefeet": 300,
       "description": "Blah Blah Blah"
+    }
+  ],
+  "defaultContacts": [
+    {
+      "firstName": "Philip",
+      "lastName": "Johnson",
+      "type": "Renter",
+      "owner": "john@foo.com",
+      "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
+      "age": "20",
+      "area": "Manoa",
+      "preferences": "No smoking",
+      "description": "I am a Professor of Information and Computer Sciences at the University of Hawaii, Director of the Collaborative Software Development Laboratory, and the CEO of OpenPowerQuality.com."
+    },
+    {
+      "firstName": "Henri",
+      "lastName": "Casanova",
+      "type": "Tenant",
+      "owner": "john@foo.com",
+      "image": "https://avatars0.githubusercontent.com/u/7494478?s=460&v=4",
+      "age": "29",
+      "area": "Kaimuki",
+      "preferences": "Parties allowed on the weekends",
+      "description": "I am originally from France. I maintain a list of reports from my surf sessions. I have proof that I ran the Hana relay with an actual Team."
     }
   ]
 
