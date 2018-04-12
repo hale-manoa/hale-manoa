@@ -13,13 +13,16 @@
 .landing-main{
   background: url('/images/placeholder-main.jpg') no-repeat center center fixed;
   background-size: cover;
-  height: 500px;
+  height: 600px;
   padding-top: 0px;
   padding-bottom: 60px;
-  margin-bottom: 60px;
-  font-size: 60px;
 }
 
-.large-text {
-  font-size: 18px;
+.title-main{
+  font-size: 60px;
+  margin-top: 100px;
+}
+
+.navigation-main{
+  margin-top: 60px;
 }
