@@ -8,3 +8,13 @@
 .footer-link {
   color: #999;
 }
+
+.landing-main{
+  background: url('/images/placeholder-main.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 500px;
+  padding-top: 0px;
+  padding-bottom: 60px;
+  margin-bottom: 60px;
+  font-size: 60px;
+}

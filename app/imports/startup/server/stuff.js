@@ -12,6 +12,8 @@ function addData(data) {
 if (Stuffs.find().count() === 0) {
   if (Meteor.settings.defaultData) {
     console.log('Creating default data.');
+    console.log('In Stuff');
+
     Meteor.settings.defaultData.map(data => addData(data));
   }
 }
