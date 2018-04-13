@@ -1,5 +1,5 @@
 import React from 'react';
-import { Feedback, FeedbackSchema } from '/imports/api/feedback/feedback';
+import { Feedbacks, FeedbackSchema } from '/imports/api/feedback/feedback';
 import { Segment } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
@@ -34,7 +34,7 @@ class AddFeedback extends React.Component {
   /** On submit, insert the data. */
   submit(data) {
     const { feedback, owner, userId, createdAt } = data;
-    Feedback.insert({ feedback, userId, createdAt, owner }, this.insertCallback);
+    Feedbacks.insert({ feedback, userId, createdAt, owner }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */

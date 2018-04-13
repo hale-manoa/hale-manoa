@@ -1,11 +1,11 @@
 import { Meteor } from 'meteor/meteor';
-import { Feedback } from '../../api/feedback/feedback.js';
+import { Feedbacks } from '../../api/feedback/feedback.js';
 
 /** This subscription publishes only the documents associated with the logged in user */
-Meteor.publish('Feedback', function publish() {
+Meteor.publish('Feedbacks', function publish() {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
-    return Feedback.find({ owner: username });
+    return Feedbacks.find({ owner: username });
   }
   return this.ready();
 });
