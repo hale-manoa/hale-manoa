@@ -67,7 +67,7 @@ export default withTracker(({ match }) => {
   const subscription2 = Meteor.subscribe('Feedbacks');
   return {
     users: Users.findOne(userId),
-    feedbacks: Feedbacks.find({}).fetch(),
+    feedbacks: Feedbacks.find({ userId: userId }).fetch(),
     ready: subscription.ready() && subscription2.ready(),
   };
 })(ViewProfile);
