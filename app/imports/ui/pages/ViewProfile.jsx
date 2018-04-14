@@ -28,9 +28,11 @@ class ViewProfile extends React.Component {
               <Image rounded size="medium" src={this.props.users.image} />
             </Grid.Column>
             <Grid.Column>
-              <p><b>Age:</b> {this.props.users.age}</p>
-              <p><b>Area:</b> {this.props.users.area}</p>
-              <p><b>Preferences:</b> {this.props.users.preferences}</p>
+              <p><b><u>Age</u></b><br/> {this.props.users.age}</p>
+              <p><b><u>Area</u></b><br/> {this.props.users.area}</p>
+              <p><b><u>Preferences</u></b><br/>
+                {this.props.users.preferences.map(item => <span key={item}>{item}<br/></span>)}
+              </p>
             </Grid.Column>
           </Grid>
           <Header as="h2" textAlign="left">
