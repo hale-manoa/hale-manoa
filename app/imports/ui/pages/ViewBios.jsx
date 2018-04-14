@@ -1,10 +1,22 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Header, Loader } from 'semantic-ui-react';
+import { Container, Card, Header, Loader, Dropdown, Grid } from 'semantic-ui-react';
 import { Users } from '/imports/api/user/user';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import User from '/imports/ui/components/User/User';
+
+const user_type = [
+  { text: 'Select User Type' },
+  { key: 'Renters', text: 'Renters', value: 'Renters' },
+  { key: 'Tenants', text: 'Tenants', value: 'Tenants' },
+];
+
+const pref = [
+  { text: 'Select Preferences' },
+  { key: 'No smoking', text: 'No smoking', value: 'No smoking' },
+  { key: 'Parties allowed', text: 'Parties allowed', value: 'Parties allowed' },
+];
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewBios extends React.Component {
@@ -18,7 +30,33 @@ class ViewBios extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center"> User Bios</Header>
+          <Header as="h2" textAlign="center"> Find Your Home Away From Home</Header>
+          <Grid columns={2}>
+            <Grid.Column>
+              <Header as="h2">
+                Search for:
+                <Dropdown
+                    button
+                    floating
+                    labeled
+                    options={user_type}
+                    placeholder='Select User Type'
+                />
+              </Header>
+            </Grid.Column>
+            <Grid.Column>
+              <Header as="h2">
+                Your Preferences:
+                <Dropdown
+                    button
+                    floating
+                    labeled
+                    options={pref}
+                    placeholder='Select Preferences'
+                />
+              </Header>
+            </Grid.Column>
+          </Grid>
           <Card.Group>
             {this.props.users.map((user, index) => <User key ={index}
               user={user}/>)}
