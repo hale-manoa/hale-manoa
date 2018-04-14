@@ -30,7 +30,7 @@ class ViewProfile extends React.Component {
             <Grid.Column>
               <p><b>Age:</b> {this.props.users.age}</p>
               <p><b>Area:</b> {this.props.users.area}</p>
-              <p><b>Preferences:</b> {this.props.users.preferences}</p>
+              <p><b>Preferences:</b> {this.props.users.preferences.join(', ')}</p>
             </Grid.Column>
           </Grid>
           <Header as="h2" textAlign="left">

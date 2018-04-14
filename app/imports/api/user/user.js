@@ -13,7 +13,7 @@ const UserSchema = new SimpleSchema({
   image: String,
   age: String,
   area: String,
-  preferences: String,
+  preferences: [String],
   description: String,
   owner: String,
 }, { tracker: Tracker });

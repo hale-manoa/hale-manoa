@@ -19,7 +19,7 @@ class User extends React.Component {
             <Card.Description>
               <p><b>Age:</b> {this.props.user.age}</p>
               <p><b>Area:</b> {this.props.user.area}</p>
-              <p><b>Preferences:</b> {this.props.user.preferences}</p>
+              <p><b>Preferences:</b> {this.props.user.preferences.join(', ')}</p>
             </Card.Description>
           </Card.Content>
           <Link to={`/profile/${this.props.user._id}`}>
