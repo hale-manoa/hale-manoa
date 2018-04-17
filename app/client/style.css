@@ -22,3 +22,12 @@
 .large-text {
   font-size: 18px;
 }
+
+.contact-us-font {
+  font-size: 16px;
+}
+
+.contact-us-container {
+  margin-top: 60px;
+  padding-bottom: 60px;
+}
