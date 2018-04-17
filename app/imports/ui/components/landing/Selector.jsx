@@ -10,9 +10,9 @@ class Selector extends React.Component {
 
     return (
         <Button.Group color='blue'>
-          <Button size='massive' onClick={()=>this.props.onClickFunction("Buy a Home")}>Buy</Button>
-          <Button size='massive' onClick={()=>this.props.onClickFunction("Sell a Home")}>Sell</Button>
-          <Button size='massive' onClick={()=>this.props.onClickFunction("Find a Roommate")}>Find</Button>
+          <Button size='massive' onClick={()=>this.props.onClickFunction("/images/manoa-area.jpg")}>Buy</Button>
+          <Button size='massive' onClick={()=>this.props.onClickFunction("/images/manoa-area.jpg")}>Sell</Button>
+          <Button size='massive' onClick={()=>this.props.onClickFunction("/images/manoa-area.jpg")}>Find</Button>
         </Button.Group>
     );
   }
