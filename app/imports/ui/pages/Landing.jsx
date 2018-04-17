@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Grid, Search, Image, Card } from 'semantic-ui-react';
+import { Icon, Grid, Search, Image, Card } from 'semantic-ui-react';
 import Selector from "/imports/ui/components/landing/Selector"
 import { NavLink } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ class Landing extends React.Component {
               <Grid.Row
                   className="title-main"
               >
-                <p as="p" className="main-text">
+                <p  className="main-text">
                   Hale Manoa
                 </p>
               </Grid.Row>
@@ -61,8 +61,8 @@ class Landing extends React.Component {
                 />
               </Grid.Column>
               <Grid.Column>
-                <p as="p" className="landing-header font-blue">Live in Manoa<hr/></p>
-                <p as="p" className="landing-text font-white">Connect with the perfect roommate and explore available housing options </p>
+                <p  className="landing-header font-blue">Live in Manoa<hr/></p>
+                <p  className="landing-text font-white">Connect with the perfect roommate and explore available housing options </p>
               </Grid.Column>
 
             </Grid>
@@ -73,7 +73,7 @@ class Landing extends React.Component {
             >
               <Grid.Row centered>
 
-                <p as="p" className="landing-text">
+                <p  className="landing-text">
                   The Hale Manoa web portal is designed to help guide the UH Manoa community to discover compatible roommates and find affordable housing.
                 </p>
 
@@ -84,24 +84,47 @@ class Landing extends React.Component {
                 style={{padding: "30px", backgroundColor: "#424B54"}}
             >
               <Grid.Row>
-                <p as="p" className="landing-header font-blue">Explore Hale Manoa<hr/></p>
+                <p  className="landing-header font-blue">Explore Hale Manoa<hr/></p>
 
               </Grid.Row>
 
               <Card.Group>
                 <Card
-                    as={NavLink} activeClassName="" exact to={`/list`}
-                    href='body'
-                    image='/images/bedroom.jpg'
-                    header='Homes'
-                />
-                <Card
                     as={NavLink} activeClassName="" exact to={`/connect`}
                     href='body'
                     image='/images/people.jpg'
-                    header='People'
+                    header='Find your next roommate'
+                />
+                <Card
+                    as={NavLink} activeClassName="" exact to={`/list`}
+                    href='body'
+                    image='/images/bedroom.jpg'
+                    header='View Homes'
                 />
               </Card.Group>
+            </Grid>
+            <Grid
+                columns={3}
+                textAlign="center"
+                style={{padding: "60px", backgroundColor: "#ffffff"}}
+            >
+              <Grid.Column centered>
+                <Icon name="edit" size="huge"></Icon>
+                <p className="landing-header font-green">Build your profile<hr/></p>
+                <p  className="landing-text">Add interests, hobbies, and other information about yourself to help us find the right roommate for you </p>
+
+              </Grid.Column>
+              <Grid.Column>
+                <Icon name="users" size="huge"></Icon>
+                <p  className="landing-header font-green">Meet Roommates<hr/></p>
+                <p  className="landing-text"> View other user profiles and send them a message! </p>
+              </Grid.Column>
+              <Grid.Column>
+                <Icon name="home" size="huge"></Icon>
+                <p  className="landing-header font-green">Live in Manoa<hr/></p>
+                <p  className="landing-text"> Find the most affordable and adequate house for your living style </p>
+              </Grid.Column>
+
             </Grid>
           </div>
 
