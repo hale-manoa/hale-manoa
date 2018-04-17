@@ -23,6 +23,7 @@ const HousingsSchema = new SimpleSchema({
   baths: Number,
   squarefeet: Number,
   description: String,
+  owner: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

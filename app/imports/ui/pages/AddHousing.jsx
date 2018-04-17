@@ -36,7 +36,7 @@ class AddHousing extends React.Component {
   submit(data) {
     const { streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description } = data;
     const owner = Meteor.user().username;
-    Housings.insert({ streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description }, this.insertCallback);
+    Housings.insert({ streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description, owner }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -61,6 +61,7 @@ class AddHousing extends React.Component {
                 <TextField name='description'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
+                <HiddenField name='owner' value ='fakeyser@foo.com'/>
               </Segment>
             </AutoForm>
           </Grid.Column>
