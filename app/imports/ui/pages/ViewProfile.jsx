@@ -1,7 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Image, Grid, Loader } from 'semantic-ui-react';
+import { Container, Header, Image, Grid, Loader, Feed } from 'semantic-ui-react';
 import { Users } from '/imports/api/user/user';
+import AddFeedback from '/imports/ui/components/User/AddFeedback';
+import Feedback from '/imports/ui/components/User/Feedback';
+import { Feedbacks } from '/imports/api/feedback/feedback';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
@@ -25,9 +28,11 @@ class ViewProfile extends React.Component {
               <Image rounded size="medium" src={this.props.users.image} />
             </Grid.Column>
             <Grid.Column>
-              <p><b>Age:</b> {this.props.users.age}</p>
-              <p><b>Area:</b> {this.props.users.area}</p>
-              <p><b>Preferences:</b> {this.props.users.preferences}</p>
+              <p><b><u>Age</u></b><br/> {this.props.users.age}</p>
+              <p><b><u>Area</u></b><br/> {this.props.users.area}</p>
+              <p><b><u>Preferences</u></b><br/>
+                {this.props.users.preferences.map(item => <span key={item}>{item}<br/></span>)}
+              </p>
             </Grid.Column>
           </Grid>
           <Header as="h2" textAlign="left">
@@ -41,7 +46,10 @@ class ViewProfile extends React.Component {
           <Header as="h2" textAlign="left">
             Ratings and Reviews
           </Header>
-          <p> Feedback Placeholder </p>
+          <Feed>
+            {this.props.feedbacks.map((feedback, index) => <Feedback key={index} feedback={feedback}/>)}
+          </Feed>
+          <AddFeedback owner={this.props.users.owner} userId={this.props.users._id}/>
         </Container>
     );
   }
@@ -50,6 +58,7 @@ class ViewProfile extends React.Component {
 /** Require an array of Stuff documents in the props. */
 ViewProfile.propTypes = {
   users: PropTypes.object,
+  feedbacks: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -57,8 +66,10 @@ ViewProfile.propTypes = {
 export default withTracker(({ match }) => {
   const userId = match.params._id;
   const subscription = Meteor.subscribe('Users');
+  const subscription2 = Meteor.subscribe('Feedbacks');
   return {
     users: Users.findOne(userId),
-    ready: subscription.ready(),
+    feedbacks: Feedbacks.find({ userId: userId }).fetch(),
+    ready: subscription.ready() && subscription2.ready(),
   };
 })(ViewProfile);

@@ -56,7 +56,7 @@
       "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
       "age": "20",
       "area": "Manoa",
-      "preferences": "No smoking",
+      "preferences": ["No smoking", "No drinking"],
       "description": "I am a Professor of Information and Computer Sciences at the University of Hawaii, Director of the Collaborative Software Development Laboratory, and the CEO of OpenPowerQuality.com."
     },
     {
