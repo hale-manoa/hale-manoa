@@ -8,8 +8,8 @@ import User from '/imports/ui/components/User/User';
 
 const user_type = [
   { text: 'Select User Type' },
-  { key: 'Renters', text: 'Renters', value: 'Renters' },
-  { key: 'Tenants', text: 'Tenants', value: 'Tenants' },
+  { key: 'Renters', text: 'Renters', value: 'Renter' },
+  { key: 'Tenants', text: 'Tenants', value: 'Tenant' },
 ];
 
 const pref = [
