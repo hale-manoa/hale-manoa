@@ -5,6 +5,7 @@ import { Search, Grid, Header } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Housings } from '/imports/api/housing/housing';
+import { NavLink } from 'react-router-dom';
 
 class SearchBar extends Component {
   componentWillMount() {
@@ -44,7 +45,9 @@ class SearchBar extends Component {
                 results={results}
                 value={value}
                 {...this.props}
-            />
+            >
+
+            </Search>
           </Grid.Column>
         </Grid>
     )
