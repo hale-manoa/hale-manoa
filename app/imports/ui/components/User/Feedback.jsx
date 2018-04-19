@@ -5,11 +5,14 @@ import { withRouter } from 'react-router-dom';
 
 class Feedback extends React.Component {
   render() {
+    const feedstyle = { margin: '20px'}
     return (
-        <Feed.Event >
+        <Feed.Event style={feedstyle}>
           <Feed.Content>
             <Feed.Date content={this.props.feedback.createdAt.toLocaleDateString('en-US')} />
             <Feed.Summary>
+              {this.props.feedback.rating}
+              <br/>
               {this.props.feedback.feedback}
             </Feed.Summary>
           </Feed.Content>
@@ -20,7 +23,7 @@ class Feedback extends React.Component {
 
 /** Require a document to be passed to this component. */
 Feedback.propTypes = {
-  feedback: PropTypes.array.isRequired,
+  feedback: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
