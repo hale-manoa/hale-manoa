@@ -19,7 +19,7 @@ class Footer extends React.Component {
                 <a href="https://hale-manoa.github.io/" color='#999' className="footer-link">
                   https://hale-manoa.github.io/</a>&nbsp;
                 |&nbsp;
-                <Link as={NavLink} activeClassName="active" exact to="/contactus" key='contactus'>
+                <Link activeClassName="active" exact to="/contactus" key='contactus'>
                   Contact Us</Link>
               </Grid.Row>
             </Grid>
