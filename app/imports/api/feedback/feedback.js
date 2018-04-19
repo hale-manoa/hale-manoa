@@ -1,3 +1,4 @@
+import React from 'react';
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
@@ -9,6 +10,11 @@ const Feedbacks = new Mongo.Collection('Feedbacks');
 const FeedbackSchema = new SimpleSchema({
   feedback: String,
   userId: String,
+  rating: {
+    type: String,
+    allowedValues: [ '★', '★★', '★★★', '★★★★', '★★★★★'],
+    defaultValue: '★',
+  },
   createdAt: Date,
   owner: String,
 }, { tracker: Tracker });

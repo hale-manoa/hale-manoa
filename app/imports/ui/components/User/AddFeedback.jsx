@@ -6,6 +6,7 @@ import TextField from 'uniforms-semantic/TextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
+import SelectField from 'uniforms-semantic/SelectField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
 
@@ -33,8 +34,8 @@ class AddFeedback extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { feedback, owner, userId, createdAt } = data;
-    Feedbacks.insert({ feedback, userId, createdAt, owner }, this.insertCallback);
+    const { feedback, owner, rating, userId, createdAt } = data;
+    Feedbacks.insert({ feedback, owner, rating, userId, createdAt }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -42,6 +43,7 @@ class AddFeedback extends React.Component {
     return (
         <AutoForm ref={(ref) => { this.formRef = ref; }} schema={FeedbackSchema} onSubmit={this.submit}>
           <Segment>
+            <SelectField name='rating'/>
             <TextField label="Add a timestamped review" name='feedback'/>
             <SubmitField value='Submit'/>
             <ErrorsField/>
