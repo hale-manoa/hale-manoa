@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import faker from 'faker'
 import React, { Component } from 'react'
 import { Search, Grid, Header } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
@@ -23,6 +22,7 @@ class SearchBar extends Component {
       if (this.state.value.length < 1) return this.resetComponent();
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+
       const isMatch = result => re.test(result.propertytype);
 
       this.setState({
@@ -39,6 +39,8 @@ class SearchBar extends Component {
         <Grid>
           <Grid.Column width={8}>
             <Search
+                placeholder="Search..."
+                size="huge"
                 loading={isLoading}
                 onResultSelect={this.handleResultSelect}
                 onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
