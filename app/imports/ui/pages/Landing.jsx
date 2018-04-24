@@ -2,6 +2,7 @@ import React from 'react';
 import { Icon, Grid, Search, Image, Card } from 'semantic-ui-react';
 import Selector from "/imports/ui/components/landing/Selector"
 import { NavLink } from 'react-router-dom';
+import SearchBarCustom from '/imports/ui/components/landing/SearchBarCustom'
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
@@ -40,9 +41,9 @@ class Landing extends React.Component {
                 />
               </Grid.Row>
               <Grid.Row>
-                <Search
+                <SearchBarCustom
                     size="massive"
-                    placeholder='Search...'
+                    placeholder1='Search...'
                 />
               </Grid.Row>
             </Grid>
