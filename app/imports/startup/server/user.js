@@ -20,15 +20,15 @@ if (Users.find().count() === 0) {
 Meteor.publish('Users', function publish() {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
-    return Users.find({ owner: username });
+    return Users.find();
   }
   return this.ready();
 });
 
 /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
-Meteor.publish('UsersAdmin', function publish() {
+/*Meteor.publish('UsersAdmin', function publish() {
   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
     return Users.find();
   }
   return this.ready();
-});
+});*/
