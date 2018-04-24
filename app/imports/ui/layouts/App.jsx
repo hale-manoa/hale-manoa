@@ -12,6 +12,7 @@ import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddHousing from '../pages/AddHousing';
 import ViewBios from '../pages/ViewBios';
 import ViewProfile from '../pages/ViewProfile';
+import ViewHousing from '../pages/ViewHousing';
 import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -34,6 +35,7 @@ class App extends React.Component {
               <ProtectedRoute path="/list" component={ListHousing}/>
               <ProtectedRoute path="/connect" component={ViewBios}/>
               <ProtectedRoute path="/profile/:_id" component={ViewProfile}/>
+              <ProtectedRoute path="/housing/:_id" component={ViewHousing}/>
               <ProtectedRoute path="/add" component={AddHousing}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>

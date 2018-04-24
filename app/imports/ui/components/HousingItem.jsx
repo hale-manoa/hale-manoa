@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Popup } from 'semantic-ui-react';
+import { Card, Image, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ class HousingItem extends React.Component {
   render() {
     return (
         <Card>
-          <Image  src={ this.props.house.image } />
+          <Image src={ this.props.house.image } />
           <Card.Content>
             <Card.Header>
               {this.props.house.propertytype} FOR RENT
@@ -32,6 +32,10 @@ class HousingItem extends React.Component {
               &nbsp;
               {this.props.house.unitnumber}
             </Card.Content>
+            &nbsp;
+            <Link to={`/housing/${this.props.house._id}`}>
+            <Button fluid centered>See Housing Detail</Button>
+            </Link>
           </Card.Content>
         </Card>
     );

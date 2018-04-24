@@ -15,8 +15,8 @@ const HousingsSchema = new SimpleSchema({
   unitnumber: String,
   propertytype: {
     type: String,
-    allowedValues: ['CONDO/APARTMENT UNIT', 'HOUSE', 'TOWNHOUSE'],
-    defaultValue: 'CONDO/APARTMENT UNIT',
+    allowedValues: ['CONDO', 'HOUSE', 'TOWNHOUSE'],
+    defaultValue: 'CONDO',
   },
   rentprice: Number,
   beds: Number,
