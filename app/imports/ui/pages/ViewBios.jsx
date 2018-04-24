@@ -27,7 +27,7 @@ class ViewBios extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       loading: '',
-      selectedType: '',
+      selectedType: [],
     };
   }
   handleSubmit(event, data) {
@@ -40,6 +40,13 @@ class ViewBios extends React.Component {
   render() {
     return (
         this.props.ready) ? this.renderPage() : <Loader>Getting data</Loader>;
+  }
+
+  filterUsersbyType() {
+    let type = this.state.selectedType;
+
+    return this.props.users.filter(m => type.length === 0 || (type.indexOf(m.type) !== -1));
+
   }
 
   /** Render the page once subscriptions have been received. */
@@ -76,7 +83,7 @@ class ViewBios extends React.Component {
           <Card.Group>
             {(this.state.loading === 'selected') ? <Header>{this.state.selectedType}</Header> : null}
             { /** {this.props.users.filter(person => person.user.type === 'Renter')} */ }
-            {this.props.users.map((user, index) => <User key ={index} user={user}/>)}
+            {this.filterUsersbyType().map((user, index) => <User key ={index} user={user}/>)}
           </Card.Group>
         </Container>
     );
