@@ -1,7 +1,11 @@
 {
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" }
+    { "email": "john@foo.com", "password": "changeme" },
+    { "email": "test@foo.com", "password": "changeme" },
+    { "email": "idk@foo.com", "password": "changeme" },
+    { "email": "bob@foo.com", "password": "changeme" },
+    { "email": "bill@foo.com", "password": "changeme" }
   ],
   "defaultHousing": [
     {
@@ -48,6 +52,66 @@
       "squarefeet": 300,
       "description": "Blah Blah Blah",
       "owner": "john@foo.com"
+    },
+    {
+      "streetaddress": "94979 Kauolu Pl",
+      "city": "Waipahu",
+      "state": "HI",
+      "image": "https://www.oahure.com/data/1212/1212918/2.jpg",
+      "zipcode": 96797,
+      "unitnumber": "805",
+      "propertytype": "CONDO",
+      "rentprice": 1200,
+      "beds": 1,
+      "baths": 1,
+      "squarefeet": 500,
+      "description": "Blah Blah Blah",
+      "owner": "john@foo.com"
+    },
+    {
+      "streetaddress": "1702 Kewalo St",
+      "city": "Honolulu",
+      "state": "HI",
+      "image": "https://photos.zillowstatic.com/p_f/ISivnykr7qbywq0000000000.jpg",
+      "zipcode": 96822,
+      "unitnumber": "1205",
+      "propertytype": "CONDO",
+      "rentprice": 1650,
+      "beds": 2,
+      "baths": 1,
+      "squarefeet": 500,
+      "description": "Blah Blah Blah",
+      "owner": "john@foo.com"
+    },
+    {
+      "streetaddress": "1543 Makiki Street",
+      "city": "Honolulu",
+      "state": "HI",
+      "image": "https://photos.zillowstatic.com/p_f/ISuc12qwzulazh1000000000.jpg",
+      "zipcode": 96822,
+      "unitnumber": "205",
+      "propertytype": "CONDO",
+      "rentprice": 1500,
+      "beds": 2,
+      "baths": 1,
+      "squarefeet": 500,
+      "description": "Blah Blah Blah",
+      "owner": "john@foo.com"
+    },
+    {
+      "streetaddress": "1550 Wilder Ave",
+      "city": "Honolulu",
+      "state": "HI",
+      "image": "https://photos.zillowstatic.com/p_f/ISuc12qwzulazh1000000000.jpg",
+      "zipcode": 96822,
+      "unitnumber": "704",
+      "propertytype": "CONDO",
+      "rentprice": 1300,
+      "beds": 1,
+      "baths": 1,
+      "squarefeet": 400,
+      "description": "Blah Blah Blah",
+      "owner": "john@foo.com"
     }
   ],
   "defaultContacts": [
@@ -72,6 +136,39 @@
       "area": "Kaimuki",
       "preferences": ["Parties allowed on the weekends", "Sleep at 10pm"],
       "description": "I am originally from France. I maintain a list of reports from my surf sessions. I have proof that I ran the Hana relay with an actual Team."
+    },
+    {
+      "firstName": "Bruno",
+      "lastName": "Mars",
+      "type": "Tenant",
+      "owner": "idk@foo.com",
+      "image": "https://pbs.twimg.com/profile_images/952969165370884096/bK1_Bkpq.jpg",
+      "age": "20",
+      "area": "Manoa",
+      "preferences": ["No smoking", "No drinking"],
+      "description": "I am an American singer-songwriter, multi-instrumentalist, record producer, and dancer."
+    },
+    {
+      "firstName": "Ariana",
+      "lastName": "Grande",
+      "type": "Renter",
+      "owner": "bob@foo.com",
+      "image": "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_80%2Cw_300/MTQ3MzM3MTcxNjA5NTkzNjQ3/ariana_grande_photo_jon_kopaloff_getty_images_465687098.jpg",
+      "age": "20",
+      "area": "Manoa",
+      "preferences": ["No smoking", "No drinking"],
+      "description": "I am an American singer and actress."
+    },
+    {
+      "firstName": "Jenna",
+      "lastName": "Coleman",
+      "type": "Renter",
+      "owner": "bill@foo.com",
+      "image": "https://static.independent.co.uk/s3fs-public/styles/article_small/public/thumbnails/image/2016/08/25/11/jenna-coleman.jpg",
+      "age": "20",
+      "area": "Manoa",
+      "preferences": ["No smoking", "No drinking"],
+      "description": "I am an English actress and model."
     }
   ]
 

@@ -46,7 +46,7 @@ class AddProfile extends React.Component {
               <Segment>
                 <TextField name='firstName'/>
                 <TextField name='lastName'/>
-                <TextField name='type'/>
+                <SelectField name='type'/>
                 <TextField name='image'/>
                 <NumField name='age' decimal={false}/>
                 <SelectField name='area'/>

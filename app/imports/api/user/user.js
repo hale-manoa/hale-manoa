@@ -9,7 +9,11 @@ const Users = new Mongo.Collection('Users');
 const UserSchema = new SimpleSchema({
   firstName: String,
   lastName: String,
-  type: String,
+  type: {
+    type: String,
+    allowedValues: ['Renter', 'Tenant'],
+    defaultValue: 'Renter',
+  },
   image: String,
   age: String,
   area: {
