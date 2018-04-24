@@ -26,12 +26,15 @@ class ViewBios extends React.Component {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-    loading: '',
+      loading: '',
+      selectedType: '',
     };
   }
-  handleSubmit(event) {
+  handleSubmit(event, data) {
     event.preventDefault();
     this.setState({ loading: 'selected' });
+    this.setState({ selectedType: data.value });
+    console.log(this.state.selectedType);
   }
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -43,7 +46,7 @@ class ViewBios extends React.Component {
   renderPage() {
     return (
         <Container>
-          {(this.state.loading === 'selected') ? <Header>Testing</Header> : null}
+          {(this.state.loading === 'selected') ? <Header>{this.state.selectedType}</Header> : null}
           <Header as="h2" textAlign="center"> Find Your Home Away From Home</Header>
           <Grid columns={2}>
             <Grid.Column>
@@ -54,6 +57,7 @@ class ViewBios extends React.Component {
                     button
                     options={user_type}
                     placeholder='Select User Type'
+                    value={this.state.selectedType}
                     onChange={this.handleSubmit}
                 />
               </Header>
