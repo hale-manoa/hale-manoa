@@ -40,7 +40,7 @@ class HousingItem extends React.Component {
 
             &nbsp;
 
-            {Meteor.user().username === this.props.house.owner ? (<Link to={`/housing/${this.props.house._id}`}>
+            {Meteor.user().username === this.props.house.owner ? (<Link to={`/edit/${this.props.house._id}`}>
               <Button fluid centered>Edit Housing Detail</Button>
             </Link>) : ''}
 
