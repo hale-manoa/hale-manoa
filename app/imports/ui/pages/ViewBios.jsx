@@ -34,8 +34,8 @@ class ViewBios extends React.Component {
     event.preventDefault();
     this.setState({ loading: 'selected' });
     this.setState({ selectedType: data.value });
-    console.log(this.state.selectedType);
   }
+
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (
@@ -46,7 +46,6 @@ class ViewBios extends React.Component {
   renderPage() {
     return (
         <Container>
-          {(this.state.loading === 'selected') ? <Header>{this.state.selectedType}</Header> : null}
           <Header as="h2" textAlign="center"> Find Your Home Away From Home</Header>
           <Grid columns={2}>
             <Grid.Column>
@@ -75,14 +74,18 @@ class ViewBios extends React.Component {
             </Grid.Column>
           </Grid>
           <Card.Group>
-            {this.props.users.map((user, index) => <User key ={index}
-              user={user}/>)}
+            {(this.state.loading === 'selected') ? <Header>{this.state.selectedType}</Header> : null}
+            { /** {this.props.users.filter(person => person.user.type === 'Renter')} */ }
+            {this.props.users.map((user, index) => <User key ={index} user={user}/>)}
           </Card.Group>
         </Container>
     );
   }
 }
 
+/**
+{this.props.users.map((user, index) => <User key ={index} user={user}/>)}
+ */
 
 /** Require an array of Stuff documents in the props. */
 ViewBios.propTypes = {
