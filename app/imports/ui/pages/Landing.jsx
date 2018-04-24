@@ -112,7 +112,7 @@ class Landing extends React.Component {
               <Grid.Column centered>
                 <Icon name="edit" size="huge"></Icon>
                 <p className="landing-header font-green">Build your profile<hr/></p>
-                <p  className="landing-text">Add interests, hobbies, and other information about yourself to help us find the right roommate for you </p>
+                <p  className="landing-text">Add interests, hobbies, and other information about yourself to find the perfect roommate! </p>
 
               </Grid.Column>
               <Grid.Column>
@@ -123,7 +123,7 @@ class Landing extends React.Component {
               <Grid.Column>
                 <Icon name="home" size="huge"></Icon>
                 <p  className="landing-header font-green">Live in Manoa<hr/></p>
-                <p  className="landing-text"> Find the most affordable and adequate house for your living style </p>
+                <p  className="landing-text"> Find the most affordable and adequate housing for your living style </p>
               </Grid.Column>
 
             </Grid>

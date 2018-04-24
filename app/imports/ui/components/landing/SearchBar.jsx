@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Search, Grid, Header } from 'semantic-ui-react'
+import { Search, Grid } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Housings } from '/imports/api/housing/housing';
-import { NavLink } from 'react-router-dom';
+import { Users } from '/imports/api/user/user';
 
 class SearchBar extends Component {
   componentWillMount() {
@@ -23,11 +23,21 @@ class SearchBar extends Component {
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
 
-      const isMatch = result => re.test(result.propertytype);
+      const isMatchfirstName = result => re.test(result.firstName);
+      const isMatchpropertytype = result => re.test(result.propertytype);
+      const isMatchcity = result => re.test(result.city);
+      const isMatchlastName = result => re.test(result.lastName);
+
 
       this.setState({
         isLoading: false,
-        results: _.filter(this.props.housings, isMatch),
+        results: _.union(
+            _.filter(this.props.users, isMatchlastName),
+            _.filter(this.props.users, isMatchfirstName),
+            _.filter(this.props.housings, isMatchpropertytype),
+            _.filter(this.props.housings, isMatchcity),
+
+            ),
       })
     }, 300)
   }
@@ -58,6 +68,7 @@ class SearchBar extends Component {
 
 SearchBar.propTypes = {
   housings: PropTypes.array.isRequired,
+  users: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -65,8 +76,11 @@ SearchBar.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Housing');
+  const subscription1 = Meteor.subscribe('Users');
   return {
     housings: Housings.find({}).fetch(),
+    users: Users.find({}).fetch(),
     ready: subscription.ready(),
+    ready: subscription1.ready(),
   };
 })(SearchBar);
