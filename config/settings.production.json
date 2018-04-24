@@ -118,7 +118,7 @@
     {
       "firstName": "Philip",
       "lastName": "Johnson",
-      "type": "Renter",
+      "type": "Lister",
       "owner": "test@foo.com",
       "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
       "age": "20",
@@ -129,7 +129,7 @@
     {
       "firstName": "Henri",
       "lastName": "Casanova",
-      "type": "Tenant",
+      "type": "Seeker",
       "owner": "admin@foo.com",
       "image": "https://avatars0.githubusercontent.com/u/7494478?s=460&v=4",
       "age": "29",
@@ -140,7 +140,7 @@
     {
       "firstName": "Bruno",
       "lastName": "Mars",
-      "type": "Tenant",
+      "type": "Seeker",
       "owner": "idk@foo.com",
       "image": "https://pbs.twimg.com/profile_images/952969165370884096/bK1_Bkpq.jpg",
       "age": "20",
@@ -151,7 +151,7 @@
     {
       "firstName": "Ariana",
       "lastName": "Grande",
-      "type": "Renter",
+      "type": "Lister",
       "owner": "bob@foo.com",
       "image": "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_80%2Cw_300/MTQ3MzM3MTcxNjA5NTkzNjQ3/ariana_grande_photo_jon_kopaloff_getty_images_465687098.jpg",
       "age": "20",
@@ -162,7 +162,7 @@
     {
       "firstName": "Jenna",
       "lastName": "Coleman",
-      "type": "Renter",
+      "type": "Lister",
       "owner": "bill@foo.com",
       "image": "https://static.independent.co.uk/s3fs-public/styles/article_small/public/thumbnails/image/2016/08/25/11/jenna-coleman.jpg",
       "age": "20",
