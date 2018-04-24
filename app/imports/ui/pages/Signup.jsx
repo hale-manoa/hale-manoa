@@ -10,7 +10,7 @@ export default class Signup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '' };
+    this.state = { firstName: '', email: '', password: '', error: '' };
     // Ensure that 'this' is bound to this component in these two functions.
     // https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,6 +36,10 @@ export default class Signup extends React.Component {
 
   /** Display the signup form. */
   render() {
+    const options = [
+      { key: 'm', text: 'Male', value: 'male' },
+      { key: 'f', text: 'Female', value: 'female' },
+    ]
     return (
         <Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
@@ -45,6 +49,26 @@ export default class Signup extends React.Component {
               </Header>
               <Form onSubmit={this.handleSubmit}>
                 <Segment stacked>
+                  <Form.Group>
+                    <Form.Input
+                        label="First Name"
+                        name="firstName"
+                        type="firstName"
+                        placeholder="First name"
+                        onChange={this.handleChange}
+                    />
+                    <Form.Input
+                        label="Last Name"
+                        name="lastName"
+                        type="lastName"
+                        placeholder="Last name"
+                        onChange={this.handleChange}
+                    />
+                    <Form.Select fluid
+                         label='Gender'
+                         options={options}
+                         placeholder='Gender' />
+                  </Form.Group>
                   <Form.Input
                       label="Email"
                       icon="user"
