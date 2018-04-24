@@ -1,10 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Header, Loader, Dropdown, Grid } from 'semantic-ui-react';
+import { Container, Card, Header, Loader, Grid, Dropdown } from 'semantic-ui-react';
 import { Users } from '/imports/api/user/user';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import User from '/imports/ui/components/User/User';
+
 
 const user_type = [
   { text: 'Select User Type' },
@@ -18,8 +19,20 @@ const pref = [
   { key: 'Parties allowed', text: 'Parties allowed', value: 'Parties allowed' },
 ];
 
+
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewBios extends React.Component {
+  constructor() {
+    super();
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+    loading: '',
+    };
+  }
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({ loading: 'selected' });
+  }
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (
@@ -30,17 +43,18 @@ class ViewBios extends React.Component {
   renderPage() {
     return (
         <Container>
+          {(this.state.loading === 'selected') ? <Header>Testing</Header> : null}
           <Header as="h2" textAlign="center"> Find Your Home Away From Home</Header>
           <Grid columns={2}>
             <Grid.Column>
               <Header as="h2">
                 Search for:
                 <Dropdown
+                    multiple selection
                     button
-                    floating
-                    labeled
                     options={user_type}
                     placeholder='Select User Type'
+                    onChange={this.handleSubmit}
                 />
               </Header>
             </Grid.Column>
@@ -48,9 +62,8 @@ class ViewBios extends React.Component {
               <Header as="h2">
                 Your Preferences:
                 <Dropdown
+                    multiple selection
                     button
-                    floating
-                    labeled
                     options={pref}
                     placeholder='Select Preferences'
                 />
@@ -65,6 +78,7 @@ class ViewBios extends React.Component {
     );
   }
 }
+
 
 /** Require an array of Stuff documents in the props. */
 ViewBios.propTypes = {
