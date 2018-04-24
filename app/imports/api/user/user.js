@@ -11,8 +11,8 @@ const UserSchema = new SimpleSchema({
   lastName: String,
   type: {
     type: String,
-    allowedValues: ['Renter', 'Tenant'],
-    defaultValue: 'Renter',
+    allowedValues: ['Lister', 'Seeker'],
+    defaultValue: 'Lister',
   },
   image: String,
   age: String,

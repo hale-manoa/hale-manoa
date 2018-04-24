@@ -9,8 +9,8 @@ import User from '/imports/ui/components/User/User';
 
 const user_type = [
   { text: 'Select User Type' },
-  { key: 'Renters', text: 'Renters', value: 'Renter' },
-  { key: 'Tenants', text: 'Tenants', value: 'Tenant' },
+  { key: 'Listers', text: 'Listers', value: 'Lister' },
+  { key: 'Seekers', text: 'Seekers', value: 'Seeker' },
 ];
 
 const pref = [
@@ -43,10 +43,8 @@ class ViewBios extends React.Component {
   }
 
   filterUsersbyType() {
-    let type = this.state.selectedType;
-
+    const type = this.state.selectedType;
     return this.props.users.filter(m => type.length === 0 || (type.indexOf(m.type) !== -1));
-
   }
 
   /** Render the page once subscriptions have been received. */
@@ -81,18 +79,13 @@ class ViewBios extends React.Component {
             </Grid.Column>
           </Grid>
           <Card.Group>
-            {(this.state.loading === 'selected') ? <Header>{this.state.selectedType}</Header> : null}
-            { /** {this.props.users.filter(person => person.user.type === 'Renter')} */ }
+            { /** {(this.state.loading === 'selected') ? <Header>{this.state.selectedType}</Header> : null} */ }
             {this.filterUsersbyType().map((user, index) => <User key ={index} user={user}/>)}
           </Card.Group>
         </Container>
     );
   }
 }
-
-/**
-{this.props.users.map((user, index) => <User key ={index} user={user}/>)}
- */
 
 /** Require an array of Stuff documents in the props. */
 ViewBios.propTypes = {
