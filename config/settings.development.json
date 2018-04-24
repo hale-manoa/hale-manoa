@@ -11,7 +11,7 @@
       "image": "https://43b301fb2f83bd2719f4-7e2c9a1717b3351cc628e38f0a1ac906.ssl.cf5.rackcdn.com/201803681-condo-townhouse-1xhfwr8-m.jpg",
       "zipcode":96815,
       "unitnumber": "1407",
-      "propertytype": "CONDO/APARTMENT UNIT",
+      "propertytype": "CONDO",
       "rentprice": 2000,
       "beds": 2,
       "baths": 1,
@@ -76,8 +76,4 @@
   ]
 
 }
-
-
-
-
 
