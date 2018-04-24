@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Image, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
+import { Meteor } from 'meteor/meteor';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class HousingItem extends React.Component {
@@ -36,7 +37,16 @@ class HousingItem extends React.Component {
             <Link to={`/housing/${this.props.house._id}`}>
             <Button fluid centered>See Housing Detail</Button>
             </Link>
+
+            &nbsp;
+
+            {Meteor.user().username === this.props.house.owner ? (<Link to={`/housing/${this.props.house._id}`}>
+              <Button fluid centered>Edit Housing Detail</Button>
+            </Link>) : ''}
+
+
           </Card.Content>
+
         </Card>
     );
   }
