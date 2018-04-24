@@ -36,10 +36,14 @@ export default class Signup extends React.Component {
 
   /** Display the signup form. */
   render() {
-    const options = [
+    const GenderOptions = [
       { key: 'm', text: 'Male', value: 'male' },
       { key: 'f', text: 'Female', value: 'female' },
-    ]
+    ];
+    const TypeOptions = [
+      { key: 'm', text: 'Lister', value: 'lister' },
+      { key: 'f', text: 'Seeker', value: 'seeker' },
+    ];
     return (
         <Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
@@ -66,9 +70,13 @@ export default class Signup extends React.Component {
                     />
                     <Form.Select fluid
                          label='Gender'
-                         options={options}
+                         options={GenderOptions}
                          placeholder='Gender' />
                   </Form.Group>
+                  <Form.Select fluid
+                               label='User Type'
+                               options={TypeOptions}
+                               placeholder='Gender' />
                   <Form.Input
                       label="Email"
                       icon="user"
