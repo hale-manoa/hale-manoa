@@ -5,6 +5,28 @@ import { Housings } from '/imports/api/housing/housing';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
+const { compose } = require("recompose");
+const {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+} = require("react-google-maps");
+
+const MapWithAMarker = compose(
+    withScriptjs,
+    withGoogleMap
+)(props =>
+    <GoogleMap
+        defaultZoom={13}
+        defaultCenter={{ lat: 21.2859, lng: -157.826 }}
+    >
+      <Marker
+          position={{ lat: 21.2859, lng: -157.826 }}
+      />
+    </GoogleMap>
+);
+
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewHousing extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -45,6 +67,14 @@ class ViewHousing extends React.Component {
             Contact me
           </Header>
           <p> {this.props.housings.owner} </p>
+
+          <MapWithAMarker
+              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
+              loadingElement={<div style={{ height: `100%` }} />}
+              containerElement={<div style={{ height: `400px` }} />}
+              mapElement={<div style={{ height: `100%` }} />}
+          />
+
         </Container>
     );
   }
