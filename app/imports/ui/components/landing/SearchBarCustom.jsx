@@ -9,8 +9,7 @@ const resultRenderer = ({ firstName, lastName, type, age, propertytype, descript
   if(propertytype)
   return (
       <Search.Result
-          //as={NavLink} activeClassName="" exact to={_id}
-          as={NavLink} activeClassName="" exact to={"/list"}
+          as={NavLink} activeClassName="" exact to={`/housing/${_id}`}
           title={propertytype}
           image={image}
           description={description}
