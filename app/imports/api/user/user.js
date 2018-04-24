@@ -12,7 +12,11 @@ const UserSchema = new SimpleSchema({
   type: String,
   image: String,
   age: String,
-  area: String,
+  area: {
+    type: String,
+    allowedValues: ['Manoa', 'Kaimuki', 'Waikiki', 'Ala Moana', 'Liliha'],
+    defaultValue: 'Manoa',
+  },
   preferences: [String],
   description: String,
   owner: String,
