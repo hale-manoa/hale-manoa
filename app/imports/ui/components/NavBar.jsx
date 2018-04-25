@@ -3,15 +3,24 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
-import { Menu, Dropdown, Image, Icon } from 'semantic-ui-react';
+import { Menu, Dropdown, Image, Icon, Button, Loader } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
+import { Users, UserSchema } from '/imports/api/user/user';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
+const alertStyle = { marginBottom: '12px', marginTop: '0px' };
+
 class NavBar extends React.Component {
   render() {
-    const menuStyle = { marginBottom: '10px', color: '#00A7E1' };
+    return (
+        this.props.ready) ? this.renderPage() : <Loader>Getting data</Loader>;
+  }
+
+  renderPage() {
+    const menuStyle = { marginBottom: '-5px', color: '#00A7E1' };
     const menuItemColor = { color: '#000' };
     return (
+        <div>
         <Menu style={menuStyle} attached="top">
           <Menu.Item as={NavLink} activeClassName="" exact to="/">
             <Image src='/images/halemanoa.png' size='small'/>
@@ -51,19 +60,38 @@ class NavBar extends React.Component {
             )}
           </Menu.Item>
         </Menu>
+          {this.props.users.filter(m =>
+              (m.description === "Update Description") &&
+              (m.owner === this.props.currentUser)
+          ).length
+          &&
+          <Button style={alertStyle} color="red" fluid>
+            You have not updated your profile: Click here to update your profile
+          </Button>
+
+          }
+
+        </div>
     );
   }
 }
 
-/** Declare the types of all properties. */
+
+/** Require an array of Stuff documents in the props. */
 NavBar.propTypes = {
   currentUser: PropTypes.string,
+  users: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
-const NavBarContainer = withTracker(() => ({
-  currentUser: Meteor.user() ? Meteor.user().username : '',
-}))(NavBar);
+export default withTracker(() => {
+  // Get access to Stuff documents.
+  const subscription = Meteor.subscribe('Users');
+  return {
+    currentUser: Meteor.user() ? Meteor.user().username : '',
+    users: Users.find({}).fetch(),
+    ready: subscription.ready(),
+  };
+})(NavBar);
 
-/** Enable ReactRouter for this component. https://reacttraining.com/react-router/web/api/withRouter */
-export default withRouter(NavBarContainer);
