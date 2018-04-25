@@ -10,9 +10,12 @@ import HiddenField from 'uniforms-semantic/HiddenField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
+import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
 
 
-class AddProfile extends React.Component {
+
+class EditProfile extends React.Component {
 
   constructor(props) {
     super(props);
@@ -20,6 +23,7 @@ class AddProfile extends React.Component {
     this.insertCallback = this.insertCallback.bind(this);
     this.formRef = null;
   }
+
 
   /** Notify the user of the results of the submit. If successful, clear the form. */
   insertCallback(error) {
@@ -31,18 +35,24 @@ class AddProfile extends React.Component {
     }
   }
   submit(data) {
+    const idVar = this.props.users.filter(m => (m.owner === this.props.currentUser))[0]._id;
     const { firstName, lastName, type, image, age, area, preferences, description } = data;
     const owner = Meteor.user().username;
-    Users.insert({  firstName, lastName, type, image, age, area, preferences, description, owner }, this.insertCallback);
+    Users.update(idVar, {$set: {firstName, lastName, type, image, age, area, preferences, description, owner }}, (error) => (error ?
+        Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
+        Bert.alert({ type: 'success', message: 'Update succeeded' })));
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
+
     return (
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center">Add Profile</Header>
-            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={UserSchema} onSubmit={this.submit}>
+            <AutoForm model={this.props.users.filter(m =>
+                (m.owner === this.props.currentUser)
+            )[0]} schema={UserSchema} onSubmit={this.submit}>
               <Segment>
                 <TextField name='firstName'/>
                 <TextField name='lastName'/>
@@ -54,7 +64,7 @@ class AddProfile extends React.Component {
                 <TextField name='description'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
-                <HiddenField name='owner' value ='fakeuser@foo.com'/>
+                <HiddenField name='owner'/>
               </Segment>
             </AutoForm>
           </Grid.Column>
@@ -63,4 +73,19 @@ class AddProfile extends React.Component {
   }
 }
 
-export default AddProfile;
+EditProfile.propTypes = {
+  currentUser: PropTypes.string,
+  users: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+export default withTracker(() => {
+  // Get access to Stuff documents.
+  const subscription = Meteor.subscribe('Users');
+  return {
+    currentUser: Meteor.user() ? Meteor.user().username : '',
+    users: Users.find({}).fetch(),
+    ready: subscription.ready(),
+  };
+})(EditProfile);

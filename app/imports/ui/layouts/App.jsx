@@ -19,7 +19,7 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ContactUs from '../pages/ContactUs';
-import AddProfile from '../pages/AddProfile';
+import EditProfile from '../pages/EditProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -36,7 +36,7 @@ class App extends React.Component {
               <ProtectedRoute path="/list" component={ListHousing}/>
               <ProtectedRoute path="/connect" component={ViewBios}/>
               <ProtectedRoute path="/profile/:_id" component={ViewProfile}/>
-              <ProtectedRoute path="/addprofile" component={AddProfile}/>
+              <ProtectedRoute path="/editprofile" component={EditProfile}/>
               <ProtectedRoute path="/housing/:_id" component={ViewHousing}/>
               <ProtectedRoute path="/add" component={AddHousing}/>
               <ProtectedRoute path="/edit/:_id" component={EditHousing}/>
