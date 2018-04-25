@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
+import { Users, UserSchema } from '/imports/api/user/user';
+
 
 /**
  * Signup component is similar to signin component, but we attempt to create a new user instead.
@@ -10,7 +12,7 @@ export default class Signup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '' };
+    this.state = { firstName: '', lastName: '', gender: '', userType: '', email: '', password: '', error: '' };
     // Ensure that 'this' is bound to this component in these two functions.
     // https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,18 +26,28 @@ export default class Signup extends React.Component {
 
   /** Handle Signup submission using Meteor's account mechanism. */
   handleSubmit() {
-    const { email, password } = this.state;
+    const { firstName, lastName, gender, userType, email, password } = this.state;
     Accounts.createUser({ email, username: email, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
         // browserHistory.push('/login');
+        const owner = Meteor.user().username;
+        Users.insert({  firstName, lastName, userType, image: '/images/default-profile.png', age: 21, area: "Manoa", preferences: ["Update Preferences"], description:"Update Description", owner }, this.insertCallback);
       }
     });
   }
 
   /** Display the signup form. */
   render() {
+    const GenderOptions = [
+      { key: 'm', text: 'Male', value: 'male' },
+      { key: 'f', text: 'Female', value: 'female' },
+    ];
+    const TypeOptions = [
+      { key: 'm', text: 'Lister', value: 'lister' },
+      { key: 'f', text: 'Seeker', value: 'seeker' },
+    ];
     return (
         <Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
@@ -45,6 +57,38 @@ export default class Signup extends React.Component {
               </Header>
               <Form onSubmit={this.handleSubmit}>
                 <Segment stacked>
+                  <Form.Group>
+                    <Form.Input
+                        label="First Name"
+                        name="firstName"
+                        type="firstName"
+                        placeholder="First name"
+                        onChange={this.handleChange}
+                    />
+                    <Form.Input
+                        label="Last Name"
+                        name="lastName"
+                        type="lastName"
+                        placeholder="Last name"
+                        onChange={this.handleChange}
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Select
+                        fluid
+                        label='Gender'
+                        options={GenderOptions}
+                        placeholder='Gender'
+                        onChange={this.handleChange}
+                    />
+                    <Form.Select
+                        fluid
+                        label='User Type'
+                        options={TypeOptions}
+                        placeholder='Type'
+                        onChange={this.handleChange}
+                    />
+                  </Form.Group>
                   <Form.Input
                       label="Email"
                       icon="user"
