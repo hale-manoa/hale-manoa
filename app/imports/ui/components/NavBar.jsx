@@ -65,7 +65,13 @@ class NavBar extends React.Component {
               (m.owner === this.props.currentUser)
           ).length !== 0
           &&
-          [<Button key="2" style={alertStyle} color="red" fluid>
+          [<Button
+              key="2"
+              style={alertStyle}
+              color="red"
+              fluid
+              as={NavLink} exact to="/editprofile"
+          >
             Your Profile Needs to be Updated: Click here to Edit Profile
           </Button>]
 
