@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 import { Users, UserSchema } from '/imports/api/user/user';
@@ -12,7 +12,7 @@ export default class Signup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { firstName: '', lastName: '', gender: '', userType: '', email: '', password: '', error: '' };
+    this.state = { firstName: '', lastName: '', gender: '', userType: '', email: '', password: '', error: '', redirectToReferer: false };
     // Ensure that 'this' is bound to this component in these two functions.
     // https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,12 +34,16 @@ export default class Signup extends React.Component {
         // browserHistory.push('/login');
         const owner = Meteor.user().username;
         Users.insert({  firstName, lastName, userType, image: '/images/default-profile.png', age: 21, area: "Manoa", preferences: ["Update Preferences"], description:"Update Description", owner }, this.insertCallback);
+        this.setState({ error: '', redirectToReferer: true });
       }
     });
   }
 
   /** Display the signup form. */
   render() {
+    if (this.state.redirectToReferer) {
+      return <Redirect to={"/"}/>;
+    }
     const GenderOptions = [
       { key: 'm', text: 'Male', value: 'male' },
       { key: 'f', text: 'Female', value: 'female' },
