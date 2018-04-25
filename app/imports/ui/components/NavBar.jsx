@@ -17,7 +17,7 @@ class NavBar extends React.Component {
   }
 
   renderPage() {
-    const menuStyle = { marginBottom: '-5px', color: '#00A7E1' };
+    const menuStyle = { marginBottom: '0px', color: '#00A7E1' };
     const menuItemColor = { color: '#000' };
     return (
         <div>
@@ -63,11 +63,11 @@ class NavBar extends React.Component {
           {this.props.users.filter(m =>
               (m.description === "Update Description") &&
               (m.owner === this.props.currentUser)
-          ).length
+          ).length !== 0
           &&
-          <Button style={alertStyle} color="red" fluid>
-            You have not updated your profile: Click here to update your profile
-          </Button>
+          [<Button key="2" style={alertStyle} color="red" fluid>
+            Your Profile Needs to be Updated: Click here to Edit Profile
+          </Button>]
 
           }
 
