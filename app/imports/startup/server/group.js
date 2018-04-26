@@ -17,5 +17,5 @@ if (Groups.find().count() === 0) {
 }
 
 Meteor.publish('Groups', function publish() {
-  return Groups.find();
+  return Groups.find({members:  Meteor.user().username});
 });
