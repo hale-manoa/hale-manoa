@@ -9,9 +9,8 @@ const Messages = new Mongo.Collection('Messages');
 /** Create a schema to constrain the structure of documents associated with this collection. */
 const MessageSchema = new SimpleSchema({
   message: String,
-  userId: String,
+  groupId: String,
   createdAt: Date,
-  owner: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
