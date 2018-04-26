@@ -75,6 +75,8 @@ class AddHousing extends React.Component {
                 <ErrorsField/>
                 <HiddenField name='owner' value ='fakeyser@foo.com'/>
                 <HiddenField name='streetaddress'/>
+                <HiddenField name='longitude'/>
+                <HiddenField name='latitdue'/>
               </Segment>
             </AutoForm>
           </Grid.Column>
