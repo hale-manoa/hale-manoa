@@ -1,12 +1,14 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Image, Grid, Loader, Feed } from 'semantic-ui-react';
+import { Container, Header, Image, Grid, Loader, Feed, Button } from 'semantic-ui-react';
 import { Users } from '/imports/api/user/user';
 import AddFeedback from '/imports/ui/components/User/AddFeedback';
 import Feedback from '/imports/ui/components/User/Feedback';
 import { Feedbacks } from '/imports/api/feedback/feedback';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { Groups } from '/imports/api/group/group';
+
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewProfile extends React.Component {
@@ -14,6 +16,12 @@ class ViewProfile extends React.Component {
   render() {
     return (
         this.props.ready) ? this.renderPage() : <Loader>Getting data</Loader>;
+  }
+
+  connectOnClick(user) {
+    const members = [user, Meteor.user().username];
+    const name = "New Group";
+    Groups.insert({ name, members }, this.insertCallback);
   }
 
   /** Render the page once subscriptions have been received. */
@@ -25,7 +33,17 @@ class ViewProfile extends React.Component {
           </Header>
           <Grid columns={2}>
             <Grid.Column>
+              <Grid.Row>
               <Image rounded size="medium" src={this.props.users.image} />
+              </Grid.Row>
+              <Grid.Row>
+                <Button
+                    positive
+                    onClick={this.connectOnClick(this.props.users.owner)}
+                >
+                  Connect
+                </Button>
+              </Grid.Row>
             </Grid.Column>
             <Grid.Column>
               <p><b><u>Age</u></b><br/> {this.props.users.age}</p>
