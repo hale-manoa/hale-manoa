@@ -48,7 +48,7 @@ class AddHousing extends React.Component {
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Add Housing</Header>
+            <Header as="h2" textAlign="center">Add Housings</Header>
             <AutoForm ref={(ref) => { this.formRef = ref; }} schema={HousingsSchema} onSubmit={this.submit}>
               <Segment>
                 <p style={{
