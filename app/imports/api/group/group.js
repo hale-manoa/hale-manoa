@@ -9,6 +9,7 @@ const Groups = new Mongo.Collection('Groups');
 const GroupSchema = new SimpleSchema({
   name: String,
   members: [String],
+  housings: [String],
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

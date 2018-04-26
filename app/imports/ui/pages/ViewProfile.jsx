@@ -38,8 +38,9 @@ class ViewProfile extends React.Component {
     const member_1 =  Users.findOne({ owner: Meteor.user().username}).firstName;
     const member_2 =  Users.findOne({ owner: user}).firstName;
     const members = [user, Meteor.user().username];
+    const housings = [];
     const name = member_1 + ", "+ member_2;
-    Groups.insert({ name, members }, this.insertCallback);
+    Groups.insert({ name, members, housings }, this.insertCallback);
   }
 
   /** Render the page once subscriptions have been received. */
