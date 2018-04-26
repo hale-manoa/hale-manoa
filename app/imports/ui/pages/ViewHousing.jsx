@@ -1,12 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Image, Grid, Loader } from 'semantic-ui-react';
+import { Container, Header, Image, Grid, Loader, Icon } from 'semantic-ui-react';
 import { Housings } from '/imports/api/housing/housing';
 import { withTracker } from 'meteor/react-meteor-data';
-import { compose } from 'recompose';
 import PropTypes from 'prop-types';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-
+import GoogleMapReact from 'google-map-react';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewHousing extends React.Component {
@@ -37,6 +35,8 @@ class ViewHousing extends React.Component {
                 Beds:&nbsp; {this.props.housings.beds},<br/>
                 Baths:&nbsp; {this.props.housings.baths},<br/>
                 Squarefeet:&nbsp; {this.props.housings.squarefeet}<br/>
+                Longitude:&nbsp; {this.props.housings.longitude}<br/>
+                Latitude:&nbsp; {this.props.housings.latitude}<br/>
               </p>
             </Grid.Column>
           </Grid>
@@ -49,34 +49,45 @@ class ViewHousing extends React.Component {
           </Header>
           <p> {this.props.housings.owner} </p>
 
-          <MapWithAMarker
-              googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places'
-              loadingElement={<div style={{ height: '100%' }} />}
-              containerElement={<div style={{ height: '400px' }} />}
-              mapElement={<div style={{ height: '100%' }} />}
-          />
-
-
+          <SimpleMap longitude={this.props.housings.longitude} latitude={this.props.housings.latitude}/>
 
         </Container>
     );
   }
 }
 
-//Copied from https://tomchentw.github.io/react-google-maps/#marker
-const MapWithAMarker = compose(
-    withScriptjs,
-    withGoogleMap,
-)(props =>
-    <GoogleMap
-        defaultZoom={13}
-        defaultCenter={{ lat: 21.2859, lng: -157.826 }}
-    >
-      <Marker position={{ lat: 21.2859, lng: -157.826 }}/>
-    </GoogleMap>);
+const AnyReactComponent = ({ image }) => <div>
+  <Icon name='home'/>
+  <img src={image} align="center" style={{width:'25px', height:'25px', align:'center'}}/>
+  {console.log(image)}
+</div>;
 
+class SimpleMap extends React.Component {
+  render() {
+    return (
+        <div style={{ height: '50vh', width: '100%' }}>
+        <GoogleMapReact
+            bootstrapURLKeys={{ key: 'AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg' }}
+            defaultCenter = {{lat: this.props.longitude, lng: this.props.latitude}}
+            defaultZoom = {11}
+        >
+          <AnyReactComponent
+              lat={this.props.longitude}
+              lng={this.props.latitude}
+              image= "/images/halemanoa-icon-transparent.png"
+          />
+        </GoogleMapReact>
+        </div>
+    );
+  }
+}
 
-/** Require an array of Stuff documents in the props. */
+SimpleMap.propTypes = {
+  longitude: PropTypes.number,
+  latitude: PropTypes.number,
+};
+
+/** Require an array of Housing documents in the props. */
 ViewHousing.propTypes = {
   housings: PropTypes.object,
   ready: PropTypes.bool.isRequired,

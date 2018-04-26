@@ -40,7 +40,7 @@ class AddHousing extends React.Component {
   submit(data) {
     const { streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description } = data;
     const owner = Meteor.user().username;
-    Housings.insert({ unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description, owner, streetaddress }, this.insertCallback);
+    Housings.insert({ unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description, owner, streetaddress, longitude, latitude }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -48,7 +48,7 @@ class AddHousing extends React.Component {
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Add Housings</Header>
+            <Header as="h2" textAlign="center">Add Housing</Header>
             <AutoForm ref={(ref) => { this.formRef = ref; }} schema={HousingsSchema} onSubmit={this.submit}>
               <Segment>
                 <p style={{
