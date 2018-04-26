@@ -1,9 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Image, Grid, Loader, Feed } from 'semantic-ui-react';
+import { Container, Header, Image, Grid, Loader, Icon } from 'semantic-ui-react';
 import { Housings } from '/imports/api/housing/housing';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import GoogleMapReact from 'google-map-react';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewHousing extends React.Component {
@@ -34,6 +35,8 @@ class ViewHousing extends React.Component {
                 Beds:&nbsp; {this.props.housings.beds},<br/>
                 Baths:&nbsp; {this.props.housings.baths},<br/>
                 Squarefeet:&nbsp; {this.props.housings.squarefeet}<br/>
+                Longitude:&nbsp; {this.props.housings.longitude}<br/>
+                Latitude:&nbsp; {this.props.housings.latitude}<br/>
               </p>
             </Grid.Column>
           </Grid>
@@ -45,12 +48,46 @@ class ViewHousing extends React.Component {
             Contact me
           </Header>
           <p> {this.props.housings.owner} </p>
+
+          <SimpleMap longitude={this.props.housings.longitude} latitude={this.props.housings.latitude}/>
+
         </Container>
     );
   }
 }
 
-/** Require an array of Stuff documents in the props. */
+const AnyReactComponent = ({ image }) => <div>
+  <Icon name='home'/>
+  <img src={image} align="center" style={{width:'25px', height:'25px', align:'center'}}/>
+  {console.log(image)}
+</div>;
+
+class SimpleMap extends React.Component {
+  render() {
+    return (
+        <div style={{ height: '50vh', width: '100%' }}>
+        <GoogleMapReact
+            bootstrapURLKeys={{ key: 'AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg' }}
+            defaultCenter = {{lat: this.props.longitude, lng: this.props.latitude}}
+            defaultZoom = {11}
+        >
+          <AnyReactComponent
+              lat={this.props.longitude}
+              lng={this.props.latitude}
+              image= "/images/halemanoa-icon-transparent.png"
+          />
+        </GoogleMapReact>
+        </div>
+    );
+  }
+}
+
+SimpleMap.propTypes = {
+  longitude: PropTypes.number,
+  latitude: PropTypes.number,
+};
+
+/** Require an array of Housing documents in the props. */
 ViewHousing.propTypes = {
   housings: PropTypes.object,
   ready: PropTypes.bool.isRequired,

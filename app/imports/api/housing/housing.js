@@ -12,6 +12,8 @@ const HousingsSchema = new SimpleSchema({
   image: String,
   state: String,
   zipcode: Number,
+  longitude: Number,
+  latitude: Number,
   unitnumber: String,
   propertytype: {
     type: String,
