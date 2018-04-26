@@ -10,7 +10,7 @@ import Landing from '../pages/Landing';
 import ListHousing from '../pages/ListHousing';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddHousing from '../pages/AddHousing';
-import ViewBios from '../pages/ViewBios';
+import ViewBios from '../pages/BioPage/ViewBios';
 import ViewProfile from '../pages/ViewProfile';
 import ViewHousing from '../pages/ViewHousing';
 import EditHousing from '../pages/EditHousing';
