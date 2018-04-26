@@ -7,10 +7,11 @@ import { withRouter, Link, NavLink } from 'react-router-dom';
 class Group extends React.Component {
   render() {
     return (
-        <Table.Row>
+        <Table.Row color={this.props.color}>
           <Table.Cell>
             <Header
                 as={NavLink} activeClassName="" exact to={`/message/${this.props.group._id}`}
+                color={this.props.color}
             >
             {this.props.group.name}
             </Header>
@@ -23,6 +24,8 @@ class Group extends React.Component {
 /** Require a document to be passed to this component. */
 Group.propTypes = {
   group: PropTypes.object.isRequired,
+  color: PropTypes.string.isRequired,
+
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
