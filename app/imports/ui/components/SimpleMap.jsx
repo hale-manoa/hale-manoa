@@ -16,15 +16,17 @@ class SimpleMap extends React.Component {
         <div style={{ height: '50vh', width: '100%' }}>
           <GoogleMapReact
               bootstrapURLKeys={{ key: 'AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg' }}
-              defaultCenter = {{ lat: this.props.longitude, lng: this.props.latitude }}
+              defaultCenter = {{ lat: this.props.latitude, lng: this.props.longitude }}
               defaultZoom = {11}
           >
             <AnyReactComponent
-                lat={this.props.longitude}
-                lng={this.props.latitude}
+                lat={this.props.latitude}
+                lng={this.props.longitude}
                 image= "/images/halemanoa-icon-transparent.png"
             />
           </GoogleMapReact>
+          {console.log(this.props.latitude)}
+          {console.log(this.props.longitude)}
         </div>
     );
   }

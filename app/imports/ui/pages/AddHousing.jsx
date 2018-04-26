@@ -59,7 +59,7 @@ class AddHousing extends React.Component {
                   fontWeight: 'bold',
                   textTransform: 'none',
                 }} >StreetAddress</p>
-                <SearchBox />
+                <SearchBox/>
                 <TextField name='unitnumber'/>
                 <TextField name='city'/>
                 <TextField name='state'/>
@@ -74,9 +74,9 @@ class AddHousing extends React.Component {
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value ='fakeyser@foo.com'/>
-                <HiddenField name='streetaddress'/>
+                <HiddenField name='streetaddress' value='test'/>
                 <HiddenField name='longitude'/>
-                <HiddenField name='latitdue'/>
+                <HiddenField name='latitude'/>
               </Segment>
             </AutoForm>
           </Grid.Column>
@@ -137,6 +137,10 @@ const SearchBox = compose(
               {' at '}
               ({location.lat()}, {location.lng()})
             </ol>)}
+
+        {console.log(formatted_address)}
+        {console.log(location.lat())}
+        {console.log(location.lng())}
       </ol>
     </div>);
 
