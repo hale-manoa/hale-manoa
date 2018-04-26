@@ -46,10 +46,12 @@ class EditProfile extends React.Component {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
 
+    const headerStyle = { marginTop: '20px' };
+
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Add Profile</Header>
+            <Header as="h2" textAlign="center" style={headerStyle}>My Profile</Header>
             <AutoForm model={this.props.users.filter(m =>
                 (m.owner === this.props.currentUser)
             )[0]} schema={UserSchema} onSubmit={this.submit}>
