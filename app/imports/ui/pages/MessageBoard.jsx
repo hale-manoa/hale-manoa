@@ -39,7 +39,6 @@ class MessageBoard extends React.Component {
                   <Header as='h3' dividing>Messages</Header>
                   <Feed>
                     {this.props.messages.map((message, index) => <DirectMessage key={index} message={message}/>)}
-                    {console.log(this.props.messages)}
                     </Feed>
                   <AddMessage members={this.props.group.members} groupId={this.props.group._id}/>
                 </Comment.Group>

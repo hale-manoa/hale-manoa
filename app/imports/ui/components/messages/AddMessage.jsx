@@ -44,7 +44,7 @@ class AddMessage extends React.Component {
     return (
         <AutoForm ref={(ref) => { this.formRef = ref; }} schema={MessageSchema} onSubmit={this.submit}>
           <Segment>
-            <TextField label="Add a timestamped review" name='message'/>
+            <TextField name='message'/>
             <SubmitField value='Submit'/>
             <ErrorsField/>
             <HiddenField name='groupId' value={this.props.groupId}/>
