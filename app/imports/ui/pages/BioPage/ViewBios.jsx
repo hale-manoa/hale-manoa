@@ -1,11 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Header, Loader, Grid, Dropdown } from 'semantic-ui-react';
+import { Container, Card, Header, Loader, Grid, Dropdown, Modal, Icon, Button } from 'semantic-ui-react';
 import { Users } from '/imports/api/user/user';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import User from '/imports/ui/components/User/User';
-
+import '/imports/ui/pages/BioPage/biopage.css';
 
 const user_type = [
   { text: 'Select User Type' },
@@ -78,6 +78,20 @@ class ViewBios extends React.Component {
               </Header>
             </Grid.Column>
           </Grid>
+          <Modal trigger={<Button>Filter Users By</Button>} closeIcon>
+            <Header icon='archive' content='Archive Old Messages' />
+            <Modal.Content>
+              <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button color='red'>
+                <Icon name='remove' /> No
+              </Button>
+              <Button color='green'>
+                <Icon name='checkmark' /> Yes
+              </Button>
+            </Modal.Actions>
+          </Modal>
           <Card.Group>
             { /** {(this.state.loading === 'selected') ? <Header>{this.state.selectedType}</Header> : null} */ }
             {this.filterUsersbyType().map((user, index) => <User key ={index} user={user}/>)}

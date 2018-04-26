@@ -1,0 +1,5 @@
+.ui.page.modals.dimmer.transition {
+  display: flex !important;
+  display: -ms-flexbox !important;
+  position: fixed;
+}
