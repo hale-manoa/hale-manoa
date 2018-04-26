@@ -9,6 +9,7 @@ const Messages = new Mongo.Collection('Messages');
 /** Create a schema to constrain the structure of documents associated with this collection. */
 const MessageSchema = new SimpleSchema({
   message: String,
+  members: [String],
   groupId: String,
   createdAt: Date,
 }, { tracker: Tracker });

@@ -41,20 +41,7 @@ class MessageBoard extends React.Component {
                     {this.props.messages.map((message, index) => <DirectMessage key={index} message={message}/>)}
                     {console.log(this.props.messages)}
                     </Feed>
-                  <AddMessage groupId={this.props.group._id}/>
-                  <Comment>
-                    <Comment.Avatar as='a' src='/assets/images/avatar/small/matt.jpg' />
-                    <Comment.Content>
-                      <Comment.Author as='a'>Matt</Comment.Author>
-                      <Comment.Metadata>
-                        <span>Today at 5:42PM</span>
-                      </Comment.Metadata>
-                      <Comment.Text>How artistic!</Comment.Text>
-                      <Comment.Actions>
-                        <a>Reply</a>
-                      </Comment.Actions>
-                    </Comment.Content>
-                  </Comment>
+                  <AddMessage members={this.props.group.members} groupId={this.props.group._id}/>
                 </Comment.Group>
                 </Segment>
               </Grid.Column>

@@ -35,7 +35,8 @@ class AddMessage extends React.Component {
   /** On submit, insert the data. */
   submit(data) {
     const { message, groupId, createdAt } = data;
-    Messages.insert({ message, groupId, createdAt }, this.insertCallback);
+    const members = this.props.members;
+    Messages.insert({ message, members, groupId, createdAt }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -47,6 +48,7 @@ class AddMessage extends React.Component {
             <SubmitField value='Submit'/>
             <ErrorsField/>
             <HiddenField name='groupId' value={this.props.groupId}/>
+            <HiddenField name='members' value=''/>
             <HiddenField name='createdAt' value={new Date()}/>
           </Segment>
         </AutoForm>
@@ -56,6 +58,7 @@ class AddMessage extends React.Component {
 
 AddMessage.propTypes = {
   groupId: PropTypes.string.isRequired,
+  members: PropTypes.array.isRequired,
 };
 
 export default AddMessage;
