@@ -1,31 +1,12 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Image, Grid, Loader, Feed } from 'semantic-ui-react';
+import { Container, Header, Image, Grid, Loader } from 'semantic-ui-react';
 import { Housings } from '/imports/api/housing/housing';
 import { withTracker } from 'meteor/react-meteor-data';
+import { compose } from 'recompose';
 import PropTypes from 'prop-types';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
-const { compose } = require("recompose");
-const {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-} = require("react-google-maps");
-
-const MapWithAMarker = compose(
-    withScriptjs,
-    withGoogleMap
-)(props =>
-    <GoogleMap
-        defaultZoom={13}
-        defaultCenter={{ lat: 21.2859, lng: -157.826 }}
-    >
-      <Marker
-          position={{ lat: 21.2859, lng: -157.826 }}
-      />
-    </GoogleMap>
-);
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewHousing extends React.Component {
@@ -69,16 +50,31 @@ class ViewHousing extends React.Component {
           <p> {this.props.housings.owner} </p>
 
           <MapWithAMarker
-              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
-              loadingElement={<div style={{ height: `100%` }} />}
-              containerElement={<div style={{ height: `400px` }} />}
-              mapElement={<div style={{ height: `100%` }} />}
+              googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places'
+              loadingElement={<div style={{ height: '100%' }} />}
+              containerElement={<div style={{ height: '400px' }} />}
+              mapElement={<div style={{ height: '100%' }} />}
           />
+
+
 
         </Container>
     );
   }
 }
+
+//Copied from https://tomchentw.github.io/react-google-maps/#marker
+const MapWithAMarker = compose(
+    withScriptjs,
+    withGoogleMap,
+)(props =>
+    <GoogleMap
+        defaultZoom={13}
+        defaultCenter={{ lat: 21.2859, lng: -157.826 }}
+    >
+      <Marker position={{ lat: 21.2859, lng: -157.826 }}/>
+    </GoogleMap>);
+
 
 /** Require an array of Stuff documents in the props. */
 ViewHousing.propTypes = {
