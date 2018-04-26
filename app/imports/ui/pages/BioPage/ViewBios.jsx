@@ -106,12 +106,13 @@ class ViewBios extends React.Component {
     const area = this.state.selectedArea;
     const preferences = this.state.selectedPref;
     console.log(preferences);
-    console.log(this.props.users[0].preferences);
-    console.log(this.props.users[0].preferences.includes(preferences));
+    console.log(preferences.length);
+    /** console.log(this.props.users[0].preferences);
+    console.log(this.props.users[0].preferences.includes(preferences[0])); */
     return this.props.users.filter(m => type.length === 0 || (type.indexOf(m.type) !== -1))
         .filter(m => age.length === 0 || (age.indexOf(m.age) !== -1))
         .filter(m => area.length === 0 || (area.indexOf(m.area) !== -1))
-        .filter(m => preferences.length === 0 || m.preferences.includes(preferences[0]) !== false);
+        .filter(m => preferences.length === 0 || m.preferences.indexOf(preferences[0]) !== -1);
   }
 
   /** Render the page once subscriptions have been received. */
