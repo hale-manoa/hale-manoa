@@ -1,10 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Image, Grid, Loader, Icon } from 'semantic-ui-react';
+import { Container, Header, Image, Grid, Loader } from 'semantic-ui-react';
 import { Housings } from '/imports/api/housing/housing';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import GoogleMapReact from 'google-map-react';
+import SimpleMap from '/imports/ui/components/SimpleMap';
+
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewHousing extends React.Component {
@@ -55,35 +56,6 @@ class ViewHousing extends React.Component {
     );
   }
 }
-
-const AnyReactComponent = ({ image }) => <div>
-  <Icon name='home' color='green' size='big'/>
-</div>;
-
-class SimpleMap extends React.Component {
-  render() {
-    return (
-        <div style={{ height: '50vh', width: '100%' }}>
-        <GoogleMapReact
-            bootstrapURLKeys={{ key: 'AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg' }}
-            defaultCenter = {{lat: this.props.longitude, lng: this.props.latitude}}
-            defaultZoom = {11}
-        >
-          <AnyReactComponent
-              lat={this.props.longitude}
-              lng={this.props.latitude}
-              image= "/images/halemanoa-icon-transparent.png"
-          />
-        </GoogleMapReact>
-        </div>
-    );
-  }
-}
-
-SimpleMap.propTypes = {
-  longitude: PropTypes.number,
-  latitude: PropTypes.number,
-};
 
 /** Require an array of Housing documents in the props. */
 ViewHousing.propTypes = {
