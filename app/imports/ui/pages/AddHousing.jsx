@@ -14,6 +14,10 @@ import { compose, withProps, lifecycle } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 
+let adrs = 'test';
+let loc = {lat: 0 , lng:0};
+let lat = 0;
+let lng = 0;
 
 /** Renders the Page for adding a document. */
 class AddHousing extends React.Component {
@@ -38,7 +42,7 @@ class AddHousing extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description } = data;
+    const { streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description, longitude, latitude } = data;
     const owner = Meteor.user().username;
     Housings.insert({ unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description, owner, streetaddress, longitude, latitude }, this.insertCallback);
   }
@@ -74,9 +78,9 @@ class AddHousing extends React.Component {
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value ='fakeyser@foo.com'/>
-                <HiddenField name='streetaddress' value='test'/>
-                <HiddenField name='longitude'/>
-                <HiddenField name='latitude'/>
+                <HiddenField name='streetaddress' value='adrs'/>
+                <HiddenField name='longitude' decimal={lng}/>
+                <HiddenField name='latitude' decimal={lat}/>
               </Segment>
             </AutoForm>
           </Grid.Column>
@@ -133,14 +137,14 @@ const SearchBox = compose(
       <ol>
         {props.places.map(({ place_id, formatted_address, geometry: { location } }) =>
             <ol key={place_id}>
-              {formatted_address}
+              {adrs = formatted_address}
               {' at '}
-              ({location.lat()}, {location.lng()})
-            </ol>)}
+              ({lat = location.lat()}, {lng = location.lng()})
 
-        {console.log(formatted_address)}
-        {console.log(location.lat())}
-        {console.log(location.lng())}
+            </ol>)}
+        {console.log(adrs)}
+        {console.log(lat)}
+        {console.log(lng)}
       </ol>
     </div>);
 

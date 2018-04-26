@@ -50,7 +50,7 @@ class ViewHousing extends React.Component {
           </Header>
           <p> {this.props.housings.owner} </p>
 
-          <SimpleMap longitude={this.props.housings.latitude} latitude={this.props.housings.longitude}/>
+          <SimpleMap longitude={this.props.housings.longitude} latitude={this.props.housings.latitude}/>
 
         </Container>
     );
