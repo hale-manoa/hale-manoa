@@ -35,8 +35,10 @@ class ViewProfile extends React.Component {
   }
 
   connectOnClick(user) {
+    const member_1 =  Users.findOne({ owner: Meteor.user().username}).firstName;
+    const member_2 =  Users.findOne({ owner: user}).firstName;
     const members = [user, Meteor.user().username];
-    const name = user + ", "+ Meteor.user().username;
+    const name = member_1 + ", "+ member_2;
     Groups.insert({ name, members }, this.insertCallback);
   }
 

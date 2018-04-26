@@ -1,20 +1,22 @@
 import React from 'react';
-import { Feed } from 'semantic-ui-react';
+import { Feed, Comment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 class DirectMessage extends React.Component {
   render() {
-    const feedstyle = { margin: '20px'}
+    const feedstyle = { margin: '20px' }
     return (
-        <Feed.Event style={feedstyle}>
-          <Feed.Content>
-            <Feed.Date content={this.props.message.createdAt.toLocaleDateString('en-US')} />
-            <Feed.Summary>
-              {this.props.message.message}
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
+          <Comment style={feedstyle}>
+            {/*<Comment.Avatar src='/assets/images/avatar/small/matt.jpg' />*/}
+            <Comment.Content>
+              <Comment.Author>{this.props.message.username}</Comment.Author>
+              <Comment.Metadata>
+                <div>{this.props.message.createdAt.toLocaleDateString('en-US')}</div>
+              </Comment.Metadata>
+              <Comment.Text>{this.props.message.message}</Comment.Text>
+            </Comment.Content>
+          </Comment>
     );
   }
 }
