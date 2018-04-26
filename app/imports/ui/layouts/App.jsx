@@ -8,6 +8,8 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListHousing from '../pages/ListHousing';
+import ListMessages from '../pages/ListMessages';
+import MessageBoard from '../pages/MessageBoard';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddHousing from '../pages/AddHousing';
 import ViewBios from '../pages/ViewBios';
@@ -33,6 +35,8 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <Route path="/contactus" component={ContactUs}/>
+              <Route path="/messages" component={ListMessages}/>
+              <Route path="/message/:_id" component={MessageBoard}/>
               <ProtectedRoute path="/list" component={ListHousing}/>
               <ProtectedRoute path="/connect" component={ViewBios}/>
               <ProtectedRoute path="/profile/:_id" component={ViewProfile}/>

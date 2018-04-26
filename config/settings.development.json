@@ -170,6 +170,17 @@
       "preferences": ["No smoking", "No drinking"],
       "description": "I am an English actress and model."
     }
+  ],
+  "defaultGroups": [
+    {
+      "name": "SAMPLE_GROUP_1",
+      "members": ["john@foo.com"]
+    },
+    {
+      "name": "SAMPLE_GROUP_2",
+      "members": ["john@foo.com"]
+    }
+
   ]
 
 }
