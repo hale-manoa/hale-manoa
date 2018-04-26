@@ -33,15 +33,36 @@ class ViewBios extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleApply = this.handleApply.bind(this);
+    this.updateModalStateOpen = this.updateModalStateOpen.bind(this);
+    this.updateModalStateClose = this.updateModalStateClose.bind(this);
     this.state = {
       loading: '',
+      tentativeType: [],
       selectedType: [],
+      modalOpen: false,
     };
   }
   handleSubmit(event, data) {
     event.preventDefault();
+    this.setState({ tentativeType: data.value });
+  }
+
+  handleApply(event) {
+    event.preventDefault();
     this.setState({ loading: 'selected' });
-    this.setState({ selectedType: data.value });
+    this.setState({ selectedType: this.state.tentativeType });
+    this.setState({ modalOpen: false });
+  }
+
+  updateModalStateOpen(event) {
+    event.preventDefault();
+    this.setState({ modalOpen: true });
+  }
+
+  updateModalStateClose(event) {
+    event.preventDefault();
+    this.setState({ modalOpen: false });
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -60,7 +81,9 @@ class ViewBios extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center"> Find Your Home Away From Home</Header>
-          <Modal trigger={<Button>Filter Users By</Button>} closeIcon>
+          <Modal open={ this.state.modalOpen } onClose={this.updateModalStateClose}
+            trigger={<Button onClick={this.updateModalStateOpen}>Filter Users By</Button>
+          } closeIcon>
             <Header icon='filter' content='Filters' />
             <Modal.Content>
               <Grid columns={4}>
@@ -72,7 +95,7 @@ class ViewBios extends React.Component {
                         button
                         options={user_type}
                         placeholder='Select User Type'
-                        value={this.state.selectedType}
+                        value={this.state.tentativeType}
                         onChange={this.handleSubmit}
                     />
                   </p>
@@ -113,7 +136,7 @@ class ViewBios extends React.Component {
               </Grid>
             </Modal.Content>
             <Modal.Actions>
-              <Button color='green'>
+              <Button color='green' onClick={this.handleApply}>
                 <Icon name='checkmark' /> Apply
               </Button>
             </Modal.Actions>
