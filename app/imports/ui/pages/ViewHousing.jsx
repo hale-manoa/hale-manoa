@@ -57,9 +57,7 @@ class ViewHousing extends React.Component {
 }
 
 const AnyReactComponent = ({ image }) => <div>
-  <Icon name='home'/>
-  <img src={image} align="center" style={{width:'25px', height:'25px', align:'center'}}/>
-  {console.log(image)}
+  <Icon name='home' color='green' size='big'/>
 </div>;
 
 class SimpleMap extends React.Component {
