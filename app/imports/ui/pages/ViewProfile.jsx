@@ -8,6 +8,8 @@ import { Feedbacks } from '/imports/api/feedback/feedback';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Groups } from '/imports/api/group/group';
+import { Bert } from 'meteor/themeteorchef:bert';
+
 
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -23,10 +25,18 @@ class ViewProfile extends React.Component {
         this.props.ready) ? this.renderPage() : <Loader>Getting data</Loader>;
   }
 
+  insertCallback(error) {
+    if (error) {
+      Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
+    } else {
+      Bert.alert({ type: 'success', message: 'You have connected! Go to your messages and start a conversation' });
+      this.formRef.reset();
+    }
+  }
+
   connectOnClick(user) {
     const members = [user, Meteor.user().username];
     const name = user + ", "+ Meteor.user().username;
-    console.log("IN Onclick function");
     Groups.insert({ name, members }, this.insertCallback);
   }
 
@@ -45,7 +55,7 @@ class ViewProfile extends React.Component {
               <Grid.Row>
                 <Button
                     positive
-                    onClick={this.connectOnClick(this.props.users.owner)}
+                    onClick={() => { this.connectOnClick(this.props.users.owner) }}
                 >
                   Connect
                 </Button>

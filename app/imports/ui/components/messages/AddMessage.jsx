@@ -24,10 +24,7 @@ class AddMessage extends React.Component {
 
   /** Notify the user of the results of the submit. If successful, clear the form. */
   insertCallback(error) {
-    if (error) {
-      Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
-    } else {
-      Bert.alert({ type: 'success', message: 'Add succeeded' });
+    if (!error) {
       this.formRef.reset();
     }
   }
