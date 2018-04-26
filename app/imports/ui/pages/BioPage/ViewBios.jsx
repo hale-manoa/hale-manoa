@@ -8,13 +8,21 @@ import User from '/imports/ui/components/User/User';
 import '/imports/ui/pages/BioPage/biopage.css';
 
 const user_type = [
-  { text: 'Select User Type' },
   { key: 'Listers', text: 'Listers', value: 'Lister' },
   { key: 'Seekers', text: 'Seekers', value: 'Seeker' },
 ];
 
+const age = [
+  { key: '20', text: '20', value: '20' },
+  { key: '29', text: '29', value: '29' },
+];
+
+const area = [
+  { key: 'Manoa', text: 'Manoa', value: 'Manoa' },
+  { key: 'Kaimuki', text: 'Kaimuki', value: 'Kaimuki' },
+];
+
 const pref = [
-  { text: 'Select Preferences' },
   { key: 'No smoking', text: 'No smoking', value: 'No smoking' },
   { key: 'Parties allowed', text: 'Parties allowed', value: 'Parties allowed' },
 ];
@@ -52,43 +60,61 @@ class ViewBios extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center"> Find Your Home Away From Home</Header>
-          <Grid columns={2}>
-            <Grid.Column>
-              <Header as="h2">
-                Search for:
-                <Dropdown
-                    multiple selection
-                    button
-                    options={user_type}
-                    placeholder='Select User Type'
-                    value={this.state.selectedType}
-                    onChange={this.handleSubmit}
-                />
-              </Header>
-            </Grid.Column>
-            <Grid.Column>
-              <Header as="h2">
-                Your Preferences:
-                <Dropdown
-                    multiple selection
-                    button
-                    options={pref}
-                    placeholder='Select Preferences'
-                />
-              </Header>
-            </Grid.Column>
-          </Grid>
           <Modal trigger={<Button>Filter Users By</Button>} closeIcon>
-            <Header icon='archive' content='Archive Old Messages' />
+            <Header icon='filter' content='Filters' />
             <Modal.Content>
-              <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+              <Grid columns={4}>
+                <Grid.Column>
+                  <p>
+                    User Type
+                    <Dropdown
+                        multiple selection
+                        button
+                        options={user_type}
+                        placeholder='Select User Type'
+                        value={this.state.selectedType}
+                        onChange={this.handleSubmit}
+                    />
+                  </p>
+                </Grid.Column>
+                <Grid.Column>
+                  <p>
+                    Age
+                    <Dropdown
+                        multiple selection
+                        button
+                        options={age}
+                        placeholder='Select Age'
+                    />
+                  </p>
+                </Grid.Column>
+                <Grid.Column>
+                  <p>
+                    Area
+                    <Dropdown
+                        multiple selection
+                        button
+                        options={area}
+                        placeholder='Select Area'
+                    />
+                  </p>
+                </Grid.Column>
+                <Grid.Column>
+                  <p>
+                    Preferences
+                    <Dropdown
+                        multiple selection
+                        button
+                        options={pref}
+                        placeholder='Select Preferences'
+                    />
+                  </p>
+                </Grid.Column>
+              </Grid>
             </Modal.Content>
             <Modal.Actions>
-              <Button color='red'>
-                <Icon name='remove' /> No
-              </Button>
               <Button color='green'>
-                <Icon name='checkmark' /> Yes
+                <Icon name='checkmark' /> Apply
               </Button>
             </Modal.Actions>
           </Modal>
