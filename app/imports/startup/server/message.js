@@ -5,7 +5,7 @@ import { Messages } from '../../api/message/message';
 Meteor.publish('Messages', function publish() {
   if (this.userId) {
     //return Messages.find({ members: { $all: [this.userId] } });
-    return Messages.find();
+    return Messages.find({});
   }
   return this.ready();
 });

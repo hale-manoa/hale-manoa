@@ -85,7 +85,7 @@ export default withTracker(({ match }) => {
   const subscription2 = Meteor.subscribe('Messages');
   return {
     group: Groups.findOne(groupId),
-    messages: Messages.find({}).fetch(),
+    messages: Messages.find({groupId: groupId}).fetch(),
     groups: Groups.find({}).fetch(),
     ready: subscription.ready() && subscription2.ready(),
   };
