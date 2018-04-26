@@ -13,6 +13,11 @@ import { Groups } from '/imports/api/group/group';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewProfile extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
+  constructor(){
+    super();
+    this.connectOnClick = this.connectOnClick.bind(this);
+  }
+
   render() {
     return (
         this.props.ready) ? this.renderPage() : <Loader>Getting data</Loader>;
@@ -20,7 +25,8 @@ class ViewProfile extends React.Component {
 
   connectOnClick(user) {
     const members = [user, Meteor.user().username];
-    const name = "New Group";
+    const name = user + ", "+ Meteor.user().username;
+    console.log("IN Onclick function");
     Groups.insert({ name, members }, this.insertCallback);
   }
 
