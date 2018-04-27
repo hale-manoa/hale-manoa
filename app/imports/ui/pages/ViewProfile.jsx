@@ -33,11 +33,11 @@ class ViewProfile extends React.Component {
   }
 
   connectOnClick(user) {
-    const member_1 = Users.findOne({ owner: Meteor.user().username}).firstName;
+    const member_1 = Users.findOne({ owner: Meteor.user().username }).firstName;
     const member_2 = Users.findOne({ owner: user }).firstName;
     const members = [user, Meteor.user().username];
     const housings = [];
-    const name = member_1 + ", "+ member_2;
+    const name = member_1 + ", " + member_2;
     Groups.insert({ name, members, housings }, this.insertCallback);
   }
 
@@ -76,7 +76,10 @@ class ViewProfile extends React.Component {
           </Header>
           <p> {this.props.users.description} </p>
 
-          {(isLister) ? <Header>I am a lister</Header> : null}
+          {(isLister) ? <div>
+            <Header>Listings</Header>
+            <p> Listing Placeholder </p>
+          </div> : null}
 
           <Header as="h2" textAlign="left">
             Ratings and Reviews
