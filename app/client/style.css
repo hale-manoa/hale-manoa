@@ -67,16 +67,35 @@
 }
 
 .font-field {
-  font-size: 18px;
+  font-size: 12px;
   line-height: 1.35;
   font-weight: 700;
   letter-spacing: -0.02em;
   font-family: "Fira Sans", sans-serif;
 }
 
+
+.grid-align {
+  margin-right: 70px;
+}
+
+.grid-align-2 {
+  margin-left: 65px;
+}
+
 .grid-background {
-  background-color: #BBDBB4;
-  margin-top: 40px;
+  background-color: #fff6f0;
+  margin-top: 18px;
+}
+
+.grid-background-side {
+  background-image: url("/images/house-pattern.jpg");
+  margin-top: 18px;
+}
+
+
+.grid-bg-image {
+  background-image: url("/images/manoa-area.png");
 }
 
 
