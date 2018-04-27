@@ -6,9 +6,10 @@ import TextField from 'uniforms-semantic/TextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
-import SelectField from 'uniforms-semantic/SelectField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
+import { Users } from '/imports/api/user/user';
+
 
 /** Renders the Page for adding a document. */
 class AddMessage extends React.Component {
@@ -31,15 +32,19 @@ class AddMessage extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { message, groupId, createdAt } = data;
+    const { message, groupId, createdAt, username, image } = data;
     const members = this.props.members;
-    Messages.insert({ message, members, groupId, createdAt }, this.insertCallback);
+    Messages.insert({ username, image, message, members, groupId, createdAt }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
+
+    const name = Users.findOne({ owner: Meteor.user().username}).firstName + ' ' + Users.findOne({ owner: Meteor.user().username}).lastName;
+    const image = Users.findOne({ owner: Meteor.user().username}).image;
+
     return (
-        <AutoForm ref={(ref) => { this.formRef = ref; }} schema={MessageSchema} onSubmit={this.submit}>
+        <AutoForm label="" ref={(ref) => { this.formRef = ref; }} schema={MessageSchema} onSubmit={this.submit}>
           <Segment>
             <TextField name='message'/>
             <SubmitField value='Submit'/>
@@ -47,6 +52,8 @@ class AddMessage extends React.Component {
             <HiddenField name='groupId' value={this.props.groupId}/>
             <HiddenField name='members' value=''/>
             <HiddenField name='createdAt' value={new Date()}/>
+            <HiddenField name='username' value={name}/>
+            <HiddenField name='image' value={image}/>
           </Segment>
         </AutoForm>
     );

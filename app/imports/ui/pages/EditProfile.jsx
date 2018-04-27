@@ -1,6 +1,6 @@
 import React from 'react';
 import { Users, UserSchema } from '/imports/api/user/user';
-import { Grid, Segment, Header } from 'semantic-ui-react';
+import { Grid, Segment, Header, Image } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import NumField from 'uniforms-semantic/NumField';
@@ -46,27 +46,62 @@ class EditProfile extends React.Component {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
 
+    const headerStyle = { marginTop: '40px'};
+    const gridStyle = { color: '#BBDBB4'};
+
     return (
-        <Grid container centered>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">Add Profile</Header>
+        <Grid centered>
+          <Grid.Column width={5} className="grid-background-side">
+          </Grid.Column>
+          <Grid.Column width={6} className="grid-background">
+            <Header as="h2" textAlign="center" style={headerStyle}>My Profile</Header>
             <AutoForm model={this.props.users.filter(m =>
                 (m.owner === this.props.currentUser)
             )[0]} schema={UserSchema} onSubmit={this.submit}>
-              <Segment>
-                <TextField name='firstName'/>
-                <TextField name='lastName'/>
-                <SelectField name='type'/>
-                <TextField name='image'/>
-                <NumField name='age' decimal={false}/>
-                <SelectField name='area'/>
-                <TextField name='preferences'/>
-                <TextField name='description'/>
-                <SubmitField value='Submit'/>
-                <ErrorsField/>
-                <HiddenField name='owner'/>
-              </Segment>
+                <Grid centered>
+                  <Grid.Row>
+                    <Grid.Column width={6}>
+                      <TextField className="font-field" name='firstName' placeholder="First Name"/>
+                    </Grid.Column>
+                    <Grid.Column width={6}>
+                      <TextField className="font-field" name='lastName' placeholder="Last Name"/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={3}>
+                      <NumField className="font-field" name='age' placeholder="Age" decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={9}>
+                      <TextField className="font-field" name='image' placeholder="Image URL"/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={12}>
+                      <TextField className="font-field" name='preferences' placeholder="No Smoking, Pets, Etc."/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={12}>
+                      <TextField className="font-field" name='description' placeholder="Describe Yourself"/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={3} className="grid-align-2">
+                     <SelectField className="font-field" name='type'/>
+                    </Grid.Column>
+                    <Grid.Column width={3} className="grid-align">
+                     <SelectField className="font-field" name='area'/>
+                    </Grid.Column>
+                    <Grid.Column width={6}>
+                      <SubmitField value='Submit'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+                  <ErrorsField/>
+                  <HiddenField name='owner'/>
             </AutoForm>
+          </Grid.Column>
+          <Grid.Column width={5} className="grid-background-side">
           </Grid.Column>
         </Grid>
     );

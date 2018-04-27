@@ -155,7 +155,7 @@
       "firstName": "Bruno",
       "lastName": "Mars",
       "type": "Seeker",
-      "owner": "idk@foo.com",
+      "owner": "john@foo.com",
       "image": "https://pbs.twimg.com/profile_images/952969165370884096/bK1_Bkpq.jpg",
       "age": "20",
       "area": "Manoa",
@@ -184,18 +184,6 @@
       "preferences": ["No smoking", "No drinking"],
       "description": "I am an English actress and model."
     }
-  ],
-  "defaultGroups": [
-    {
-      "name": "SAMPLE_GROUP_1",
-      "members": ["john@foo.com"]
-    },
-    {
-      "name": "SAMPLE_GROUP_2",
-      "members": ["john@foo.com"]
-    }
-
   ]
-
 }
 

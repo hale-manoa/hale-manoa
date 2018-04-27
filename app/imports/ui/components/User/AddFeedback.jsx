@@ -34,7 +34,8 @@ class AddFeedback extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { feedback, owner, rating, userId, createdAt } = data;
+    const { feedback, rating, userId, createdAt } = data;
+    const owner = Meteor.user().username;
     Feedbacks.insert({ feedback, owner, rating, userId, createdAt }, this.insertCallback);
   }
 

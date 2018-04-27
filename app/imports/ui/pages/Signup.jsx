@@ -52,15 +52,21 @@ export default class Signup extends React.Component {
       { key: 'm', text: 'Lister', value: 'lister' },
       { key: 'f', text: 'Seeker', value: 'seeker' },
     ];
+
+    const headerStyle = { marginTop: '20px' };
+
     return (
         <Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
             <Grid.Column>
-              <Header as="h2" textAlign="center">
-                Register your account
+              <Header as="h1" textAlign="center" style={headerStyle}>
+                Welcome to Hale Manoa
               </Header>
               <Form onSubmit={this.handleSubmit}>
                 <Segment stacked>
+                  <Header as="h2" textAlign="center">
+                    Register your account
+                  </Header>
                   <Form.Group>
                     <Form.Input
                         label="First Name"
