@@ -65,3 +65,19 @@
 .font-green{
   color: #1aa62a;
 }
+
+.font-field {
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-family: "Fira Sans", sans-serif;
+}
+
+.grid-background {
+  background-color: #BBDBB4;
+  margin-top: 40px;
+}
+
+
+

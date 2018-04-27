@@ -46,28 +46,57 @@ class EditProfile extends React.Component {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
 
-    const headerStyle = { marginTop: '20px' };
+    const headerStyle = { marginTop: '40px'};
+    const gridStyle = { color: '#BBDBB4'};
 
     return (
-        <Grid container centered>
+        <Grid centered className="grid-background">
           <Grid.Column>
             <Header as="h2" textAlign="center" style={headerStyle}>My Profile</Header>
             <AutoForm model={this.props.users.filter(m =>
                 (m.owner === this.props.currentUser)
             )[0]} schema={UserSchema} onSubmit={this.submit}>
-              <Segment>
-                <TextField name='firstName'/>
-                <TextField name='lastName'/>
-                <SelectField name='type'/>
-                <TextField name='image'/>
-                <NumField name='age' decimal={false}/>
-                <SelectField name='area'/>
-                <TextField name='preferences'/>
-                <TextField name='description'/>
-                <SubmitField value='Submit'/>
-                <ErrorsField/>
-                <HiddenField name='owner'/>
-              </Segment>
+                <Grid centered>
+                  <Grid.Row>
+                    <Grid.Column width={3} >
+                      <TextField className="font-field" name='firstName'/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <TextField className="font-field" name='lastName'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={3}>
+                      <TextField className="font-field" name='image'/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField className="font-field" name='age' decimal={false}/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={6}>
+                      <TextField className="font-field" name='preferences'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={6}>
+                      <TextField className="font-field" name='description'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={2}>
+                     <SelectField className="font-field" name='type'/>
+                    </Grid.Column>
+                    <Grid.Column width={2}>
+                     <SelectField className="font-field" name='area'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <SubmitField value='Submit'/>
+                  </Grid.Row>
+                </Grid>
+                  <ErrorsField/>
+                  <HiddenField name='owner'/>
             </AutoForm>
           </Grid.Column>
         </Grid>
