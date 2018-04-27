@@ -38,6 +38,7 @@ class ViewBios extends React.Component {
     this.handleAgeSubmit = this.handleAgeSubmit.bind(this);
     this.handleAreaSubmit = this.handleAreaSubmit.bind(this);
     this.handlePrefSubmit = this.handlePrefSubmit.bind(this);
+    this.iteratePref = this.iteratePref.bind(this);
     this.handleApply = this.handleApply.bind(this);
     this.updateModalStateOpen = this.updateModalStateOpen.bind(this);
     this.updateModalStateClose = this.updateModalStateClose.bind(this);
@@ -94,6 +95,56 @@ class ViewBios extends React.Component {
     this.setState({ modalOpen: false });
   }
 
+  iteratePref() {
+    const preferences = this.state.selectedPref;
+    let filtered = this.props.users;
+    const arr = [];
+    for (let i = 0; i < preferences.length; i++) {
+      if (i === 0) {
+        filtered = this.props.users.filter(m => preferences.length === 0 ||
+            m.preferences.indexOf(preferences[i]) !== -1);
+        arr.push(filtered);
+      }
+      else {
+        filtered = arr[arr.length - 1].filter(m => preferences.length === 0 ||
+            m.preferences.indexOf(preferences[i]) !== -1);
+        arr.push(filtered);
+      }
+    }
+
+    if (arr.length > 0) {
+      filtered = arr[arr.length - 1];
+      console.log(arr[arr.length - 1]);
+    }
+    else {
+      filtered = this.props.users;
+    }
+    /** return this.props.users; */
+    return filtered;
+
+    /** switch (preferences.length) {
+      case 0:
+        filtered = this.props.users;
+        break;
+      case 1:
+        filtered = this.props.users.filter(m => preferences.length === 0 ||
+            m.preferences.includes(preferences[0]) !== false);
+        break;
+      case 2:
+        filtered = this.props.users.filter(m => preferences.length === 0 ||
+            m.preferences.includes(preferences[0] && preferences[1]) !== false);
+        break;
+      case 3:
+        filtered = this.props.users.filter(m => preferences.length === 0 ||
+            m.preferences.indexOf(preferences[0] && preferences[1] && preferences[2]) !== -1);
+        break;
+      default:
+        filtered = this.props.users;
+        break;
+    }
+    return filtered; */
+  }
+
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (
@@ -105,14 +156,17 @@ class ViewBios extends React.Component {
     const age = this.state.selectedAge;
     const area = this.state.selectedArea;
     const preferences = this.state.selectedPref;
-    console.log(preferences);
-    console.log(preferences.length);
-    /** console.log(this.props.users[0].preferences);
+    /** console.log(preferences);
+    console.log(this.props.users.preferences);
+    console.log(preferences.indexOf(this.props.users.preferences));
+    console.log(this.props.users[0].preferences);
     console.log(this.props.users[0].preferences.includes(preferences[0])); */
-    return this.props.users.filter(m => type.length === 0 || (type.indexOf(m.type) !== -1))
+    /** this.iteratePref(); */
+    return this.iteratePref();
+    /** return this.props.users.filter(m => type.length === 0 || (type.indexOf(m.type) !== -1))
         .filter(m => age.length === 0 || (age.indexOf(m.age) !== -1))
-        .filter(m => area.length === 0 || (area.indexOf(m.area) !== -1))
-        .filter(m => preferences.length === 0 || m.preferences.indexOf(preferences[0]) !== -1);
+        .filter(m => area.length === 0 || (area.indexOf(m.area) !== -1)); */
+        /** .filter(m => preferences.length === 0 || m.preferences.indexOf(preferences[0]) !== -1); */
   }
 
   /** Render the page once subscriptions have been received. */
