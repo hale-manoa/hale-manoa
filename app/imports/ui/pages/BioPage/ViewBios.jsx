@@ -12,19 +12,21 @@ const user_type = [
   { key: 'Seekers', text: 'Seekers', value: 'Seeker' },
 ];
 
-const age = [
+const user_age = [
   { key: '20', text: '20', value: '20' },
   { key: '29', text: '29', value: '29' },
 ];
 
-const area = [
+const user_area = [
   { key: 'Manoa', text: 'Manoa', value: 'Manoa' },
   { key: 'Kaimuki', text: 'Kaimuki', value: 'Kaimuki' },
 ];
 
-const pref = [
+const user_pref = [
   { key: 'No smoking', text: 'No smoking', value: 'No smoking' },
-  { key: 'Parties allowed', text: 'Parties allowed', value: 'Parties allowed' },
+  { key: 'No drinking', text: 'No drinking', value: 'No drinking' },
+  { key: 'Parties allowed', text: 'Parties allowed', value: 'Parties allowed on the weekends' },
+  { key: 'Lights out at 10pm', text: 'Lights out at 10pm', value: 'Sleep at 10pm' },
 ];
 
 
@@ -32,26 +34,52 @@ const pref = [
 class ViewBios extends React.Component {
   constructor() {
     super();
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTypeSubmit = this.handleTypeSubmit.bind(this);
+    this.handleAgeSubmit = this.handleAgeSubmit.bind(this);
+    this.handleAreaSubmit = this.handleAreaSubmit.bind(this);
+    this.handlePrefSubmit = this.handlePrefSubmit.bind(this);
+    this.iteratePref = this.iteratePref.bind(this);
     this.handleApply = this.handleApply.bind(this);
     this.updateModalStateOpen = this.updateModalStateOpen.bind(this);
     this.updateModalStateClose = this.updateModalStateClose.bind(this);
     this.state = {
-      loading: '',
       tentativeType: [],
+      tentativeAge: [],
+      tentativeArea: [],
+      tentativePref: [],
       selectedType: [],
+      selectedAge: [],
+      selectedArea: [],
+      selectedPref: [],
       modalOpen: false,
     };
   }
-  handleSubmit(event, data) {
+  handleTypeSubmit(event, data) {
     event.preventDefault();
     this.setState({ tentativeType: data.value });
   }
 
+  handleAgeSubmit(event, data) {
+    event.preventDefault();
+    this.setState({ tentativeAge: data.value });
+  }
+
+  handleAreaSubmit(event, data) {
+    event.preventDefault();
+    this.setState({ tentativeArea: data.value });
+  }
+
+  handlePrefSubmit(event, data) {
+    event.preventDefault();
+    this.setState({ tentativePref: data.value });
+  }
+
   handleApply(event) {
     event.preventDefault();
-    this.setState({ loading: 'selected' });
     this.setState({ selectedType: this.state.tentativeType });
+    this.setState({ selectedAge: this.state.tentativeAge });
+    this.setState({ selectedArea: this.state.tentativeArea });
+    this.setState({ selectedPref: this.state.tentativePref });
     this.setState({ modalOpen: false });
   }
 
@@ -65,6 +93,30 @@ class ViewBios extends React.Component {
     this.setState({ modalOpen: false });
   }
 
+  iteratePref() {
+    const preferences = this.state.selectedPref;
+    let filtered = this.props.users;
+    const arr = [];
+    for (let i = 0; i < preferences.length; i++) {
+      if (i === 0) {
+        filtered = this.props.users.filter(m => preferences.length === 0 ||
+            m.preferences.indexOf(preferences[i]) !== -1);
+        arr.push(filtered);
+      } else {
+        filtered = arr[arr.length - 1].filter(m => preferences.length === 0 ||
+            m.preferences.indexOf(preferences[i]) !== -1);
+        arr.push(filtered);
+      }
+    }
+
+    if (arr.length > 0) {
+      filtered = arr[arr.length - 1];
+    } else {
+      filtered = this.props.users;
+    }
+    return filtered;
+  }
+
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (
@@ -73,7 +125,13 @@ class ViewBios extends React.Component {
 
   filterUsersbyType() {
     const type = this.state.selectedType;
-    return this.props.users.filter(m => type.length === 0 || (type.indexOf(m.type) !== -1));
+    const age = this.state.selectedAge;
+    const area = this.state.selectedArea;
+    let postPrefFilter = this.state.selectedPref;
+    postPrefFilter = this.iteratePref();
+    return postPrefFilter.filter(m => type.length === 0 || (type.indexOf(m.type) !== -1))
+        .filter(m => age.length === 0 || (age.indexOf(m.age) !== -1))
+        .filter(m => area.length === 0 || (area.indexOf(m.area) !== -1));
   }
 
   /** Render the page once subscriptions have been received. */
@@ -96,7 +154,7 @@ class ViewBios extends React.Component {
                         options={user_type}
                         placeholder='Select User Type'
                         value={this.state.tentativeType}
-                        onChange={this.handleSubmit}
+                        onChange={this.handleTypeSubmit}
                     />
                   </p>
                 </Grid.Column>
@@ -106,8 +164,10 @@ class ViewBios extends React.Component {
                     <Dropdown
                         multiple selection
                         button
-                        options={age}
+                        options={user_age}
                         placeholder='Select Age'
+                        value={this.state.tentativeAge}
+                        onChange={this.handleAgeSubmit}
                     />
                   </p>
                 </Grid.Column>
@@ -117,8 +177,10 @@ class ViewBios extends React.Component {
                     <Dropdown
                         multiple selection
                         button
-                        options={area}
+                        options={user_area}
                         placeholder='Select Area'
+                        value={this.state.tentativeArea}
+                        onChange={this.handleAreaSubmit}
                     />
                   </p>
                 </Grid.Column>
@@ -128,8 +190,10 @@ class ViewBios extends React.Component {
                     <Dropdown
                         multiple selection
                         button
-                        options={pref}
+                        options={user_pref}
                         placeholder='Select Preferences'
+                        value={this.state.tentativePref}
+                        onChange={this.handlePrefSubmit}
                     />
                   </p>
                 </Grid.Column>
@@ -142,7 +206,6 @@ class ViewBios extends React.Component {
             </Modal.Actions>
           </Modal>
           <Card.Group>
-            { /** {(this.state.loading === 'selected') ? <Header>{this.state.selectedType}</Header> : null} */ }
             {this.filterUsersbyType().map((user, index) => <User key ={index} user={user}/>)}
           </Card.Group>
         </Container>
