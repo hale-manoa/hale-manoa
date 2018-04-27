@@ -8,13 +8,13 @@ class Group extends React.Component {
   render() {
     return (
         <Table.Row color={this.props.color}>
-          <Table.Cell>
-            <Header
-                as={NavLink} activeClassName="" exact to={`/message/${this.props.group._id}`}
-                color={this.props.color}
-            >
-            {this.props.group.name}
-            </Header>
+            <Table.Cell>
+              <Header
+                  as={NavLink} activeClassName="" exact to={`/message/${this.props.group._id}`}
+                  color={this.props.color}
+              >
+                {this.props.group.name}
+              </Header>
             </Table.Cell>
         </Table.Row>
     );
