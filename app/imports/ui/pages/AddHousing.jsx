@@ -11,89 +11,17 @@ import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
 import { compose, withProps, lifecycle } from 'recompose';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 
-let adrs = 'test';
-let loc = {lat: 0 , lng:0};
-let lat = 0;
-let lng = 0;
-
-/** Renders the Page for adding a document. */
-class AddHousing extends React.Component {
-
-  /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
-  constructor(props) {
-    super(props);
-    this.submit = this.submit.bind(this);
-    this.insertCallback = this.insertCallback.bind(this);
-    this.formRef = null;
-  }
-
-  /** Notify the user of the results of the submit. If successful, clear the form. */
-  insertCallback(error) {
-    if (error) {
-      Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
-    } else {
-      Bert.alert({ type: 'success', message: 'Add succeeded' });
-      this.formRef.reset();
-    }
-  }
-
-  /** On submit, insert the data. */
-  submit(data) {
-    const { streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description, longitude, latitude } = data;
-    const owner = Meteor.user().username;
-    Housings.insert({ unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description, owner, streetaddress, longitude, latitude }, this.insertCallback);
-  }
-
-  /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
-  render() {
-    return (
-        <Grid container centered>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">Add Housing</Header>
-            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={HousingsSchema} onSubmit={this.submit}>
-              <Segment>
-                <p style={{
-                  display: 'block',
-                  margin: '0em 0em 0.28571429rem 0em',
-                  color: 'rgba(0, 0, 0, 0.87)',
-                  fontSize: '0.92857143em',
-                  fontWeight: 'bold',
-                  textTransform: 'none',
-                }} >StreetAddress</p>
-                <SearchBox/>
-                <TextField name='unitnumber'/>
-                <TextField name='city'/>
-                <TextField name='state'/>
-                <TextField name='image'/>
-                <NumField name='zipcode' decimal={false}/>
-                <SelectField name='propertytype'/>
-                <NumField name='rentprice' decimal={false}/>
-                <NumField name='beds' decimal={false}/>
-                <NumField name='baths' decimal={false}/>
-                <NumField name='squarefeet' decimal={false}/>
-                <TextField name='description'/>
-                <SubmitField value='Submit'/>
-                <ErrorsField/>
-                <HiddenField name='owner' value ='fakeyser@foo.com'/>
-                <HiddenField name='streetaddress' value='adrs'/>
-                <HiddenField name='longitude' decimal={lng}/>
-                <HiddenField name='latitude' decimal={lat}/>
-              </Segment>
-            </AutoForm>
-          </Grid.Column>
-        </Grid>
-    );
-  }
-}
+let adrs = 'please';
+const loc = { lat: 0, lng: 0 };
 
 const SearchBox = compose(
     withProps({
       googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places',
-      loadingElement: <div style={{ height: '100%' }} />,
-      containerElement: <div style={{ height: '400px' }} />,
+      loadingElement: <div style={{ height: '100%' }}/>,
+      containerElement: <div style={{ height: '400px' }}/>,
     }),
     lifecycle({
       componentWillMount() {
@@ -139,13 +67,108 @@ const SearchBox = compose(
             <ol key={place_id}>
               {adrs = formatted_address}
               {' at '}
-              ({lat = location.lat()}, {lng = location.lng()})
-
+              ({loc.lat = location.lat()}, {loc.lng = location.lng()})
+              {console.log('Inside: ' + adrs)}
+              {console.log(loc.lat)}
+              {console.log(loc.lng)}
             </ol>)}
-        {console.log(adrs)}
-        {console.log(lat)}
-        {console.log(lng)}
+        {console.log('Global: ' + adrs)}
       </ol>
     </div>);
+
+
+/** Renders the Page for adding a document. */
+class AddHousing extends React.Component {
+  /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
+  constructor(props) {
+    super(props);
+    this.submit = this.submit.bind(this);
+    this.insertCallback = this.insertCallback.bind(this);
+    this.formRef = null;
+    this.state = {
+      address: 'State Test',
+      lat: 0,
+      lng: 0,
+    };
+  }
+
+  /** Notify the user of the results of the submit. If successful, clear the form. */
+  insertCallback(error) {
+    if (error) {
+      Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
+    } else {
+      Bert.alert({ type: 'success', message: 'Add succeeded' });
+      this.formRef.reset();
+    }
+  }
+
+  /** On submit, insert the data. */
+  submit(data) {
+    const { streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description, longitude, latitude } = data;
+    const owner = Meteor.user().username;
+    Housings.insert({
+      unitnumber,
+      city,
+      state,
+      image,
+      zipcode,
+      propertytype,
+      rentprice,
+      beds,
+      baths,
+      squarefeet,
+      description,
+      owner,
+      streetaddress,
+      longitude,
+      latitude,
+    }, this.insertCallback);
+  }
+
+  /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
+  render() {
+    return (
+        <Grid container centered>
+          <Grid.Column>
+            <Header as="h2" textAlign="center">Add Housing</Header>
+            <AutoForm ref={(ref) => {
+              this.formRef = ref;
+            }} schema={HousingsSchema} onSubmit={this.submit}>
+              <Segment>
+                <p style={{
+                  display: 'block',
+                  margin: '0em 0em 0.28571429rem 0em',
+                  color: 'rgba(0, 0, 0, 0.87)',
+                  fontSize: '0.92857143em',
+                  fontWeight: 'bold',
+                  textTransform: 'none',
+                }}>StreetAddress</p>
+                <SearchBox/>
+                <TextField name='unitnumber'/>
+                <TextField name='city'/>
+                <TextField name='state'/>
+                <TextField name='image'/>
+                <NumField name='zipcode' decimal={false}/>
+                <SelectField name='propertytype'/>
+                <NumField name='rentprice' decimal={false}/>
+                <NumField name='beds' decimal={false}/>
+                <NumField name='baths' decimal={false}/>
+                <NumField name='squarefeet' decimal={false}/>
+                <TextField name='description'/>
+                {console.log(this.state.address)}
+                {this.state.address !== adrs ? ( console.log('State does not equal global')) : (console.log('State equals global')) }
+                <SubmitField value='Submit'/>
+                <ErrorsField/>
+                <HiddenField name='owner' value='fakeyser@foo.com'/>
+                <HiddenField name='streetaddress' value={this.state.address}/>
+                <HiddenField name='longitude' decimal={true} value={loc.lng}/>
+                <HiddenField name='latitude' decimal={true} value={loc.lat}/>
+              </Segment>
+            </AutoForm>
+          </Grid.Column>
+        </Grid>
+    );
+  }
+}
 
 export default AddHousing;
