@@ -43,7 +43,6 @@ class ViewBios extends React.Component {
     this.updateModalStateOpen = this.updateModalStateOpen.bind(this);
     this.updateModalStateClose = this.updateModalStateClose.bind(this);
     this.state = {
-      loading: '',
       tentativeType: [],
       tentativeAge: [],
       tentativeArea: [],
@@ -77,7 +76,6 @@ class ViewBios extends React.Component {
 
   handleApply(event) {
     event.preventDefault();
-    this.setState({ loading: 'selected' });
     this.setState({ selectedType: this.state.tentativeType });
     this.setState({ selectedAge: this.state.tentativeAge });
     this.setState({ selectedArea: this.state.tentativeArea });
@@ -113,7 +111,6 @@ class ViewBios extends React.Component {
 
     if (arr.length > 0) {
       filtered = arr[arr.length - 1];
-      console.log(arr[arr.length - 1]);
     } else {
       filtered = this.props.users;
     }
@@ -130,17 +127,11 @@ class ViewBios extends React.Component {
     const type = this.state.selectedType;
     const age = this.state.selectedAge;
     const area = this.state.selectedArea;
-    /** console.log(preferences);
-    console.log(this.props.users.preferences);
-    console.log(preferences.indexOf(this.props.users.preferences));
-    console.log(this.props.users[0].preferences);
-    console.log(this.props.users[0].preferences.includes(preferences[0])); */
-    /** this.iteratePref(); */
-    return this.iteratePref();
-    /** return this.props.users.filter(m => type.length === 0 || (type.indexOf(m.type) !== -1))
+    let postPrefFilter = this.state.selectedPref;
+    postPrefFilter = this.iteratePref();
+    return postPrefFilter.filter(m => type.length === 0 || (type.indexOf(m.type) !== -1))
         .filter(m => age.length === 0 || (age.indexOf(m.age) !== -1))
-        .filter(m => area.length === 0 || (area.indexOf(m.area) !== -1)); */
-        /** .filter(m => preferences.length === 0 || m.preferences.indexOf(preferences[0]) !== -1); */
+        .filter(m => area.length === 0 || (area.indexOf(m.area) !== -1));
   }
 
   /** Render the page once subscriptions have been received. */
@@ -215,7 +206,6 @@ class ViewBios extends React.Component {
             </Modal.Actions>
           </Modal>
           <Card.Group>
-            { /** {(this.state.loading === 'selected') ? <Header>{this.state.selectedType}</Header> : null} */ }
             {this.filterUsersbyType().map((user, index) => <User key ={index} user={user}/>)}
           </Card.Group>
         </Container>
