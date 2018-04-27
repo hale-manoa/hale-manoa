@@ -41,9 +41,10 @@ class AddMessage extends React.Component {
   render() {
 
     const name = Users.findOne({ owner: Meteor.user().username}).firstName + ' ' + Users.findOne({ owner: Meteor.user().username}).lastName;
+    const image = Users.findOne({ owner: Meteor.user().username}).image;
 
     return (
-        <AutoForm ref={(ref) => { this.formRef = ref; }} schema={MessageSchema} onSubmit={this.submit}>
+        <AutoForm label="" ref={(ref) => { this.formRef = ref; }} schema={MessageSchema} onSubmit={this.submit}>
           <Segment>
             <TextField name='message'/>
             <SubmitField value='Submit'/>
@@ -52,6 +53,7 @@ class AddMessage extends React.Component {
             <HiddenField name='members' value=''/>
             <HiddenField name='createdAt' value={new Date()}/>
             <HiddenField name='username' value={name}/>
+            <HiddenField name='image' value={image}/>
           </Segment>
         </AutoForm>
     );
