@@ -8,7 +8,7 @@ class DirectMessage extends React.Component {
     const feedstyle = { margin: '20px' }
     return (
           <Comment style={feedstyle}>
-            {/*<Comment.Avatar src='/assets/images/avatar/small/matt.jpg' />*/}
+            <Comment.Avatar src={this.props.message.image} />
             <Comment.Content>
               <Comment.Author>{this.props.message.username}</Comment.Author>
               <Comment.Metadata>

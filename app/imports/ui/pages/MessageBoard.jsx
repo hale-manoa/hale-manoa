@@ -23,7 +23,6 @@ class MessageBoard extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">MessageBoard</Header>
           <Grid columns='equal'>
             <Grid.Row stretched>
               <Grid.Column width={4}>
