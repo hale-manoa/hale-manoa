@@ -1,7 +1,7 @@
 .footer-background {
   background-color: #000;
   color: #999;
-  margin-top:20px;
+  margin-top:10px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -65,3 +65,38 @@
 .font-green{
   color: #1aa62a;
 }
+
+.font-field {
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-family: "Fira Sans", sans-serif;
+}
+
+
+.grid-align {
+  margin-right: 70px;
+}
+
+.grid-align-2 {
+  margin-left: 65px;
+}
+
+.grid-background {
+  background-color: #fff6f0;
+  margin-top: 14px;
+}
+
+.grid-background-side {
+  background-image: url("/images/house-pattern.jpg");
+  margin-top: 14px;
+}
+
+
+.grid-bg-image {
+  background-image: url("/images/manoa-area.png");
+}
+
+
+

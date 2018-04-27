@@ -44,16 +44,21 @@ export default class Signin extends React.Component {
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
     }
+
+    const headerStyle = { marginTop: '20px' };
     // Otherwise return the Login form.
     return (
         <Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
             <Grid.Column>
-              <Header as="h2" textAlign="center">
-                Login to your account
+              <Header as="h1" textAlign="center" style={headerStyle}>
+                Welcome to Hale Manoa
               </Header>
               <Form onSubmit={this.handleSubmit}>
                 <Segment stacked>
+                  <Header as="h2" textAlign="center">
+                    Login to your account
+                  </Header>
                   <Form.Input
                       label="Email"
                       icon="user"
@@ -76,7 +81,7 @@ export default class Signin extends React.Component {
                 </Segment>
               </Form>
               <Message>
-                <Link to="/signup">Click here to Register</Link>
+                Don't have an account? Regiser <Link to="/signup">here</Link>
               </Message>
               {this.state.error === '' ? (
                   ''
