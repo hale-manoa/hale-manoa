@@ -104,8 +104,7 @@ class ViewBios extends React.Component {
         filtered = this.props.users.filter(m => preferences.length === 0 ||
             m.preferences.indexOf(preferences[i]) !== -1);
         arr.push(filtered);
-      }
-      else {
+      } else {
         filtered = arr[arr.length - 1].filter(m => preferences.length === 0 ||
             m.preferences.indexOf(preferences[i]) !== -1);
         arr.push(filtered);
@@ -115,34 +114,10 @@ class ViewBios extends React.Component {
     if (arr.length > 0) {
       filtered = arr[arr.length - 1];
       console.log(arr[arr.length - 1]);
-    }
-    else {
+    } else {
       filtered = this.props.users;
     }
-    /** return this.props.users; */
     return filtered;
-
-    /** switch (preferences.length) {
-      case 0:
-        filtered = this.props.users;
-        break;
-      case 1:
-        filtered = this.props.users.filter(m => preferences.length === 0 ||
-            m.preferences.includes(preferences[0]) !== false);
-        break;
-      case 2:
-        filtered = this.props.users.filter(m => preferences.length === 0 ||
-            m.preferences.includes(preferences[0] && preferences[1]) !== false);
-        break;
-      case 3:
-        filtered = this.props.users.filter(m => preferences.length === 0 ||
-            m.preferences.indexOf(preferences[0] && preferences[1] && preferences[2]) !== -1);
-        break;
-      default:
-        filtered = this.props.users;
-        break;
-    }
-    return filtered; */
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -155,7 +130,6 @@ class ViewBios extends React.Component {
     const type = this.state.selectedType;
     const age = this.state.selectedAge;
     const area = this.state.selectedArea;
-    const preferences = this.state.selectedPref;
     /** console.log(preferences);
     console.log(this.props.users.preferences);
     console.log(preferences.indexOf(this.props.users.preferences));
