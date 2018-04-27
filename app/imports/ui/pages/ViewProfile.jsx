@@ -10,12 +10,10 @@ import PropTypes from 'prop-types';
 import { Groups } from '/imports/api/group/group';
 import { Bert } from 'meteor/themeteorchef:bert';
 
-
-
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewProfile extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
-  constructor(){
+  constructor() {
     super();
     this.connectOnClick = this.connectOnClick.bind(this);
   }
@@ -35,8 +33,8 @@ class ViewProfile extends React.Component {
   }
 
   connectOnClick(user) {
-    const member_1 =  Users.findOne({ owner: Meteor.user().username}).firstName;
-    const member_2 =  Users.findOne({ owner: user}).firstName;
+    const member_1 = Users.findOne({ owner: Meteor.user().username}).firstName;
+    const member_2 = Users.findOne({ owner: user }).firstName;
     const members = [user, Meteor.user().username];
     const housings = [];
     const name = member_1 + ", "+ member_2;
@@ -45,6 +43,7 @@ class ViewProfile extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    const isLister = this.props.users.type === 'Lister';
     return (
         <Container>
           <Header as="h2" textAlign="center">
@@ -76,10 +75,9 @@ class ViewProfile extends React.Component {
               About Me
           </Header>
           <p> {this.props.users.description} </p>
-          <Header as="h2" textAlign="left">
-            Listings
-          </Header>
-          <p> Listing Placeholder </p>
+
+          {(isLister) ? <Header>I am a lister</Header> : null}
+
           <Header as="h2" textAlign="left">
             Ratings and Reviews
           </Header>
