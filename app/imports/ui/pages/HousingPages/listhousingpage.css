@@ -3,3 +3,23 @@
   display: -ms-flexbox !important;
   position: fixed;
 }
+
+.ui.center.aligned.header {
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.ui.button.pageInterfaceButton {
+  margin-bottom: 15px;
+  margin-left:60px;
+}
+
+.ui.cards {
+  justify-content: space-evenly;
+}
+
+.ui.pageContainer {
+  background-color:#fff6f0;
+  border-radius: 25px;
+  margin-bottom: 35px;
+}
