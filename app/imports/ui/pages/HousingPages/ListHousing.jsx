@@ -5,6 +5,7 @@ import { Housings } from '/imports/api/housing/housing';
 import HousingItem from '/imports/ui/components/HousingItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 const property_type = [
   { key: 'Condos', text: 'Condos', value: 'CONDO' },
@@ -124,6 +125,7 @@ class ListHousing extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center">Housing</Header>
+          <Button as={NavLink} exact to="/add">Got a Listing to Add?</Button>
           <Modal size='large' open={ this.state.modalOpen } onClose={this.updateModalStateClose}
                  trigger={<Button onClick={this.updateModalStateOpen}>Filter Listings By</Button>
                  } closeIcon>
