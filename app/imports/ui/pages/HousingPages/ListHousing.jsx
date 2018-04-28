@@ -113,10 +113,10 @@ class ListHousing extends React.Component {
     const bath = this.state.selectedBath;
     const area = this.state.selectedArea;
     return this.props.housings.filter(m => type.length === 0 || (type.indexOf(m.propertytype) !== -1))
-        .filter(m => city.length === 0 || (city.indexOf(m.city) !== -1));
-        /** .filter(m => bed.length === 0 || (bed.indexOf(m.bed) !== -1));
-        .filter(m => bath.length === 0 || (bath.indexOf(m.bath) !== -1))
-        .filter(m => area.length === 0 || (area.indexOf(m.area) !== -1)); */
+        .filter(m => city.length === 0 || (city.indexOf(m.city) !== -1))
+        .filter(m => bed.length === 0 || (bed.indexOf(m.beds.toString()) !== -1))
+        .filter(m => bath.length === 0 || (bath.indexOf(m.baths.toString()) !== -1))
+        .filter(m => area.length === 0 || (area.indexOf(m.squarefeet.toString()) !== -1));
   }
 
   /** Render the page once subscriptions have been received. */
@@ -132,7 +132,7 @@ class ListHousing extends React.Component {
               <Grid columns={5}>
                 <Grid.Column>
                   <p>
-                    User Type
+                    Property Type
                     <Dropdown
                         multiple selection
                         button
@@ -145,7 +145,7 @@ class ListHousing extends React.Component {
                 </Grid.Column>
                 <Grid.Column>
                   <p>
-                    Age
+                    City
                     <Dropdown
                         multiple selection
                         button
@@ -158,7 +158,7 @@ class ListHousing extends React.Component {
                 </Grid.Column>
                 <Grid.Column>
                   <p>
-                    Area
+                    Bedrooms
                     <Dropdown
                         multiple selection
                         button
@@ -171,7 +171,7 @@ class ListHousing extends React.Component {
                 </Grid.Column>
                 <Grid.Column>
                   <p>
-                    Preferences
+                    Bathrooms
                     <Dropdown
                         multiple selection
                         button
@@ -184,7 +184,7 @@ class ListHousing extends React.Component {
                 </Grid.Column>
                 <Grid.Column>
                   <p>
-                    User Type
+                    Area
                     <Dropdown
                         multiple selection
                         button
