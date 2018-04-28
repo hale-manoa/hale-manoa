@@ -6,6 +6,7 @@ import HousingItem from '/imports/ui/components/HousingItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import '/imports/ui/pages/HousingPages/listhousingpage.css';
 
 const property_type = [
   { key: 'Condos', text: 'Condos', value: 'CONDO' },
@@ -123,9 +124,9 @@ class ListHousing extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     return (
-        <Container>
+        <Container className='pageContainer'>
           <Header as="h2" textAlign="center">Housing</Header>
-          <Button as={NavLink} exact to="/add">Got a Listing to Add?</Button>
+          <Button className='pageInterfaceButton' as={NavLink} exact to="/add">Got a Listing to Add?</Button>
           <Modal size='large' open={ this.state.modalOpen } onClose={this.updateModalStateClose}
                  trigger={<Button onClick={this.updateModalStateOpen}>Filter Listings By</Button>
                  } closeIcon>
@@ -206,7 +207,6 @@ class ListHousing extends React.Component {
             </Modal.Actions>
           </Modal>
           <Card.Group centered>
-            { /** {this.props.housings.map((house, index) => <HousingItem key={index} house={house}/>)} */ }
             {this.filterListingsbyType().map((house, index) => <HousingItem key ={index} house={house}/>)}
           </Card.Group>
         </Container>
