@@ -98,11 +98,30 @@
   background-image: url("/images/manoa-area.png");
 }
 
+.button-spacing {
+  margin-left: 250px;
+}
+
+.button-spacing-2 {
+  margin-left: 370px;
+}
+
 
 .editprofile-container {
   background-color:#fff6f0;
   margin-top: 125px;
   border-radius: 25px;
   margin-bottom: 125px;
+}
+
+.signout-container {
+  margin-top: 240px;
+  margin-bottom: 350px;
+  border-radius: 25px;
+  background-color:#fff6f0;
+}
+
+.signin-spacing {
+  margin-right: 135px;
 }
 
