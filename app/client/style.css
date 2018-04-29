@@ -102,6 +102,10 @@
   margin-left: 250px;
 }
 
+.button-spacing-2 {
+  margin-left: 370px;
+}
+
 
 .editprofile-container {
   background-color:#fff6f0;
@@ -115,5 +119,9 @@
   margin-bottom: 350px;
   border-radius: 25px;
   background-color:#fff6f0;
+}
+
+.signin-spacing {
+  margin-right: 135px;
 }
 
