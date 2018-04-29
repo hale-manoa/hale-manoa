@@ -137,7 +137,7 @@ class ViewBios extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     return (
-        <Container>
+        <Container className="pageContainer">
           <Header as="h2" textAlign="center"> Find Your Home Away From Home</Header>
           <Modal open={ this.state.modalOpen } onClose={this.updateModalStateClose}
             trigger={<Button onClick={this.updateModalStateOpen}>Filter Users By</Button>
