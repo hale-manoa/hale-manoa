@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
+import { Grid, Loader, Header, Container } from 'semantic-ui-react';
 import { Housings, HousingsSchema } from '/imports/api/housing/housing';
 import { Bert } from 'meteor/themeteorchef:bert';
 import AutoForm from 'uniforms-semantic/AutoForm';
@@ -12,6 +12,7 @@ import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import '/imports/ui/pages/HousingPages/listhousingpage.css';
 
 /** Renders the Page for editing a single document. */
 class EditHousing extends React.Component {
@@ -19,7 +20,22 @@ class EditHousing extends React.Component {
   /** On successful submit, insert the data. */
   submit(data) {
     const { streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description, _id } = data;
-    Housings.update(_id, { $set: { streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description } }, (error) => (error ?
+    Housings.update(_id, {
+      $set: {
+        streetaddress,
+        unitnumber,
+        city,
+        state,
+        image,
+        zipcode,
+        propertytype,
+        rentprice,
+        beds,
+        baths,
+        squarefeet,
+        description
+      }
+    }, (error) => (error ?
         Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
         Bert.alert({ type: 'success', message: 'Update succeeded' })));
   }
@@ -32,28 +48,70 @@ class EditHousing extends React.Component {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   renderPage() {
     return (
-        <Grid container centered>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">Edit Housing</Header>
-            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={HousingsSchema} onSubmit={this.submit} model={this.props.doc}>
-              <Segment>
-                <TextField name='streetaddress'/>
-                <TextField name='unitnumber'/>
-                <TextField name='city'/>
-                <TextField name='state'/>
-                <TextField name='image'/>
-                <NumField name='zipcode' decimal={false}/>
-                <SelectField name='propertytype'/>
-                <NumField name='rentprice' decimal={false}/>
-                <NumField name='beds' decimal={false}/>
-                <NumField name='baths' decimal={false}/>
-                <NumField name='squarefeet' decimal={false}/>
-                <TextField name='description'/>
-                <SubmitField value='Submit'/>
-                <ErrorsField/>
-                <HiddenField name='owner' value ='fakeyser@foo.com'/>
-              </Segment>
-            </AutoForm>
+        <Grid centered>
+          <Grid.Column width={6}>
+            <Container className="pageContainer">
+              <Header as="h2" textAlign="center">Edit Housing</Header>
+              <AutoForm ref={(ref) => {
+                this.formRef = ref;
+              }} schema={HousingsSchema} onSubmit={this.submit} model={this.props.doc}>
+                <Grid centered>
+                  <Grid.Row>
+                    <Grid.Column width={8}>
+                      <TextField name='streetaddress'/>
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                      <TextField name='unitnumber'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={4}>
+                      <TextField name='city'/>
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                      <TextField name='state'/>
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                      <NumField name='zipcode' decimal={false}/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={5}>
+                      <SelectField name='propertytype'/>
+                    </Grid.Column>
+                    <Grid.Column width={9}>
+                      <TextField name='image'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={4}>
+                      <NumField name='rentprice' decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField name='beds' decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField name='baths' decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField name='squarefeet' decimal={false}/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={14}>
+                      <TextField name='description'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={6} className="button-spacing-2">
+                      <SubmitField value='Submit'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <ErrorsField/>
+                  <HiddenField name='owner' value='fakeyser@foo.com'/>
+                </Grid>
+              </AutoForm>
+            </Container>
           </Grid.Column>
         </Grid>
     );

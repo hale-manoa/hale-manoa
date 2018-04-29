@@ -1,6 +1,6 @@
 import React from 'react';
 import { Housings, HousingsSchema } from '/imports/api/housing/housing';
-import { Grid, Segment, Header } from 'semantic-ui-react';
+import { Grid, Header, Container } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import NumField from 'uniforms-semantic/NumField';
@@ -13,7 +13,7 @@ import { Meteor } from 'meteor/meteor';
 import { compose, withProps, lifecycle } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
-
+import '/imports/ui/pages/HousingPages/listhousingpage.css';
 
 /** Renders the Page for adding a document. */
 class AddHousing extends React.Component {
@@ -40,56 +40,115 @@ class AddHousing extends React.Component {
   submit(data) {
     const { streetaddress, unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description } = data;
     const owner = Meteor.user().username;
-    Housings.insert({ unitnumber, city, state, image, zipcode, propertytype, rentprice, beds, baths, squarefeet, description, owner, streetaddress, longitude, latitude }, this.insertCallback);
+    Housings.insert({
+      unitnumber,
+      city,
+      state,
+      image,
+      zipcode,
+      propertytype,
+      rentprice,
+      beds,
+      baths,
+      squarefeet,
+      description,
+      owner,
+      streetaddress,
+      longitude,
+      latitude
+    }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     return (
-        <Grid container centered>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">Add Housing</Header>
-            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={HousingsSchema} onSubmit={this.submit}>
-              <Segment>
-                <p style={{
-                  display: 'block',
-                  margin: '0em 0em 0.28571429rem 0em',
-                  color: 'rgba(0, 0, 0, 0.87)',
-                  fontSize: '0.92857143em',
-                  fontWeight: 'bold',
-                  textTransform: 'none',
-                }} >StreetAddress</p>
-                <SearchBox />
-                <TextField name='unitnumber'/>
-                <TextField name='city'/>
-                <TextField name='state'/>
-                <TextField name='image'/>
-                <NumField name='zipcode' decimal={false}/>
-                <SelectField name='propertytype'/>
-                <NumField name='rentprice' decimal={false}/>
-                <NumField name='beds' decimal={false}/>
-                <NumField name='baths' decimal={false}/>
-                <NumField name='squarefeet' decimal={false}/>
-                <TextField name='description'/>
-                <SubmitField value='Submit'/>
-                <ErrorsField/>
-                <HiddenField name='owner' value ='fakeyser@foo.com'/>
-                <HiddenField name='streetaddress'/>
-                <HiddenField name='longitude'/>
-                <HiddenField name='latitude'/>
-              </Segment>
-            </AutoForm>
+        <Grid centered>
+          <Grid.Column width={6}>
+            <Container className="pageContainer">
+              <Header as="h2" textAlign="center">Add Housing</Header>
+              <AutoForm ref={(ref) => {
+                this.formRef = ref;
+              }} schema={HousingsSchema} onSubmit={this.submit}>
+                <Grid centered>
+                  <Grid.Row>
+                    <Grid.Column width={8}>
+                      <p style={{
+                        display: 'block',
+                        margin: '0em 0em 0.28571429rem 0em',
+                        color: 'rgba(0, 0, 0, 0.87)',
+                        fontSize: '0.92857143em',
+                        fontWeight: 'bold',
+                        textTransform: 'none',
+                      }}>StreetAddress</p>
+                      <SearchBox/>
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                      <TextField name='unitnumber'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={4}>
+                      <TextField name='city'/>
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                      <TextField name='state'/>
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                      <NumField name='zipcode' decimal={false}/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={5}>
+                      <SelectField name='propertytype'/>
+                    </Grid.Column>
+                    <Grid.Column width={9}>
+                      <TextField name='image'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={4}>
+                      <NumField name='rentprice' decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField name='beds' decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField name='baths' decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField name='squarefeet' decimal={false}/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={14}>
+                      <TextField name='description'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={6} className="button-spacing-2">
+                      <SubmitField value='Submit'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <ErrorsField/>
+                  <HiddenField name='owner' value='fakeyser@foo.com'/>
+                  <HiddenField name='streetaddress'/>
+                  <HiddenField name='longitude'/>
+                  <HiddenField name='latitude'/>
+                </Grid>
+              </AutoForm>
+            </Container>
           </Grid.Column>
         </Grid>
-    );
+    )
+        ;
   }
 }
 
 const SearchBox = compose(
     withProps({
       googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places',
-      loadingElement: <div style={{ height: '100%' }} />,
-      containerElement: <div style={{ height: '400px' }} />,
+      loadingElement: <div style={{ height: '100%' }}/>,
+      containerElement: <div style={{ height: '400px' }}/>,
     }),
     lifecycle({
       componentWillMount() {
