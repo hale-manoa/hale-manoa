@@ -29,7 +29,6 @@ const user_pref = [
   { key: 'Lights out at 10pm', text: 'Lights out at 10pm', value: 'Sleep at 10pm' },
 ];
 
-
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewBios extends React.Component {
   constructor() {
@@ -54,6 +53,7 @@ class ViewBios extends React.Component {
       modalOpen: false,
     };
   }
+
   handleTypeSubmit(event, data) {
     event.preventDefault();
     this.setState({ tentativeType: data.value });
@@ -139,74 +139,80 @@ class ViewBios extends React.Component {
     return (
         <Container className="pageContainer">
           <Header as="h2" textAlign="center"> Find Your Home Away From Home</Header>
-          <Modal open={ this.state.modalOpen } onClose={this.updateModalStateClose}
-            trigger={<Button onClick={this.updateModalStateOpen}>Filter Users By</Button>
-          } closeIcon>
-            <Header icon='filter' content='Filters' />
-            <Modal.Content>
-              <Grid columns={4}>
-                <Grid.Column>
-                  <p>
-                    User Type
-                    <Dropdown
-                        multiple selection
-                        button
-                        options={user_type}
-                        placeholder='Select User Type'
-                        value={this.state.tentativeType}
-                        onChange={this.handleTypeSubmit}
-                    />
-                  </p>
-                </Grid.Column>
-                <Grid.Column>
-                  <p>
-                    Age
-                    <Dropdown
-                        multiple selection
-                        button
-                        options={user_age}
-                        placeholder='Select Age'
-                        value={this.state.tentativeAge}
-                        onChange={this.handleAgeSubmit}
-                    />
-                  </p>
-                </Grid.Column>
-                <Grid.Column>
-                  <p>
-                    Area
-                    <Dropdown
-                        multiple selection
-                        button
-                        options={user_area}
-                        placeholder='Select Area'
-                        value={this.state.tentativeArea}
-                        onChange={this.handleAreaSubmit}
-                    />
-                  </p>
-                </Grid.Column>
-                <Grid.Column>
-                  <p>
-                    Preferences
-                    <Dropdown
-                        multiple selection
-                        button
-                        options={user_pref}
-                        placeholder='Select Preferences'
-                        value={this.state.tentativePref}
-                        onChange={this.handlePrefSubmit}
-                    />
-                  </p>
-                </Grid.Column>
-              </Grid>
-            </Modal.Content>
-            <Modal.Actions>
-              <Button color='green' onClick={this.handleApply}>
-                <Icon name='checkmark' /> Apply
-              </Button>
-            </Modal.Actions>
-          </Modal>
+          <Grid centered>
+            <Grid.Row>
+              <Grid.Column width={2}>
+                <Modal open={this.state.modalOpen} onClose={this.updateModalStateClose}
+                       trigger={<Button onClick={this.updateModalStateOpen}>Filter Users By</Button>
+                       } closeIcon>
+                  <Header icon='filter' content='Filters'/>
+                  <Modal.Content>
+                    <Grid columns={4}>
+                      <Grid.Column>
+                        <p>
+                          User Type
+                          <Dropdown
+                              multiple selection
+                              button
+                              options={user_type}
+                              placeholder='Select User Type'
+                              value={this.state.tentativeType}
+                              onChange={this.handleTypeSubmit}
+                          />
+                        </p>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <p>
+                          Age
+                          <Dropdown
+                              multiple selection
+                              button
+                              options={user_age}
+                              placeholder='Select Age'
+                              value={this.state.tentativeAge}
+                              onChange={this.handleAgeSubmit}
+                          />
+                        </p>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <p>
+                          Area
+                          <Dropdown
+                              multiple selection
+                              button
+                              options={user_area}
+                              placeholder='Select Area'
+                              value={this.state.tentativeArea}
+                              onChange={this.handleAreaSubmit}
+                          />
+                        </p>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <p>
+                          Preferences
+                          <Dropdown
+                              multiple selection
+                              button
+                              options={user_pref}
+                              placeholder='Select Preferences'
+                              value={this.state.tentativePref}
+                              onChange={this.handlePrefSubmit}
+                          />
+                        </p>
+                      </Grid.Column>
+                    </Grid>
+                  </Modal.Content>
+                  <Modal.Actions>
+                    <Button color='green' onClick={this.handleApply}>
+                      <Icon name='checkmark'/> Apply
+                    </Button>
+                  </Modal.Actions>
+                </Modal>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
           <Card.Group>
-            {this.filterUsersbyType().map((user, index) => <User key ={index} user={user}/>)}
+            {this.filterUsersbyType().map((user, index) => <User key={index} user={user}/>)}
           </Card.Group>
         </Container>
     );

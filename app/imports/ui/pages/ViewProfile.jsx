@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Image, Grid, Loader, Feed, Button } from 'semantic-ui-react';
+import { Container, Header, Image, Grid, Loader, Feed, Button, Segment } from 'semantic-ui-react';
 import { Users } from '/imports/api/user/user';
 import AddFeedback from '/imports/ui/components/User/AddFeedback';
 import Feedback from '/imports/ui/components/User/Feedback';
@@ -58,15 +58,17 @@ class ViewProfile extends React.Component {
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row className="profile-top-margin">
-                  <Grid.Column width={8}>
+                  <Grid.Column width={6}>
                     <Image rounded size="medium" src={this.props.users.image}/>
                   </Grid.Column>
-                  <Grid.Column width={4}>
-                    <p><b><u>Age</u></b><br/> {this.props.users.age}</p>
-                    <p><b><u>Area</u></b><br/> {this.props.users.area}</p>
-                    <p><b><u>Preferences</u></b><br/>
-                      {this.props.users.preferences.map(item => <span key={item}>{item}<br/></span>)}
-                    </p>
+                  <Grid.Column width={4} className="segment-spacing">
+                    <Segment>
+                      <p><b><u>Age</u></b><br/> {this.props.users.age}</p>
+                      <p><b><u>Area</u></b><br/> {this.props.users.area}</p>
+                      <p><b><u>Preferences</u></b><br/>
+                        {this.props.users.preferences.map(item => <span key={item}>{item}<br/></span>)}
+                      </p>
+                    </Segment>
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
@@ -83,18 +85,22 @@ class ViewProfile extends React.Component {
                 </Grid.Row>
                 <Grid.Row>
                   <Grid.Column width={14}>
-                    <Header as="h2" textAlign="left">
-                      About Me
-                    </Header>
-                    <p> {this.props.users.description} </p>
+                    <Segment>
+                      <Header as="h2" textAlign="left">
+                        About Me
+                      </Header>
+                      <p> {this.props.users.description} </p>
+                    </Segment>
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
                   <Grid.Column width={8} className="listing-spacing">
-                    {(isLister) ? <div>
-                      <Header>Listings</Header>
-                      <p> Listing Placeholder </p>
-                    </div> : null}
+                    <Segment>
+                      {(isLister) ? <div>
+                        <Header>Listings</Header>
+                        <p> Listing Placeholder </p>
+                      </div> : null}
+                    </Segment>
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>

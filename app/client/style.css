@@ -136,3 +136,15 @@ margin-right: 430px;
 .profile-top-margin {
   margin-top: 20px;
 }
+
+.segment-spacing {
+  margin-right: 100px;
+}
+
+.profile-picture-spacing {
+  margin-left: 100px;
+}
+
+.segment-color {
+  background-color: #f0f6ff;
+}
