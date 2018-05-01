@@ -184,6 +184,16 @@
       "preferences": ["No smoking", "No drinking"],
       "description": "I am an English actress and model."
     }
-  ]
+  ],
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://arnold:shek@ds143099.mlab.com:43099/haledb"
+
+    }
+  }
 }
+
+
+
+
 
