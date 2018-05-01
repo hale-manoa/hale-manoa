@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Image, Grid, Loader, Feed, Button, Segment } from 'semantic-ui-react';
+import { Container, Header, Image, Grid, Loader, Feed, Button, Segment, Card } from 'semantic-ui-react';
 import { Users } from '/imports/api/user/user';
 import AddFeedback from '/imports/ui/components/User/AddFeedback';
 import Feedback from '/imports/ui/components/User/Feedback';
@@ -10,6 +10,9 @@ import PropTypes from 'prop-types';
 import { Groups } from '/imports/api/group/group';
 import { Bert } from 'meteor/themeteorchef:bert';
 import '/imports/ui/pages/HousingPages/listhousingpage.css';
+import { Housings } from '/imports/api/housing/housing';
+import HousingItem from '/imports/ui/components/HousingItem';
+
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewProfile extends React.Component {
@@ -93,16 +96,16 @@ class ViewProfile extends React.Component {
                     </Segment>
                   </Grid.Column>
                 </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={8} className="listing-spacing">
-                    <Segment>
-                      {(isLister) ? <div>
+                <Grid.Column width={14}>
+                      {(isLister) ? <Segment><div>
                         <Header>Listings</Header>
-                        <p> Listing Placeholder </p>
-                      </div> : null}
-                    </Segment>
-                  </Grid.Column>
-                </Grid.Row>
+                        <Card.Group>
+                          {this.props.housings.filter(m =>
+                            (m.owner === this.props.users.owner)
+                            ).map((house, index) => <HousingItem key ={index} house={house}/>)}
+                        </Card.Group>
+                      </div></Segment> : null}
+                </Grid.Column>
                 <Grid.Row>
                   <Grid.Column width={14}>
                     <Header as="h2" textAlign="left">
@@ -115,8 +118,6 @@ class ViewProfile extends React.Component {
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
-
-
             </Container>
           </Grid.Column>
         </Grid>
@@ -128,6 +129,7 @@ class ViewProfile extends React.Component {
 ViewProfile.propTypes = {
   users: PropTypes.object,
   feedbacks: PropTypes.array.isRequired,
+  housings: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -136,9 +138,12 @@ export default withTracker(({ match }) => {
   const userId = match.params._id;
   const subscription = Meteor.subscribe('Users');
   const subscription2 = Meteor.subscribe('Feedbacks');
+  const subscription3 = Meteor.subscribe('Housing');
+
   return {
     users: Users.findOne(userId),
     feedbacks: Feedbacks.find({ userId: userId }).fetch(),
-    ready: subscription.ready() && subscription2.ready(),
+    housings: Housings.find({}).fetch(),
+    ready: subscription.ready() && subscription2.ready() && subscription3.ready(),
   };
 })(ViewProfile);

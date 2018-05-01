@@ -40,7 +40,7 @@
       "baths": 1,
       "squarefeet": 300,
       "description": "Blah Blah Blah",
-      "owner": "john@foo.com"
+      "owner": "test@foo.com"
     },
     {
       "streetaddress": "2211 Ala Wai Blvd",
@@ -57,7 +57,7 @@
       "baths": 1,
       "squarefeet": 300,
       "description": "Blah Blah Blah",
-      "owner": "john@foo.com"
+      "owner": "bob@foo.com"
     },
     {
       "streetaddress": "94979 Kauolu Pl",
@@ -74,7 +74,7 @@
       "baths": 1,
       "squarefeet": 500,
       "description": "Blah Blah Blah",
-      "owner": "john@foo.com"
+      "owner": "bill@foo.com"
     },
     {
       "streetaddress": "1702 Kewalo St",
@@ -91,7 +91,7 @@
       "baths": 1,
       "squarefeet": 500,
       "description": "Blah Blah Blah",
-      "owner": "john@foo.com"
+      "owner": "admin@foo.com"
     },
     {
       "streetaddress": "1543 Makiki Street",
