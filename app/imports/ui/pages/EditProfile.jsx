@@ -37,6 +37,7 @@ class EditProfile extends React.Component {
     const idVar = this.props.users.filter(m => (m.owner === this.props.currentUser))[0]._id;
     const { firstName, lastName, type, image, age, area, preferences, description } = data;
     const owner = Meteor.user().username;
+    let prefarray = preferences.split(",", 2);
     Users.update(idVar, {
       $set: {
         firstName,
@@ -45,7 +46,7 @@ class EditProfile extends React.Component {
         image,
         age,
         area,
-        preferences,
+        prefarray,
         description,
         owner
       }

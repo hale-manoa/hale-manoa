@@ -130,7 +130,7 @@ class AddHousing extends React.Component {
       owner,
       streetaddress,
       longitude,
-      latitude
+      latitude,
       latitude,
     }, this.insertCallback);
   }
