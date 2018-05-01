@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Image, Grid, Loader, Feed, Button } from 'semantic-ui-react';
+import { Container, Header, Image, Grid, Loader, Feed, Button, Segment } from 'semantic-ui-react';
 import { Users } from '/imports/api/user/user';
 import AddFeedback from '/imports/ui/components/User/AddFeedback';
 import Feedback from '/imports/ui/components/User/Feedback';
@@ -9,6 +9,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Groups } from '/imports/api/group/group';
 import { Bert } from 'meteor/themeteorchef:bert';
+import '/imports/ui/pages/HousingPages/listhousingpage.css';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ViewProfile extends React.Component {
@@ -45,50 +46,80 @@ class ViewProfile extends React.Component {
   renderPage() {
     const isLister = this.props.users.type === 'Lister';
     return (
-        <Container>
-          <Header as="h2" textAlign="center">
-            {this.props.users.firstName} {this.props.users.lastName}
-          </Header>
-          <Grid columns={2}>
-            <Grid.Column>
-              <Grid.Row>
-              <Image rounded size="medium" src={this.props.users.image} />
-              </Grid.Row>
-              <Grid.Row>
-                <Button
-                    positive
-                    onClick={() => { this.connectOnClick(this.props.users.owner) }}
-                >
-                  Connect
-                </Button>
-              </Grid.Row>
-            </Grid.Column>
-            <Grid.Column>
-              <p><b><u>Age</u></b><br/> {this.props.users.age}</p>
-              <p><b><u>Area</u></b><br/> {this.props.users.area}</p>
-              <p><b><u>Preferences</u></b><br/>
-                {this.props.users.preferences.map(item => <span key={item}>{item}<br/></span>)}
-              </p>
-            </Grid.Column>
-          </Grid>
-          <Header as="h2" textAlign="left">
-              About Me
-          </Header>
-          <p> {this.props.users.description} </p>
+        <Grid centered>
+          <Grid.Column width={14}>
+            <Container className="pageContainer">
+              <Grid centered>
+                <Grid.Row>
+                  <Grid.Column width={8}>
+                    <Header as="h2" textAlign="center">
+                      {this.props.users.firstName} {this.props.users.lastName}
+                    </Header>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row className="profile-top-margin">
+                  <Grid.Column width={6}>
+                    <Image rounded size="medium" src={this.props.users.image}/>
+                  </Grid.Column>
+                  <Grid.Column width={4} className="segment-spacing">
+                    <Segment>
+                      <p><b><u>Age</u></b><br/> {this.props.users.age}</p>
+                      <p><b><u>Area</u></b><br/> {this.props.users.area}</p>
+                      <p><b><u>Preferences</u></b><br/>
+                        {this.props.users.preferences.map(item => <span key={item}>{item}<br/></span>)}
+                      </p>
+                    </Segment>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column width={4} className="connect-button-spacing">
+                    <Button
+                        positive
+                        onClick={() => {
+                          this.connectOnClick(this.props.users.owner)
+                        }}
+                    >
+                      Connect
+                    </Button>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column width={14}>
+                    <Segment>
+                      <Header as="h2" textAlign="left">
+                        About Me
+                      </Header>
+                      <p> {this.props.users.description} </p>
+                    </Segment>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column width={8} className="listing-spacing">
+                    <Segment>
+                      {(isLister) ? <div>
+                        <Header>Listings</Header>
+                        <p> Listing Placeholder </p>
+                      </div> : null}
+                    </Segment>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column width={14}>
+                    <Header as="h2" textAlign="left">
+                      Ratings and Reviews
+                    </Header>
+                    <Feed>
+                      {this.props.feedbacks.map((feedback, index) => <Feedback key={index} feedback={feedback}/>)}
+                    </Feed>
+                    <AddFeedback owner={this.props.users.owner} userId={this.props.users._id}/>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
 
-          {(isLister) ? <div>
-            <Header>Listings</Header>
-            <p> Listing Placeholder </p>
-          </div> : null}
 
-          <Header as="h2" textAlign="left">
-            Ratings and Reviews
-          </Header>
-          <Feed>
-            {this.props.feedbacks.map((feedback, index) => <Feedback key={index} feedback={feedback}/>)}
-          </Feed>
-          <AddFeedback owner={this.props.users.owner} userId={this.props.users._id}/>
-        </Container>
+            </Container>
+          </Grid.Column>
+        </Grid>
     );
   }
 }

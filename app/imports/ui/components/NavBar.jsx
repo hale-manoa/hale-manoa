@@ -26,20 +26,12 @@ class NavBar extends React.Component {
             <Image src='/images/halemanoa.png' size='small'/>
           </Menu.Item>
           {this.props.currentUser ? (
-              [<Menu.Item style={menuItemColor} className="large-text">
-
-                <Dropdown style={menuItemColor} text="Housing" pointing="top right">
-                  <Dropdown.Menu>
-                    <Dropdown.Item icon="add" text="Add Housing" as={NavLink} exact to="/add"/>
-                    <Dropdown.Item icon="list" text="List Housing" as={NavLink} exact to="/list"/>
-                  </Dropdown.Menu>
-                </Dropdown>
-
-              </Menu.Item>,
-                <Menu.Item style={menuItemColor} as={NavLink} activeClassName="active" exact to="/connect"
-                           key='connect' className="large-text">Connect</Menu.Item>,
-                <Menu.Item style={menuItemColor} as={NavLink} activeClassName="" exact to="/messages"
-                           className="large-text">Message</Menu.Item>]
+              [<Menu.Item style={menuItemColor} as={NavLink} activeClassName="active" exact to="/list"
+                          key='housing' className="large-text">Housing</Menu.Item>,
+              <Menu.Item style={menuItemColor} as={NavLink} activeClassName="active" exact to="/connect"
+                         key='connect' className="large-text">Connect</Menu.Item>,
+              <Menu.Item style={menuItemColor} as={NavLink} activeClassName="" exact to="/messages"
+                         className="large-text">Message</Menu.Item>]
           ) : ''}
           {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
               <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
@@ -55,7 +47,7 @@ class NavBar extends React.Component {
             ) : (
                 <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
                   <Dropdown.Menu>
-                    <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
+                    <Dropdown.Item icon="arrow circle outline right" text="Sign Out" as={NavLink} exact to="/signout"/>
                     <Dropdown.Item icon="user plus" text="Edit Profile" as={NavLink} exact to="/editprofile"/>
                   </Dropdown.Menu>
                 </Dropdown>

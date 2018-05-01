@@ -48,53 +48,69 @@ export default class Signin extends React.Component {
     const headerStyle = { marginTop: '20px' };
     // Otherwise return the Login form.
     return (
-        <Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
-            <Grid.Column>
-              <Header as="h1" textAlign="center" style={headerStyle}>
-                Welcome to Hale Manoa
-              </Header>
-              <Form onSubmit={this.handleSubmit}>
-                <Segment stacked>
-                  <Header as="h2" textAlign="center">
-                    Login to your account
-                  </Header>
-                  <Form.Input
-                      label="Email"
-                      icon="user"
-                      iconPosition="left"
-                      name="email"
-                      type="email"
-                      placeholder="E-mail address"
-                      onChange={this.handleChange}
-                  />
-                  <Form.Input
-                      label="Password"
-                      icon="lock"
-                      iconPosition="left"
-                      name="password"
-                      placeholder="Password"
-                      type="password"
-                      onChange={this.handleChange}
-                  />
-                  <Form.Button content="Submit"/>
-                </Segment>
-              </Form>
-              <Message>
-                Don't have an account? Regiser <Link to="/signup">here</Link>
-              </Message>
-              {this.state.error === '' ? (
-                  ''
-              ) : (
-                  <Message
-                      error
-                      header="Login was not successful"
-                      content={this.state.error}
-                  />
-              )}
+            <Grid.Column width={6}>
+              <Container className="editprofile-container">
+                <Header as="h1" textAlign="center" style={headerStyle}>
+                  Welcome to Hale Manoa
+                </Header>
+                <Form onSubmit={this.handleSubmit}>
+                    <Header as="h2" textAlign="center">
+                      Login to your account
+                    </Header>
+                  <Grid centered>
+                    <Grid.Row>
+                      <Grid.Column width={8}>
+                        <Form.Input
+                            label="Email"
+                            icon="user"
+                            iconPosition="left"
+                            name="email"
+                            type="email"
+                            placeholder="E-mail address"
+                            onChange={this.handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column width={8}>
+                        <Form.Input
+                            label="Password"
+                            icon="lock"
+                            iconPosition="left"
+                            name="password"
+                            placeholder="Password"
+                            type="password"
+                            onChange={this.handleChange}
+                        />
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column width={6} className="button-spacing">
+                        <Form.Button content="Submit"/>
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column width ={14}>
+                        <Message>
+                          Don't have an account? Regiser <Link to="/signup">here</Link>
+                        </Message>
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
+                </Form>
+                {this.state.error === '' ? (
+                    ''
+                ) : (
+                    <Message
+                        error
+                        header="Login was not successful"
+                        content={this.state.error}
+                    />
+                )}
+              </Container>
             </Grid.Column>
           </Grid>
-        </Container>
     );
   }
 }
