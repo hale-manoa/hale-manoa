@@ -20,7 +20,7 @@ class ListMessages extends React.Component {
     return (
         <Container>
           <Segment>
-          <Header color="blue"as="h2" textAlign="center">Groups</Header>
+          <Header color="blue"as="h2" textAlign="center">Messages</Header>
           <hr/>
           {this.props.groups.length !== 0 ?
               ([<Table celled>
