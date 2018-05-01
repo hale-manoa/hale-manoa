@@ -71,6 +71,7 @@ const SearchBox = compose(
               {console.log('Inside: ' + adrs)}
               {console.log(loc.lat)}
               {console.log(loc.lng)}
+              {props.onChange(adrs)}
             </ol>)}
         {console.log('Global: ' + adrs)}
       </ol>
@@ -84,6 +85,7 @@ class AddHousing extends React.Component {
     super(props);
     this.submit = this.submit.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
+    this.onAddressChange = this.onAddressChange.bind(this);
     this.formRef = null;
     this.state = {
       address: 'State Test',
@@ -100,6 +102,11 @@ class AddHousing extends React.Component {
       Bert.alert({ type: 'success', message: 'Add succeeded' });
       this.formRef.reset();
     }
+  }
+
+  onAddressChange(address) {
+    this.setState( { address: address, lat: loc.lat, lng: loc.lng  } );
+    console.log('Changed State');
   }
 
   /** On submit, insert the data. */
@@ -142,20 +149,20 @@ class AddHousing extends React.Component {
                   fontSize: '0.92857143em',
                   fontWeight: 'bold',
                   textTransform: 'none',
-                }}>StreetAddress</p>
-                <SearchBox/>
-                <TextField name='unitnumber'/>
+                }}>Address</p>
+                <SearchBox onChange={this.onAddressChange}/>
                 <TextField name='city'/>
                 <TextField name='state'/>
-                <TextField name='image'/>
                 <NumField name='zipcode' decimal={false}/>
+                <TextField name='image'/>
+                <TextField name='unitnumber'/>
                 <SelectField name='propertytype'/>
                 <NumField name='rentprice' decimal={false}/>
                 <NumField name='beds' decimal={false}/>
                 <NumField name='baths' decimal={false}/>
                 <NumField name='squarefeet' decimal={false}/>
                 <TextField name='description'/>
-                {console.log(this.state.address)}
+                {console.log(this.state.address.split(','))}
                 {this.state.address !== adrs ? ( console.log('State does not equal global')) : (console.log('State equals global')) }
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
