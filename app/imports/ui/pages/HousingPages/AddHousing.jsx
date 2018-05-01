@@ -16,13 +16,17 @@ import StandaloneSearchBox from 'react-google-maps/lib/components/places/Standal
 
 let adrs = 'please';
 const loc = { lat: 0, lng: 0 };
+let parsed = [];
+let zipcode = [];
 
 const SearchBox = compose(
     withProps({
-      googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places',
+      googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBCOzrZmDqSoiGvK1EnNUeTQjmXwUkoq6A&v=3.exp&libraries=geometry,drawing,places',
       loadingElement: <div style={{ height: '100%' }}/>,
       containerElement: <div style={{ height: '400px' }}/>,
     }),
+
+
     lifecycle({
       componentWillMount() {
         const refs = {};
@@ -68,12 +72,8 @@ const SearchBox = compose(
               {adrs = formatted_address}
               {' at '}
               ({loc.lat = location.lat()}, {loc.lng = location.lng()})
-              {console.log('Inside: ' + adrs)}
-              {console.log(loc.lat)}
-              {console.log(loc.lng)}
               {props.onChange(adrs)}
             </ol>)}
-        {console.log('Global: ' + adrs)}
       </ol>
     </div>);
 
@@ -107,6 +107,8 @@ class AddHousing extends React.Component {
   onAddressChange(address) {
     this.setState( { address: address, lat: loc.lat, lng: loc.lng  } );
     console.log('Changed State');
+    parsed = address.split(', ');
+    zipcode = parsed[2].split(' ');
   }
 
   /** On submit, insert the data. */
@@ -151,25 +153,27 @@ class AddHousing extends React.Component {
                   textTransform: 'none',
                 }}>Address</p>
                 <SearchBox onChange={this.onAddressChange}/>
-                <TextField name='city'/>
-                <TextField name='state'/>
-                <NumField name='zipcode' decimal={false}/>
-                <TextField name='image'/>
                 <TextField name='unitnumber'/>
+                <TextField name='image'/>
+
                 <SelectField name='propertytype'/>
                 <NumField name='rentprice' decimal={false}/>
                 <NumField name='beds' decimal={false}/>
                 <NumField name='baths' decimal={false}/>
                 <NumField name='squarefeet' decimal={false}/>
                 <TextField name='description'/>
-                {console.log(this.state.address.split(','))}
                 {this.state.address !== adrs ? ( console.log('State does not equal global')) : (console.log('State equals global')) }
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeyser@foo.com'/>
-                <HiddenField name='streetaddress' value={this.state.address}/>
+                <HiddenField name='streetaddress' value={parsed[0]}/>
                 <HiddenField name='longitude' decimal={true} value={loc.lng}/>
                 <HiddenField name='latitude' decimal={true} value={loc.lat}/>
+                <HiddenField name='city' value={parsed[1]} />
+                <HiddenField name='state' value={zipcode[0]}/>
+                <HiddenField name='zipcode' decimal={false} value={zipcode[1]}/>
+                {console.log(zipcode)}
+
               </Segment>
             </AutoForm>
           </Grid.Column>

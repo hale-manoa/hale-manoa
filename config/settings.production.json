@@ -15,6 +15,8 @@
       "image": "https://43b301fb2f83bd2719f4-7e2c9a1717b3351cc628e38f0a1ac906.ssl.cf5.rackcdn.com/201803681-condo-townhouse-1xhfwr8-m.jpg",
       "zipcode":96815,
       "unitnumber": "1407",
+      "longitude": -157.826939,
+      "latitude": 21.282381,
       "propertytype": "CONDO",
       "rentprice": 2000,
       "beds": 2,
@@ -30,6 +32,8 @@
       "image": "https://ssl.cdn-redfin.com/photo/169/mbpaddedwide/879/genMid.201630879_0.jpg",
       "zipcode":96815,
       "unitnumber": "1520",
+      "longitude": -157.826939,
+      "latitude": 21.282381,
       "propertytype": "HOUSE",
       "rentprice": 1500,
       "beds": 2,
@@ -45,6 +49,8 @@
       "image": "https://p.rdcpix.com/v01/l75b3b043-m1xd-w640_h480_q80.jpg",
       "zipcode": 96815,
       "unitnumber": "1407",
+      "longitude": -157.826939,
+      "latitude": 21.282381,
       "propertytype": "TOWNHOUSE",
       "rentprice": 2000,
       "beds": 2,
@@ -60,6 +66,8 @@
       "image": "https://www.oahure.com/data/1212/1212918/2.jpg",
       "zipcode": 96797,
       "unitnumber": "805",
+      "longitude": -158.002995,
+      "latitude": 21.387295,
       "propertytype": "CONDO",
       "rentprice": 1200,
       "beds": 1,
@@ -75,6 +83,8 @@
       "image": "https://photos.zillowstatic.com/p_f/ISivnykr7qbywq0000000000.jpg",
       "zipcode": 96822,
       "unitnumber": "1205",
+      "longitude": -157.836230,
+      "latitude": 21.307428,
       "propertytype": "CONDO",
       "rentprice": 1650,
       "beds": 2,
@@ -90,6 +100,8 @@
       "image": "https://photos.zillowstatic.com/p_f/ISuc12qwzulazh1000000000.jpg",
       "zipcode": 96822,
       "unitnumber": "205",
+      "longitude":-157.835159,
+      "latitude": 21.303139,
       "propertytype": "CONDO",
       "rentprice": 1500,
       "beds": 2,
@@ -105,6 +117,8 @@
       "image": "https://photos.zillowstatic.com/p_f/ISuc12qwzulazh1000000000.jpg",
       "zipcode": 96822,
       "unitnumber": "704",
+      "longitude": -157.833459,
+      "latitude": 21.303543,
       "propertytype": "CONDO",
       "rentprice": 1300,
       "beds": 1,
@@ -170,15 +184,6 @@
       "preferences": ["No smoking", "No drinking"],
       "description": "I am an English actress and model."
     }
-  ],
-  "galaxy.meteor.com": {
-    "env": {
-      "MONGO_URL": "mongodb://arnold:shek@ds143099.mlab.com:43099/haledb"
-
-    }
-  }
+  ]
 }
-
-
-
 
