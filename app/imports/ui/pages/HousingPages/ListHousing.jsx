@@ -2,6 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Card, Header, Loader, Modal, Button, Icon, Dropdown, Grid } from 'semantic-ui-react';
 import { Housings } from '/imports/api/housing/housing';
+import { Users } from '/imports/api/user/user';
 import HousingItem from '/imports/ui/components/HousingItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -123,12 +124,15 @@ class ListHousing extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    const current_usertype = Users.findOne({ owner: Meteor.user().username }).type;
+    const isLister = current_usertype === 'Lister';
+    console.log(current_usertype);
     return (
         <Container className='pageContainer'>
           <Header as="h2" textAlign="center">Housing</Header>
-          <Button className='pageInterfaceButton' as={NavLink} exact to="/add">Got a Listing to Add?</Button>
           <Modal size='large' open={ this.state.modalOpen } onClose={this.updateModalStateClose}
-                 trigger={<Button onClick={this.updateModalStateOpen}>Filter Listings By</Button>
+                 trigger={<Button className='pageInterfaceButton'
+                                  onClick={this.updateModalStateOpen}>Filter Listings By</Button>
                  } closeIcon>
             <Header icon='filter' content='Filters' />
             <Modal.Content>
@@ -206,6 +210,9 @@ class ListHousing extends React.Component {
               </Button>
             </Modal.Actions>
           </Modal>
+          {(isLister) ?
+              <Button as={NavLink} exact to="/add">Got a Listing to Add?</Button>
+              : null}
           <Card.Group centered>
             {this.filterListingsbyType().map((house, index) => <HousingItem key ={index} house={house}/>)}
           </Card.Group>

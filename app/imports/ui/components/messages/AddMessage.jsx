@@ -47,7 +47,7 @@ class AddMessage extends React.Component {
         <AutoForm label="" ref={(ref) => { this.formRef = ref; }} schema={MessageSchema} onSubmit={this.submit}>
           <Segment>
             <TextField name='message'/>
-            <SubmitField value='Submit'/>
+            <SubmitField value='Send'/>
             <ErrorsField/>
             <HiddenField name='groupId' value={this.props.groupId}/>
             <HiddenField name='members' value=''/>
