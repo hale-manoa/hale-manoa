@@ -24,11 +24,14 @@ class HousingItem extends React.Component {
               Baths: {this.props.house.baths}
             </Card.Meta>
             <Card.Description>
+              Description:
+              <br/>
               {this.props.house.description}
               <br/>
 
             </Card.Description>
             <Card.Content extra>
+              <br/>
               {this.props.house.streetaddress}
               &nbsp;
               {this.props.house.unitnumber}
