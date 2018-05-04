@@ -155,7 +155,6 @@ class AddHousing extends React.Component {
                 <SearchBox onChange={this.onAddressChange}/>
                 <TextField name='unitnumber'/>
                 <TextField name='image'/>
-
                 <SelectField name='propertytype'/>
                 <NumField name='rentprice' decimal={false}/>
                 <NumField name='beds' decimal={false}/>
