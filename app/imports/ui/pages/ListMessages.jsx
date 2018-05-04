@@ -18,7 +18,7 @@ class ListMessages extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     return (
-        <Container>
+        <Container className="msgboard-container">
           <Segment>
           <Header color="blue"as="h2" textAlign="center">Messages</Header>
           <hr/>

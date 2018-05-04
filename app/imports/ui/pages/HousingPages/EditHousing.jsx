@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
+import { Grid, Loader, Header, Segment, Container } from 'semantic-ui-react';
 import { Housings, HousingsSchema } from '/imports/api/housing/housing';
 import { Bert } from 'meteor/themeteorchef:bert';
 import AutoForm from 'uniforms-semantic/AutoForm';
@@ -9,6 +9,7 @@ import SelectField from 'uniforms-semantic/SelectField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
+import LongTextField from 'uniforms-semantic/LongTextField';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -16,7 +17,6 @@ import '/imports/ui/pages/HousingPages/listhousingpage.css';
 import { compose, withProps, lifecycle } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox';
-
 
 let adrs = 'please';
 const loc = { lat: 0, lng: 0 };
@@ -29,7 +29,6 @@ const SearchBox = compose(
       loadingElement: <div style={{ height: '100%' }}/>,
       containerElement: <div style={{ height: '400px' }}/>,
     }),
-
 
     lifecycle({
       componentWillMount() {
@@ -94,9 +93,8 @@ class EditHousing extends React.Component {
     };
   }
 
-
   onAddressChange(address) {
-    this.setState( { address: address, lat: loc.lat, lng: loc.lng  } );
+    this.setState({ address: address, lat: loc.lat, lng: loc.lng });
     console.log('Changed State');
     parsed = address.split(', ');
     zipcode = parsed[2].split(' ');
@@ -135,63 +133,93 @@ class EditHousing extends React.Component {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   renderPage() {
     return (
-        <Grid container centered>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">Add Housing</Header>
-            <AutoForm ref={(ref) => {
-              this.formRef = ref;
-            }} schema={HousingsSchema} onSubmit={this.submit} model={this.props.doc}>
-              <Segment>
-                <p style={{
-                  display: 'block',
-                  margin: '0em 0em 0.28571429rem 0em',
-                  color: 'rgba(0, 0, 0, 0.87)',
-                  fontSize: '0.92857143em',
-                  fontWeight: 'bold',
-                  textTransform: 'none',
-                }}>Address</p>
-                <SearchBox onChange={this.onAddressChange}/>
-                <TextField name='unitnumber'/>
-                <TextField name='image'/>
-                <SelectField name='propertytype'/>
-                <NumField name='rentprice' decimal={false}/>
-                <NumField name='beds' decimal={false}/>
-                <NumField name='baths' decimal={false}/>
-                <NumField name='squarefeet' decimal={false}/>
-                <TextField name='description'/>
-                <SubmitField value='Submit'/>
-                <ErrorsField/>
-                <HiddenField name='owner' value='fakeyser@foo.com'/>
-                <HiddenField name='streetaddress' value={parsed[0]}/>
-                <HiddenField name='longitude' decimal={true} value={loc.lng}/>
-                <HiddenField name='latitude' decimal={true} value={loc.lat}/>
-                <HiddenField name='city' value={parsed[1]} />
-                <HiddenField name='state' value={zipcode[0]}/>
-                <HiddenField name='zipcode' decimal={false} value={zipcode[1]}/>
+        <Grid centered>
+          <Grid.Column width={6}>
+            <Container className="pageContainer">
+              <Header as="h2" textAlign="center">Edit Listing</Header>
+              <AutoForm ref={(ref) => {
+                this.formRef = ref;
+              }} schema={HousingsSchema} onSubmit={this.submit} model={this.props.doc}>
+                <Grid centered>
+                    <Grid.Column width={10}>
+                      <p style={{
+                        display: 'block',
+                        margin: '0em 0em 0.28571429rem 0em',
+                        color: 'rgba(0, 0, 0, 0.87)',
+                        fontSize: '0.92857143em',
+                        fontWeight: 'bold',
+                        textTransform: 'none',
+                      }}>Address</p>
+                      <SearchBox onChange={this.onAddressChange}/>
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                      <TextField name='unitnumber'/>
+                    </Grid.Column>
+                    <Grid.Row>
+                      <Grid.Column width={4}>
+                        <SelectField name='propertytype'/>
+                      </Grid.Column>
+                      <Grid.Column width={10}>
+                        <TextField name='image'/>
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column width={4}>
+                        <NumField name='rentprice' decimal={false}/>
+                      </Grid.Column>
+                      <Grid.Column width={3}>
+                        <NumField name='beds' decimal={false}/>
+                      </Grid.Column>
+                      <Grid.Column width={3}>
+                        <NumField name='baths' decimal={false}/>
+                      </Grid.Column>
+                      <Grid.Column width={3}>
+                        <NumField name='squarefeet' decimal={false}/>
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column width={14} className="desc-box-height">
+                        <LongTextField name='description'/>
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column width={6} className="button-spacing-2">
+                        <SubmitField value='Submit'/>
+                      </Grid.Column>
+                    </Grid.Row>
+                    <ErrorsField/>
+                    <HiddenField name='owner' value='fakeyser@foo.com'/>
+                    <HiddenField name='streetaddress' value={parsed[0]}/>
+                    <HiddenField name='longitude' decimal={true} value={loc.lng}/>
+                    <HiddenField name='latitude' decimal={true} value={loc.lat}/>
+                    <HiddenField name='city' value={parsed[1]}/>
+                    <HiddenField name='state' value={zipcode[0]}/>
+                    <HiddenField name='zipcode' decimal={false} value={zipcode[1]}/>
 
-              </Segment>
-            </AutoForm>
+                </Grid>
+              </AutoForm>
+            </Container>
           </Grid.Column>
         </Grid>
-    );
+  );
   }
-}
+  }
 
-/** Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use. */
-EditHousing.propTypes = {
-  doc: PropTypes.object,
-  model: PropTypes.object,
-  ready: PropTypes.bool.isRequired,
-};
+    /** Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use. */
+  EditHousing.propTypes = {
+    doc: PropTypes.object,
+    model: PropTypes.object,
+    ready: PropTypes.bool.isRequired,
+  };
 
-/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
-export default withTracker(({ match }) => {
-  // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
-  const documentId = match.params._id;
-  // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Housing');
-  return {
+    /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+  export default withTracker(({match}) => {
+    // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
+    const documentId = match.params._id;
+    // Get access to Stuff documents.
+    const subscription = Meteor.subscribe('Housing');
+    return {
     doc: Housings.findOne(documentId),
     ready: subscription.ready(),
   };
-})(EditHousing);
+  })(EditHousing);

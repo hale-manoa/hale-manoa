@@ -22,7 +22,7 @@ class MessageBoard extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     return (
-        <Container>
+        <Container className="msgboard-container">
           <Grid columns='equal'>
             <Grid.Row stretched>
               <Grid.Column width={4}>

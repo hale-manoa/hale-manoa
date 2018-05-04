@@ -1,8 +1,9 @@
 import React from 'react';
 import { Housings, HousingsSchema } from '/imports/api/housing/housing';
-import { Grid, Segment, Header } from 'semantic-ui-react';
+import { Grid, Segment, Header, Container } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
+import LongTextField from 'uniforms-semantic/LongTextField';
 import NumField from 'uniforms-semantic/NumField';
 import SelectField from 'uniforms-semantic/SelectField';
 import SubmitField from 'uniforms-semantic/SubmitField';
@@ -25,7 +26,6 @@ const SearchBox = compose(
       loadingElement: <div style={{ height: '100%' }}/>,
       containerElement: <div style={{ height: '400px' }}/>,
     }),
-
 
     lifecycle({
       componentWillMount() {
@@ -77,7 +77,6 @@ const SearchBox = compose(
       </ol>
     </div>);
 
-
 /** Renders the Page for adding a document. */
 class AddHousing extends React.Component {
   /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
@@ -105,7 +104,7 @@ class AddHousing extends React.Component {
   }
 
   onAddressChange(address) {
-    this.setState( { address: address, lat: loc.lat, lng: loc.lng  } );
+    this.setState({ address: address, lat: loc.lat, lng: loc.lng });
     console.log('Changed State');
     parsed = address.split(', ');
     zipcode = parsed[2].split(' ');
@@ -137,42 +136,71 @@ class AddHousing extends React.Component {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     return (
-        <Grid container centered>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">Add Housing</Header>
-            <AutoForm ref={(ref) => {
-              this.formRef = ref;
-            }} schema={HousingsSchema} onSubmit={this.submit}>
-              <Segment>
-                <p style={{
-                  display: 'block',
-                  margin: '0em 0em 0.28571429rem 0em',
-                  color: 'rgba(0, 0, 0, 0.87)',
-                  fontSize: '0.92857143em',
-                  fontWeight: 'bold',
-                  textTransform: 'none',
-                }}>Address</p>
-                <SearchBox onChange={this.onAddressChange}/>
-                <TextField name='unitnumber'/>
-                <TextField name='image'/>
-                <SelectField name='propertytype'/>
-                <NumField name='rentprice' decimal={false}/>
-                <NumField name='beds' decimal={false}/>
-                <NumField name='baths' decimal={false}/>
-                <NumField name='squarefeet' decimal={false}/>
-                <TextField name='description'/>
-                <SubmitField value='Submit'/>
-                <ErrorsField/>
-                <HiddenField name='owner' value='fakeyser@foo.com'/>
-                <HiddenField name='streetaddress' value={parsed[0]}/>
-                <HiddenField name='longitude' decimal={true} value={loc.lng}/>
-                <HiddenField name='latitude' decimal={true} value={loc.lat}/>
-                <HiddenField name='city' value={parsed[1]} />
-                <HiddenField name='state' value={zipcode[0]}/>
-                <HiddenField name='zipcode' decimal={false} value={zipcode[1]}/>
-
-              </Segment>
-            </AutoForm>
+        <Grid centered>
+          <Grid.Column width={6}>
+            <Container className="pageContainer">
+              <Header as="h2" textAlign="center">Add Listing</Header>
+              <AutoForm ref={(ref) => {
+                this.formRef = ref;
+              }} schema={HousingsSchema} onSubmit={this.submit}>
+                <Grid centered>
+                  <Grid.Column width={10}>
+                    <p style={{
+                      display: 'block',
+                      margin: '0em 0em 0.28571429rem 0em',
+                      color: 'rgba(0, 0, 0, 0.87)',
+                      fontSize: '0.92857143em',
+                      fontWeight: 'bold',
+                      textTransform: 'none',
+                    }}>Address</p>
+                    <SearchBox onChange={this.onAddressChange}/>
+                  </Grid.Column>
+                  <Grid.Column width={4}>
+                    <TextField name='unitnumber'/>
+                  </Grid.Column>
+                  <Grid.Row>
+                    <Grid.Column width={4}>
+                      <SelectField name='propertytype'/>
+                    </Grid.Column>
+                    <Grid.Column width={10}>
+                      <TextField name='image'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={4}>
+                      <NumField name='rentprice' decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField name='beds' decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField name='baths' decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField name='squarefeet' decimal={false}/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={14} className="desc-box-height">
+                      <LongTextField name='description'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={6} className="button-spacing-2">
+                      <SubmitField value='Submit'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <ErrorsField/>
+                  <HiddenField name='owner' value='fakeyser@foo.com'/>
+                  <HiddenField name='streetaddress' value={parsed[0]}/>
+                  <HiddenField name='longitude' decimal={true} value={loc.lng}/>
+                  <HiddenField name='latitude' decimal={true} value={loc.lat}/>
+                  <HiddenField name='city' value={parsed[1]}/>
+                  <HiddenField name='state' value={zipcode[0]}/>
+                  <HiddenField name='zipcode' decimal={false} value={zipcode[1]}/>
+                </Grid>
+              </AutoForm>
+            </Container>
           </Grid.Column>
         </Grid>
     );
