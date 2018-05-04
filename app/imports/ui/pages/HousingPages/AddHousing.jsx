@@ -22,7 +22,7 @@ let zipcode = [];
 
 const SearchBox = compose(
     withProps({
-      googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBCOzrZmDqSoiGvK1EnNUeTQjmXwUkoq6A&v=3.exp&libraries=geometry,drawing,places',
+      googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBxxQ6xRUt4VMU4EC5fVxJE5ah5aLa0D7k&v=3.exp&libraries=geometry,drawing,places',
       loadingElement: <div style={{ height: '100%' }}/>,
       containerElement: <div style={{ height: '400px' }}/>,
     }),
@@ -238,7 +238,6 @@ class AddHousing extends React.Component {
                 <NumField name='baths' decimal={false}/>
                 <NumField name='squarefeet' decimal={false}/>
                 <TextField name='description'/>
-                {this.state.address !== adrs ? ( console.log('State does not equal global')) : (console.log('State equals global')) }
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeyser@foo.com'/>
@@ -248,7 +247,6 @@ class AddHousing extends React.Component {
                 <HiddenField name='city' value={parsed[1]} />
                 <HiddenField name='state' value={zipcode[0]}/>
                 <HiddenField name='zipcode' decimal={false} value={zipcode[1]}/>
-                {console.log(zipcode)}
 
               </Segment>
             </AutoForm>
