@@ -137,27 +137,29 @@ class AddHousing extends React.Component {
   render() {
     return (
         <Grid centered>
-          <Grid.Column width={6}>
+          <Grid.Column width={8}>
             <Container className="pageContainer">
               <Header as="h2" textAlign="center">Add Listing</Header>
               <AutoForm ref={(ref) => {
                 this.formRef = ref;
               }} schema={HousingsSchema} onSubmit={this.submit}>
                 <Grid centered>
-                  <Grid.Column width={10}>
-                    <p style={{
-                      display: 'block',
-                      margin: '0em 0em 0.28571429rem 0em',
-                      color: 'rgba(0, 0, 0, 0.87)',
-                      fontSize: '0.92857143em',
-                      fontWeight: 'bold',
-                      textTransform: 'none',
-                    }}>Address</p>
-                    <SearchBox onChange={this.onAddressChange}/>
-                  </Grid.Column>
-                  <Grid.Column width={4}>
-                    <TextField name='unitnumber'/>
-                  </Grid.Column>
+                  <Grid.Row>
+                    <Grid.Column width={11}>
+                      <p style={{
+                        display: 'block',
+                        margin: '0em 0em 0.28571429rem 0em',
+                        color: 'rgba(0, 0, 0, 0.87)',
+                        fontSize: '0.92857143em',
+                        fontWeight: 'bold',
+                        textTransform: 'none',
+                      }}>Address</p>
+                      <SearchBox onChange={this.onAddressChange}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <TextField name='unitnumber'/>
+                    </Grid.Column>
+                  </Grid.Row>
                   <Grid.Row>
                     <Grid.Column width={4}>
                       <SelectField name='propertytype'/>
