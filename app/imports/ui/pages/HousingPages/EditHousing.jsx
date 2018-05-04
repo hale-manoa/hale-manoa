@@ -134,14 +134,15 @@ class EditHousing extends React.Component {
   renderPage() {
     return (
         <Grid centered>
-          <Grid.Column width={6}>
+          <Grid.Column width={8}>
             <Container className="pageContainer">
               <Header as="h2" textAlign="center">Edit Listing</Header>
               <AutoForm ref={(ref) => {
                 this.formRef = ref;
               }} schema={HousingsSchema} onSubmit={this.submit} model={this.props.doc}>
                 <Grid centered>
-                    <Grid.Column width={10}>
+                  <Grid.Row>
+                    <Grid.Column width={11}>
                       <p style={{
                         display: 'block',
                         margin: '0em 0em 0.28571429rem 0em',
@@ -152,74 +153,75 @@ class EditHousing extends React.Component {
                       }}>Address</p>
                       <SearchBox onChange={this.onAddressChange}/>
                     </Grid.Column>
-                    <Grid.Column width={4}>
+                    <Grid.Column width={3}>
                       <TextField name='unitnumber'/>
                     </Grid.Column>
-                    <Grid.Row>
-                      <Grid.Column width={4}>
-                        <SelectField name='propertytype'/>
-                      </Grid.Column>
-                      <Grid.Column width={10}>
-                        <TextField name='image'/>
-                      </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={4}>
-                        <NumField name='rentprice' decimal={false}/>
-                      </Grid.Column>
-                      <Grid.Column width={3}>
-                        <NumField name='beds' decimal={false}/>
-                      </Grid.Column>
-                      <Grid.Column width={3}>
-                        <NumField name='baths' decimal={false}/>
-                      </Grid.Column>
-                      <Grid.Column width={3}>
-                        <NumField name='squarefeet' decimal={false}/>
-                      </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={14} className="desc-box-height">
-                        <LongTextField name='description'/>
-                      </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={6} className="button-spacing-2">
-                        <SubmitField value='Submit'/>
-                      </Grid.Column>
-                    </Grid.Row>
-                    <ErrorsField/>
-                    <HiddenField name='owner' value='fakeyser@foo.com'/>
-                    <HiddenField name='streetaddress' value={parsed[0]}/>
-                    <HiddenField name='longitude' decimal={true} value={loc.lng}/>
-                    <HiddenField name='latitude' decimal={true} value={loc.lat}/>
-                    <HiddenField name='city' value={parsed[1]}/>
-                    <HiddenField name='state' value={zipcode[0]}/>
-                    <HiddenField name='zipcode' decimal={false} value={zipcode[1]}/>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={4}>
+                      <SelectField name='propertytype'/>
+                    </Grid.Column>
+                    <Grid.Column width={10}>
+                      <TextField name='image'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={4}>
+                      <NumField name='rentprice' decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField name='beds' decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField name='baths' decimal={false}/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <NumField name='squarefeet' decimal={false}/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={14} className="desc-box-height">
+                      <LongTextField name='description'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={6} className="button-spacing-2">
+                      <SubmitField value='Submit'/>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <ErrorsField/>
+                  <HiddenField name='owner' value='fakeyser@foo.com'/>
+                  <HiddenField name='streetaddress' value={parsed[0]}/>
+                  <HiddenField name='longitude' decimal={true} value={loc.lng}/>
+                  <HiddenField name='latitude' decimal={true} value={loc.lat}/>
+                  <HiddenField name='city' value={parsed[1]}/>
+                  <HiddenField name='state' value={zipcode[0]}/>
+                  <HiddenField name='zipcode' decimal={false} value={zipcode[1]}/>
 
                 </Grid>
               </AutoForm>
             </Container>
           </Grid.Column>
         </Grid>
-  );
+    );
   }
-  }
+}
 
-    /** Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use. */
-  EditHousing.propTypes = {
-    doc: PropTypes.object,
-    model: PropTypes.object,
-    ready: PropTypes.bool.isRequired,
-  };
+/** Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use. */
+EditHousing.propTypes = {
+  doc: PropTypes.object,
+  model: PropTypes.object,
+  ready: PropTypes.bool.isRequired,
+};
 
-    /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
-  export default withTracker(({match}) => {
-    // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
-    const documentId = match.params._id;
-    // Get access to Stuff documents.
-    const subscription = Meteor.subscribe('Housing');
-    return {
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+export default withTracker(({ match }) => {
+  // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
+  const documentId = match.params._id;
+  // Get access to Stuff documents.
+  const subscription = Meteor.subscribe('Housing');
+  return {
     doc: Housings.findOne(documentId),
     ready: subscription.ready(),
   };
-  })(EditHousing);
+})(EditHousing);
