@@ -40,7 +40,7 @@
       "baths": 1,
       "squarefeet": 300,
       "description": "Blah Blah Blah",
-      "owner": "john@foo.com"
+      "owner": "test@foo.com"
     },
     {
       "streetaddress": "2211 Ala Wai Blvd",
@@ -57,7 +57,7 @@
       "baths": 1,
       "squarefeet": 300,
       "description": "Blah Blah Blah",
-      "owner": "john@foo.com"
+      "owner": "bob@foo.com"
     },
     {
       "streetaddress": "94979 Kauolu Pl",
@@ -74,7 +74,7 @@
       "baths": 1,
       "squarefeet": 500,
       "description": "Blah Blah Blah",
-      "owner": "john@foo.com"
+      "owner": "bill@foo.com"
     },
     {
       "streetaddress": "1702 Kewalo St",
@@ -91,7 +91,7 @@
       "baths": 1,
       "squarefeet": 500,
       "description": "Blah Blah Blah",
-      "owner": "john@foo.com"
+      "owner": "bill@foo.com"
     },
     {
       "streetaddress": "1543 Makiki Street",
@@ -143,7 +143,7 @@
     {
       "firstName": "Henri",
       "lastName": "Casanova",
-      "type": "Seeker",
+      "type": "Lister",
       "owner": "admin@foo.com",
       "image": "https://avatars0.githubusercontent.com/u/7494478?s=460&v=4",
       "age": "29",
@@ -154,7 +154,7 @@
     {
       "firstName": "Bruno",
       "lastName": "Mars",
-      "type": "Seeker",
+      "type": "Lister",
       "owner": "john@foo.com",
       "image": "https://pbs.twimg.com/profile_images/952969165370884096/bK1_Bkpq.jpg",
       "age": "20",
