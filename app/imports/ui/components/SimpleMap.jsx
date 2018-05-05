@@ -9,7 +9,9 @@ const AnyReactComponent = ({ image }) => <div>
   <Icon name='home' color='green' size='big'/>
 </div>;
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+/**
+ * Basic Structure copied from https://www.npmjs.com/package/google-map-react
+ * */
 class SimpleMap extends React.Component {
   render() {
     return (

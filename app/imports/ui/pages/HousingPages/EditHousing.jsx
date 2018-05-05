@@ -23,6 +23,10 @@ const loc = { lat: 0, lng: 0 };
 let parsed = [];
 let zipcode = [];
 
+/**
+ *  Structure copied from https://tomchentw.github.io/react-google-maps/#standalonesearchbox
+ *  Add an onchange function parses the address and splits it and also updates the state
+ * */
 const SearchBox = compose(
     withProps({
       googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBxxQ6xRUt4VMU4EC5fVxJE5ah5aLa0D7k&v=3.exp&libraries=geometry,drawing,places',

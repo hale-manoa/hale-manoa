@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+/** Renders a card for the housing */
 class HousingItem extends React.Component {
   render() {
     return (
